@@ -53,7 +53,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField disable="true" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@../values/style.css" text="نام کتاب را وارد کنید ">
+                        <TextField opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید " styleClass="transparent" stylesheets="@../values/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
