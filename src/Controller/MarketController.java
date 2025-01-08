@@ -1,5 +1,6 @@
 package Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -43,6 +44,9 @@ public class MarketController implements Initializable {
 
     @FXML
     private Label writer;
+
+    @FXML
+    private AnchorPane rootPane;
 
     private List<Fruit> fruits = new ArrayList<>();
     private Image image;
@@ -306,5 +310,13 @@ public class MarketController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void LoadCart(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Cart.fxml"));;
+        rootPane.getChildren().setAll(pane);
+
+    }
+
 
 }

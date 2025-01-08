@@ -12,6 +12,11 @@
     -fx-background-radius: 30;
 }
 
+.load-cart-button{
+    -fx-background-color: #7E99A3;
+    -fx-background-radius: 30;
+}
+
 .right-bar{
     -fx-background-color: #D3D3D3;
 }
@@ -102,3 +107,25 @@
     -fx-background-radius: 10; /* Rounded thumb */
     -fx-padding: 2; /* Padding inside thumb */
 }
+
+.ptimary-background {
+    -fx-background-color: #E4E7EC;
+}
+
+.secondary-background {
+    -fx-background-color: #A0B2C0;
+}
+
+.rect-round {
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
+
+.white-border {
+    -fx-border-color: #fff; /* اصلاح "#ffj" به "#fff" یا هر رنگ دلخواه دیگر */
+}
+
+.botton {
+    -fx-background-color: #303030;
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
+

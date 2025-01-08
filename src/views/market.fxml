@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketController">
    <children>
       <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -53,7 +53,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید " styleClass="transparent" stylesheets="@../values/style.css">
+                        <TextField opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید " styleClass="transparent" stylesheets="@../values/style.css" text="نام کتاب را وارد کنید ">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -180,12 +180,24 @@
                                  </image>
                               </ImageView>
                            </children></Pane>
+                        <Button mnemonicParsing="false" onAction="#LoadCart" prefHeight="29.0" prefWidth="195.0" stylesheets="@../values/style.css" text="مشاهده سبد خرید">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="load-cart-button" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/shopping-cart.png" />
                            </image>
                            <HBox.margin>
-                              <Insets right="75.0" />
+                              <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
                      </children>
