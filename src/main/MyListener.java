@@ -1,7 +1,7 @@
 package main;
 
-import model.Fruit;
+import model.Book;
 
 public interface MyListener {
-    public void onClickListener(Fruit fruit);
+    public void onClickListener(Book fruit);
 }

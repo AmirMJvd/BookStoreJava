@@ -15,7 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import main.Main;
 import main.MyListener;
-import model.Fruit;
+import model.Book;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,16 +25,17 @@ import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
     @FXML
-    private VBox chosenFruitCard;
+    private VBox chosenBookCard;
+
 
     @FXML
-    private Label fruitNameLable;
+    private Label bookNameLable;
 
     @FXML
-    private Label fruitPriceLabel;
+    private Label bookPriceLabel;
 
     @FXML
-    private ImageView fruitImg;
+    private ImageView bookImg;
 
     @FXML
     private ScrollPane scroll;
@@ -48,231 +49,232 @@ public class MarketController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
-    private List<Fruit> fruits = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
     private Image image;
     private MyListener myListener;
 
-    private List<Fruit> getData() {
-        List<Fruit> fruits = new ArrayList<>();
-        Fruit fruit;
+    private List<Book> getData() {
+        List<Book> books = new ArrayList<>();
+        Book book;
 
-        fruit = new Fruit();
-        fruit.setName("مزرعه حیوانات");
-        fruit.setPrice(99);
-        fruit.setImgSrc("/img/مزرعه حیوانات.jpg");
-        fruit.setColor("7E99A3");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("مزرعه حیوانات");
+        book.setPrice(99);
+        book.setImgSrc("/img/مزرعه حیوانات.jpg");
+        book.setColor("7E99A3");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("بازگشت شاه");
-        fruit.setPrice(50);
-        fruit.setImgSrc("/img/بازگشت شاه.png");
-        fruit.setColor("055052");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("بازگشت شاه");
+        book.setPrice(50);
+        book.setImgSrc("/img/بازگشت شاه.png");
+        book.setColor("055052");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("تلماسه");
-        fruit.setPrice(80);
-        fruit.setImgSrc("/img/تلماسه.jpg");
-        fruit.setColor("355C7D");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("تلماسه");
+        book.setPrice(80);
+        book.setImgSrc("/img/تلماسه.jpg");
+        book.setColor("355C7D");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("برفک");
-        fruit.setPrice(60);
-        fruit.setImgSrc("/img/برفک.jpg");
-        fruit.setColor("0D7377");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("برفک");
+        book.setPrice(60);
+        book.setImgSrc("/img/برفک.jpg");
+        book.setColor("0D7377");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("بر باد رفته");
-        fruit.setPrice(40);
-        fruit.setImgSrc("/img/بر باد رفته.jpg");
-        fruit.setColor("AAAAAA");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("بر باد رفته");
+        book.setPrice(40);
+        book.setImgSrc("/img/بر باد رفته.jpg");
+        book.setColor("AAAAAA");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("اینده ذهن");
-        fruit.setPrice(70);
-        fruit.setImgSrc("/img/اینده ذهن.jpg");
-        fruit.setColor("D9ADAD");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("اینده ذهن");
+        book.setPrice(70);
+        book.setImgSrc("/img/اینده ذهن.jpg");
+        book.setColor("D9ADAD");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("انقراض ششم");
-        fruit.setPrice(45);
-        fruit.setImgSrc("/img/انقراض ششم.jpg");
-        fruit.setColor("917FB3");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("انقراض ششم");
+        book.setPrice(45);
+        book.setImgSrc("/img/انقراض ششم.jpg");
+        book.setColor("917FB3");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("خوشه های خشم");
-        fruit.setPrice(55);
-        fruit.setImgSrc("/img/خوشه های خشم.jpg");
-        fruit.setColor("5F060E");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("خوشه های خشم");
+        book.setPrice(55);
+        book.setImgSrc("/img/خوشه های خشم.jpg");
+        book.setColor("5F060E");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("فارنهایت 451");
-        fruit.setPrice(140);
-        fruit.setImgSrc("/img/فارنهایت.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("فارنهایت 451");
+        book.setPrice(140);
+        book.setImgSrc("/img/فارنهایت.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("هری پاتر");
-        fruit.setPrice(74);
-        fruit.setImgSrc("/img/هری پاتر.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("هری پاتر");
+        book.setPrice(74);
+        book.setImgSrc("/img/هری پاتر.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("پرتقال کوکی");
-        fruit.setPrice(85);
-        fruit.setImgSrc("/img/پرتقال کوکی.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("پرتقال کوکی");
+        book.setPrice(85);
+        book.setImgSrc("/img/پرتقال کوکی.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("کتابخانه نیمه شب");
-        fruit.setPrice(95);
-        fruit.setImgSrc("/img/کتابخانه نیمه شب.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("کتابخانه نیمه شب");
+        book.setPrice(95);
+        book.setImgSrc("/img/کتابخانه نیمه شب.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("گتسبی بزرگ");
-        fruit.setPrice(56);
-        fruit.setImgSrc("/img/گتسبی بزرگ.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("گتسبی بزرگ");
+        book.setPrice(56);
+        book.setImgSrc("/img/گتسبی بزرگ.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("یاران حلقه");
-        fruit.setPrice(46);
-        fruit.setImgSrc("/img/یاران حلقه.png");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("یاران حلقه");
+        book.setPrice(46);
+        book.setImgSrc("/img/یاران حلقه.png");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("تبار انسان");
-        fruit.setPrice(25);
-        fruit.setImgSrc("/img/تبار انسان.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("تبار انسان");
+        book.setPrice(25);
+        book.setImgSrc("/img/تبار انسان.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("جهان زیبا");
-        fruit.setPrice(66);
-        fruit.setImgSrc("/img/جهان زیبا.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("جهان زیبا");
+        book.setPrice(66);
+        book.setImgSrc("/img/جهان زیبا.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("جهان های موازی");
-        fruit.setPrice(42);
-        fruit.setImgSrc("/img/جهان های موازی.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("جهان های موازی");
+        book.setPrice(42);
+        book.setImgSrc("/img/جهان های موازی.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("نظم زمان");
-        fruit.setPrice(43);
-        fruit.setImgSrc("/img/نظم زمان.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("نظم زمان");
+        book.setPrice(43);
+        book.setImgSrc("/img/نظم زمان.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("چه میشود اگر");
-        fruit.setPrice(75);
-        fruit.setImgSrc("/img/چه میشود اگر.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("چه میشود اگر");
+        book.setPrice(75);
+        book.setImgSrc("/img/چه میشود اگر.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("چیستی تکامل");
-        fruit.setPrice(86);
-        fruit.setImgSrc("/img/چیستی تکامل.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("چیستی تکامل");
+        book.setPrice(86);
+        book.setImgSrc("/img/چیستی تکامل.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("راهنمای کهکشان");
-        fruit.setPrice(95);
-        fruit.setImgSrc("/img/راهنمای کهکشان.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("راهنمای کهکشان");
+        book.setPrice(95);
+        book.setImgSrc("/img/راهنمای کهکشان.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("اودیسه فضایی");
-        fruit.setPrice(83);
-        fruit.setImgSrc("/img/اودیسه فضایی.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("اودیسه فضایی");
+        book.setPrice(83);
+        book.setImgSrc("/img/اودیسه فضایی.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("تبصره 22");
-        fruit.setPrice(56);
-        fruit.setImgSrc("/img/تبصره 22.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("تبصره 22");
+        book.setPrice(56);
+        book.setImgSrc("/img/تبصره 22.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("خشم و هیاهو");
-        fruit.setPrice(23);
-        fruit.setImgSrc("/img/خشم و هیاهو.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("خشم و هیاهو");
+        book.setPrice(23);
+        book.setImgSrc("/img/خشم و هیاهو.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("خانم دالاوی");
-        fruit.setPrice(43);
-        fruit.setImgSrc("/img/خانم دالاوی.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("خانم دالاوی");
+        book.setPrice(43);
+        book.setImgSrc("/img/خانم دالاوی.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("ناطور دشت");
-        fruit.setPrice(122);
-        fruit.setImgSrc("/img/ناطور دشت.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("ناطور دشت");
+        book.setPrice(122);
+        book.setImgSrc("/img/ناطور دشت.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("بنیاد");
-        fruit.setPrice(69);
-        fruit.setImgSrc("/img/بنیاد.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("بنیاد");
+        book.setPrice(69);
+        book.setImgSrc("/img/بنیاد.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
 
-        fruit = new Fruit();
-        fruit.setName("ماشین زمان");
-        fruit.setPrice(99);
-        fruit.setImgSrc("/img/ماشین زمان.jpg");
-        fruit.setColor("E7C00F");
-        fruits.add(fruit);
+        book = new Book();
+        book.setName("ماشین زمان");
+        book.setPrice(99);
+        book.setImgSrc("/img/ماشین زمان.jpg");
+        book.setColor("E7C00F");
+        books.add(book);
+        
 
-        return fruits;
+        return books;
     }
 
-    private void setChosenFruit(Fruit fruit) {
-        fruitNameLable.setText(fruit.getName());
-        fruitPriceLabel.setText(Main.CURRENCY + fruit.getPrice());
-        writer.setText(fruit.getWriter());
-        image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
-        fruitImg.setImage(image);
-        chosenFruitCard.setStyle("-fx-background-color: #" + fruit.getColor() + ";\n" +
+    private void setChosenFruit(Book book) {
+        bookNameLable.setText(book.getName());
+        bookPriceLabel.setText(Main.CURRENCY + book.getPrice());
+        writer.setText(book.getWriter());
+        image = new Image(getClass().getResourceAsStream(book.getImgSrc()));
+        bookImg.setImage(image);
+        chosenBookCard.setStyle("-fx-background-color: #" + book.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fruits.addAll(getData());
-        if (fruits.size() > 0) {
-            setChosenFruit(fruits.get(0));
+        books.addAll(getData());
+        if (books.size() > 0) {
+            setChosenFruit(books.get(0));
             myListener = new MyListener() {
                 @Override
-                public void onClickListener(Fruit fruit) {
+                public void onClickListener(Book fruit) {
                     setChosenFruit(fruit);
                 }
             };
@@ -280,13 +282,13 @@ public class MarketController implements Initializable {
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < fruits.size(); i++) {
+            for (int i = 0; i < books.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(fruits.get(i),myListener);
+                itemController.setData(books.get(i),myListener);
 
                 if (column == 3) {
                     column = 0;

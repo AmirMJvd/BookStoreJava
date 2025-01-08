@@ -1,8 +1,6 @@
 package model;
 
-import javax.xml.crypto.Data;
-
-public class Fruit {
+public class Book {
     private String name;
     private String imgSrc;
     private double price;
