@@ -25,7 +25,6 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="627.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#CameBack" styleClass="search-button" stylesheets="@../values/StyleA.css" text="بازگشت" />
                         <ImageView fitHeight="45.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/user.png" />
@@ -158,7 +157,7 @@
                                                    <children>
                                                       <TextField fx:id="Color" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا رنگ پس زمینه را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
                                                       <Pane prefHeight="100.0" prefWidth="79.0" />
-                                                      <Label prefHeight="27.0" prefWidth="66.0" text="رنگ :">
+                                                      <Label text="رنگ :">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
@@ -177,9 +176,9 @@
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="110.0" prefWidth="342.0" stylesheets="@../values/StyleA.css">
                                                    <children>
-                                                      <TextField fx:id="ImgAdr" prefHeight="25.0" prefWidth="182.0" promptText="لطفا آدرس عکس را وارد نمایید" styleClass="transparent" stylesheets="@../values/StyleA.css" />
+                                                      <TextField fx:id="ImgAdr" prefHeight="25.0" prefWidth="192.0" promptText="لطفا آدرس عکس را وارد نمایید" styleClass="transparent" stylesheets="@../values/StyleA.css" />
                                                       <Pane prefHeight="85.0" prefWidth="0.0" />
-                                                      <Label prefHeight="25.0" prefWidth="107.0" text="آدرس تصویر :" textFill="#b19898">
+                                                      <Label text="آدرس عکس :" textFill="#b19898">
                                                          <font>
                                                             <Font name="System Italic" size="16.0" />
                                                          </font>
@@ -197,6 +196,9 @@
                                                    <children>
                                                       <ImageView fitHeight="270.0" fitWidth="342.0" layoutX="-5.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" />
                                                    </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
                                                 </Pane>
                                                 <HBox alignment="CENTER" prefHeight="110.0" prefWidth="342.0" stylesheets="@../values/StyleA.css">
                                                    <children>
@@ -213,10 +215,10 @@
                                                       <String fx:value="shadow" />
                                                    </styleClass>
                                                    <VBox.margin>
-                                                      <Insets left="5.0" right="5.0" />
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <HBox alignment="CENTER" prefHeight="137.0" prefWidth="317.0">
+                                                <HBox alignment="CENTER" prefHeight="142.0" prefWidth="317.0">
                                                    <children>
                                                       <Button mnemonicParsing="false" onAction="#registration" prefHeight="77.0" prefWidth="117.0" styleClass="search-button" stylesheets="@../values/StyleA.css" text="ثبت">
                                                          <font>
@@ -225,10 +227,16 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                <HBox alignment="CENTER" prefHeight="124.0" prefWidth="317.0">
                                                    <children>
-                                                      <Label fx:id="Report" text="گزارش" />
+                                                      <Button mnemonicParsing="false" onAction="#CameBack" styleClass="add-button" stylesheets="@../values/StyleA.css" text="بازگشت" />
+                                                      <Pane prefHeight="65.0" prefWidth="76.0" />
+                                                      <Label fx:id="Report" prefHeight="17.0" prefWidth="152.0" text="گزارشات" />
+                                                      <Pane prefHeight="65.0" prefWidth="19.0" />
                                                    </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
                                                 </HBox>
                                              </children>
                                           </VBox>
