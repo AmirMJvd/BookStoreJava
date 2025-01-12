@@ -80,7 +80,7 @@
                      <children>
                         <HBox prefHeight="60.0" prefWidth="335.0">
                            <children>
-                              <Label fx:id="bookNameLable" prefHeight="48.0" prefWidth="276.0" text="Book Name" textFill="WHITE">
+                              <Label fx:id="bookNameLable" prefHeight="48.0" prefWidth="276.0" text="Peach" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>
@@ -174,13 +174,8 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="20.0" fitWidth="30.0" layoutX="98.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/user.png" />
-                                 </image>
-                              </ImageView>
                            </children></Pane>
-                        <Button mnemonicParsing="false" onAction="#LoadCart" prefHeight="25.0" prefWidth="195.0" stylesheets="@../values/style.css" text="مشاهده سبد خرید">
+                        <Button mnemonicParsing="false" onAction="#LoadCart" prefHeight="29.0" prefWidth="195.0" stylesheets="@../values/style.css" text="مشاهده سبد خرید">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>

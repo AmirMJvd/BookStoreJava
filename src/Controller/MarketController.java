@@ -25,8 +25,7 @@ import java.util.ResourceBundle;
 
 public class MarketController implements Initializable {
     @FXML
-    private VBox chosenBookCard;
-
+    private ImageView bookImg;
 
     @FXML
     private Label bookNameLable;
@@ -35,7 +34,7 @@ public class MarketController implements Initializable {
     private Label bookPriceLabel;
 
     @FXML
-    private ImageView bookImg;
+    private VBox chosenBookCard;
 
     @FXML
     private ScrollPane scroll;
@@ -252,6 +251,9 @@ public class MarketController implements Initializable {
         book.setImgSrc("/img/ماشین زمان.jpg");
         book.setColor("E7C00F");
         books.add(book);
+
+
+
         
 
         return books;
@@ -317,7 +319,6 @@ public class MarketController implements Initializable {
     void LoadCart(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Cart.fxml"));;
         rootPane.getChildren().setAll(pane);
-
     }
 
 
