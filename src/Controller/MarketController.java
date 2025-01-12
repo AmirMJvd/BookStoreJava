@@ -321,5 +321,11 @@ public class MarketController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    @FXML
+    void AdminLoad(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));;
+        rootPane.getChildren().setAll(pane);
+    }
+
 
 }

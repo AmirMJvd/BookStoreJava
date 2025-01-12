@@ -168,12 +168,13 @@
                      <children>
                         <Pane prefHeight="65.0" prefWidth="706.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button layoutX="8.0" layoutY="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" text="Button" visible="false" />
+                              <Button layoutX="8.0" layoutY="18.0" mnemonicParsing="false" onAction="#AdminLoad" prefHeight="30.0" prefWidth="111.0" text="Button" visible="false" />
                               <Label id="vorud" layoutX="14.0" layoutY="18.0" prefHeight="30.0" prefWidth="100.0" stylesheets="@../values/style.css" text="ورود / ثبت‌نام">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="114.0" layoutY="21.0" mnemonicParsing="false" onAction="#AdminLoad" text="پنل مدیریت" />
                            </children></Pane>
                         <Button mnemonicParsing="false" onAction="#LoadCart" prefHeight="29.0" prefWidth="195.0" stylesheets="@../values/style.css" text="مشاهده سبد خرید">
                            <HBox.margin>

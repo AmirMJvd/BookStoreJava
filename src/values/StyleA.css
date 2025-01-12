@@ -76,3 +76,8 @@
     -fx-border-color: #E0E0E0; /* رنگ حاشیه محتوای تب */
     -fx-border-width: 1px; /* عرض حاشیه */
 }
+
+.load-cart-button{
+    -fx-background-color: #7E99A3;
+    -fx-background-radius: 30;
+}
