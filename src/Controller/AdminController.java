@@ -42,6 +42,10 @@ public class AdminController {
     private TextField translator;
 
     @FXML
+    private TextField Category;
+
+
+    @FXML
     private Label Report;
 
     @FXML
@@ -56,7 +60,7 @@ public class AdminController {
                 // بررسی اینکه هیچ فیلدی خالی نباشد
                 if (bookName.getText().isEmpty() || author.getText().isEmpty() || translator.getText().isEmpty()||
                 nasher.getText().isEmpty()||  ImgAdr.getText().isEmpty() || Color.getText().isEmpty()||
-                priceTextField.getText().isEmpty() || count.getText().isEmpty()) {
+                priceTextField.getText().isEmpty() || count.getText().isEmpty() || Category.getText().isEmpty()) {
                     Report.setText("لطفاً همه فیلدها را پر کنید!");
                     return;
                 }
@@ -74,14 +78,29 @@ public class AdminController {
 
                 // نوشتن داده‌ها در فایل
                 FileWriter myWriter = new FileWriter("BookInf.txt", true);
-                myWriter.write(bookName.getText() + "|");
-                myWriter.write(author.getText() + "|");
-                myWriter.write(translator.getText() + "|");
-                myWriter.write(nasher.getText() + "|");
-                myWriter.write(ImgAdr.getText() + "|");
-                myWriter.write(Color.getText() + "|");
-                myWriter.write(price + "|");
-                myWriter.write(countValue + "\n");
+
+                myWriter.write(bookName.getText());
+                myWriter.write("\n");
+
+                myWriter.write(priceTextField.getText());
+                myWriter.write("\n");
+
+                myWriter.write(ImgAdr.getText());
+                myWriter.write("\n");
+
+                myWriter.write(Color.getText());
+                myWriter.write("\n");
+
+
+//                myWriter.write(translator.getText() + "|");
+//
+//                myWriter.write(nasher.getText() + "|");
+//
+//                myWriter.write(author.getText() + "|");
+//
+//                myWriter.write(count.getText() + "|");
+//
+//                myWriter.write(Category.getText() + "|");
                 myWriter.close();
 
                 Report.setText("محصول با موفقیت ثبت شد!");

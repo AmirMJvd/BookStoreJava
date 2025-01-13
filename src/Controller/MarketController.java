@@ -17,11 +17,14 @@ import main.Main;
 import main.MyListener;
 import model.Book;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class MarketController implements Initializable {
     @FXML
@@ -61,15 +64,24 @@ public class MarketController implements Initializable {
     private List<Book> getData() {
         List<Book> books = new ArrayList<>();
         Book book;
+        try {
+            File BookInfo = new File("BookInf.txt");
+            Scanner myReader = new Scanner(BookInfo);
 
-        book = new Book();
-        book.setName("مزرعه حیوانات");
-        book.setPrice(99);
-        book.setImgSrc("/img/مزرعه حیوانات.jpg");
-        book.setColor("7E99A3");
-        books.add(book);
+            while (myReader.hasNextLine()) {
+                book = new Book();
+                book.setName(myReader.nextLine());
+                book.setPrice(myReader.nextLine());
+                book.setImgSrc(myReader.nextLine());
+                book.setColor(myReader.nextLine());
+                books.add(book);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        book = new Book();
+/*        book = new Book();
         book.setName("بازگشت شاه");
         book.setPrice(50);
         book.setImgSrc("/img/بازگشت شاه.png");
@@ -258,7 +270,7 @@ public class MarketController implements Initializable {
         books.add(book);
 
 
-
+*/
 
 
         return books;

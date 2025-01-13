@@ -164,6 +164,19 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Pane prefHeight="80.0" prefWidth="203.0" />
+                                                      <TextField fx:id="Category" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا رنگ دسته بندی را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="80.0" prefWidth="93.0" />
+                                                      <Label text="دسته بندی :">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="80.0" prefWidth="152.0" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />

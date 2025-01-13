@@ -3,7 +3,7 @@ package model;
 public class Book {
     private String name;
     private String imgSrc;
-    private double price;
+    private String price;
     private String color;
     private String writer;
     private String Publisher;
@@ -50,11 +50,11 @@ public class Book {
         this.imgSrc = imgSrc;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
