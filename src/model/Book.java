@@ -8,6 +8,7 @@ public class Book {
     private String writer;
     private String Publisher;
     private String dragoman;
+    private String nasher;
 
     public String getWriter() {
         return writer;

@@ -46,6 +46,12 @@ public class MarketController implements Initializable {
     private Label writer;
 
     @FXML
+    private Label nasher;
+
+    @FXML
+    private Label translator;
+
+    @FXML
     private AnchorPane rootPane;
 
     private List<Book> books = new ArrayList<>();
@@ -67,194 +73,193 @@ public class MarketController implements Initializable {
         book.setName("بازگشت شاه");
         book.setPrice(50);
         book.setImgSrc("/img/بازگشت شاه.png");
-        book.setColor("055052");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("تلماسه");
         book.setPrice(80);
         book.setImgSrc("/img/تلماسه.jpg");
-        book.setColor("355C7D");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("برفک");
         book.setPrice(60);
         book.setImgSrc("/img/برفک.jpg");
-        book.setColor("0D7377");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("بر باد رفته");
         book.setPrice(40);
         book.setImgSrc("/img/بر باد رفته.jpg");
-        book.setColor("AAAAAA");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("اینده ذهن");
         book.setPrice(70);
         book.setImgSrc("/img/اینده ذهن.jpg");
-        book.setColor("D9ADAD");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("انقراض ششم");
         book.setPrice(45);
         book.setImgSrc("/img/انقراض ششم.jpg");
-        book.setColor("917FB3");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("خوشه های خشم");
         book.setPrice(55);
         book.setImgSrc("/img/خوشه های خشم.jpg");
-        book.setColor("5F060E");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("فارنهایت 451");
         book.setPrice(140);
         book.setImgSrc("/img/فارنهایت.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("هری پاتر");
         book.setPrice(74);
         book.setImgSrc("/img/هری پاتر.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("پرتقال کوکی");
         book.setPrice(85);
         book.setImgSrc("/img/پرتقال کوکی.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("کتابخانه نیمه شب");
         book.setPrice(95);
         book.setImgSrc("/img/کتابخانه نیمه شب.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("گتسبی بزرگ");
         book.setPrice(56);
         book.setImgSrc("/img/گتسبی بزرگ.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("یاران حلقه");
         book.setPrice(46);
         book.setImgSrc("/img/یاران حلقه.png");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
-
         book = new Book();
         book.setName("تبار انسان");
         book.setPrice(25);
         book.setImgSrc("/img/تبار انسان.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("جهان زیبا");
         book.setPrice(66);
         book.setImgSrc("/img/جهان زیبا.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("جهان های موازی");
         book.setPrice(42);
         book.setImgSrc("/img/جهان های موازی.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("نظم زمان");
         book.setPrice(43);
         book.setImgSrc("/img/نظم زمان.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("چه میشود اگر");
         book.setPrice(75);
         book.setImgSrc("/img/چه میشود اگر.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("چیستی تکامل");
         book.setPrice(86);
         book.setImgSrc("/img/چیستی تکامل.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("راهنمای کهکشان");
         book.setPrice(95);
         book.setImgSrc("/img/راهنمای کهکشان.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("اودیسه فضایی");
         book.setPrice(83);
         book.setImgSrc("/img/اودیسه فضایی.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("تبصره 22");
         book.setPrice(56);
         book.setImgSrc("/img/تبصره 22.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("خشم و هیاهو");
         book.setPrice(23);
         book.setImgSrc("/img/خشم و هیاهو.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("خانم دالاوی");
         book.setPrice(43);
         book.setImgSrc("/img/خانم دالاوی.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("ناطور دشت");
         book.setPrice(122);
         book.setImgSrc("/img/ناطور دشت.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("بنیاد");
         book.setPrice(69);
         book.setImgSrc("/img/بنیاد.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
         book = new Book();
         book.setName("ماشین زمان");
         book.setPrice(99);
         book.setImgSrc("/img/ماشین زمان.jpg");
-        book.setColor("E7C00F");
+        book.setColor("7E99A3");
         books.add(book);
 
 
 
-        
+
 
         return books;
     }
@@ -288,7 +293,6 @@ public class MarketController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-
                 ItemController itemController = fxmlLoader.getController();
                 itemController.setData(books.get(i),myListener);
 
