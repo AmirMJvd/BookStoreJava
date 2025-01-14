@@ -187,7 +187,14 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <Pane prefHeight="41.0" prefWidth="476.0" />
+                              <Pane prefHeight="41.0" prefWidth="476.0">
+                                 <children>
+                                    <Label fx:id="FinalAmount" alignment="CENTER" layoutX="147.0" layoutY="4.0" prefHeight="40.0" prefWidth="182.0" text="The final amount">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children></Pane>
                            </children>
                         </VBox>
                         <VBox prefHeight="213.0" prefWidth="476.0" stylesheets="@../values/style.css">

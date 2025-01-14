@@ -4,6 +4,7 @@ public class Cart {
     private String name;
     private String imgSrc;
     private String price;
+    private int quantity;
     public String getName() {return name;}
 
     public void setName(String name) {
@@ -25,5 +26,7 @@ public class Cart {
     public void setPrice(String price) {
         this.price = price;
     }
+
+
 
 }

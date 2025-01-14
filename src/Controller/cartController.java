@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -26,9 +27,11 @@ public class cartController  implements Initializable {
     @FXML
     private GridPane grid;
 
-    private List<Cart> carts = new ArrayList<>();
+    @FXML
+    private Label FinalAmount;
 
-    // خواندن داده‌ها از فایل سبد خرید
+
+    private List<Cart> carts = new ArrayList<>();
     private List<Cart> getCartData() {
         List<Cart> carts = new ArrayList<>();
         try {
@@ -50,7 +53,7 @@ public class cartController  implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         carts.addAll(getCartData());
-        int row = 1;  // استفاده از یک ستون ثابت
+        int row = 1;
 
         try {
             for (Cart cart : carts) {
@@ -62,8 +65,7 @@ public class cartController  implements Initializable {
                 cartItemController.setData(cart);
 
 
-                // هر کتاب در ردیف‌های جدید قرار می‌گیرد ولی در یک ستون ثابت
-                grid.add(anchorPane, 0, row++); // ستون 0 و ردیف row
+                grid.add(anchorPane, 0, row++);
 
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -73,7 +75,6 @@ public class cartController  implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                // فاصله بین آیتم‌ها
                 GridPane.setMargin(anchorPane, new Insets(15));
             }
         } catch (IOException e) {
