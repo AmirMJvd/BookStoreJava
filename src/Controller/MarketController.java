@@ -19,6 +19,7 @@ import model.Book;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class MarketController implements Initializable {
     private List<Book> books = new ArrayList<>();
     private Image image;
     private MyListener myListener;
+    private Book selectedBook;
+
 
     private List<Book> getData() {
         List<Book> books = new ArrayList<>();
@@ -80,7 +83,6 @@ public class MarketController implements Initializable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
 /*        book = new Book();
         book.setName("بازگشت شاه");
         book.setPrice(50);
@@ -272,11 +274,11 @@ public class MarketController implements Initializable {
 
 */
 
-
         return books;
     }
 
     private void setChosenFruit(Book book) {
+        selectedBook = book;
         bookNameLable.setText(book.getName());
         bookPriceLabel.setText(Main.CURRENCY + book.getPrice());
         writer.setText(book.getWriter());
@@ -342,6 +344,25 @@ public class MarketController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));;
         rootPane.getChildren().setAll(pane);
     }
+
+    @FXML
+    void AddCart(ActionEvent event) throws IOException {
+        FileWriter myWriter = new FileWriter("CartInf.txt", true);
+
+        myWriter.write(bookNameLable.getText());
+        myWriter.write("\n");
+
+        myWriter.write(bookPriceLabel.getText());
+        myWriter.write("\n");
+
+        myWriter.write(selectedBook.getImgSrc());
+        myWriter.write("\n");
+
+        myWriter.close();
+
+    }
+
+
 
 
 }

@@ -27,12 +27,12 @@ public class ItemController {
     private Book book;
     private MyListener myListener;
 
-    public void setData(Book fruit, MyListener myListener) {
-        this.book = fruit;
+    public void setData(Book book, MyListener myListener) {
+        this.book = book;
         this.myListener = myListener;
-        nameLabel.setText(fruit.getName());
-        priceLable.setText(Main.CURRENCY + fruit.getPrice());
-        Image image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
+        nameLabel.setText(book.getName());
+        priceLable.setText(Main.CURRENCY + book.getPrice());
+        Image image = new Image(getClass().getResourceAsStream(book.getImgSrc()));
         img.setImage(image);
     }
 }

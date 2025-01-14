@@ -58,9 +58,8 @@ public class AdminController {
     void registration(ActionEvent event)  {
             try {
                 // بررسی اینکه هیچ فیلدی خالی نباشد
-                if (bookName.getText().isEmpty() || author.getText().isEmpty() || translator.getText().isEmpty()||
-                nasher.getText().isEmpty()||  ImgAdr.getText().isEmpty() || Color.getText().isEmpty()||
-                priceTextField.getText().isEmpty() || count.getText().isEmpty() || Category.getText().isEmpty()) {
+                if (bookName.getText().isEmpty() ||  ImgAdr.getText().isEmpty() || Color.getText().isEmpty()||
+                priceTextField.getText().isEmpty() ) {
                     Report.setText("لطفاً همه فیلدها را پر کنید!");
                     return;
                 }
