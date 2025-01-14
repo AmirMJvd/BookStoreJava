@@ -1,0 +1,32 @@
+.ptimary-background {
+    -fx-background-color: #E4E7EC;
+}
+
+.secondary-background {
+    -fx-background-color: #A0B2C0;
+}
+
+.card {
+    -fx-background-color: #fff;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0, 0, 10.0);
+}
+
+.add-remove-layout {
+    -fx-border-radius: 50;
+    -fx-border-width: 1;
+    -fx-border-color: #303030;
+}
+
+.rect-round {
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
+
+.white-border {
+    -fx-border-color: #fff; /* اصلاح "#ffj" به "#fff" یا هر رنگ دلخواه دیگر */
+}
+
+.botton {
+    -fx-background-color: #303030;
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
