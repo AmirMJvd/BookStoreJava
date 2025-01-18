@@ -14,6 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../views/market.fxml"));
         primaryStage.setTitle("BOOK STORE");
         primaryStage.setScene(new Scene(root));
+//        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

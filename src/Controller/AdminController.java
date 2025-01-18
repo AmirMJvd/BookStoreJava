@@ -90,16 +90,21 @@ public class AdminController {
                 myWriter.write(Color.getText());
                 myWriter.write("\n");
 
+                myWriter.write(author.getText());
+                myWriter.write("\n");
 
-//                myWriter.write(translator.getText() + "|");
-//
-//                myWriter.write(nasher.getText() + "|");
-//
-//                myWriter.write(author.getText() + "|");
-//
-//                myWriter.write(count.getText() + "|");
-//
-//                myWriter.write(Category.getText() + "|");
+                myWriter.write(translator.getText());
+                myWriter.write("\n");
+
+                myWriter.write(nasher.getText());
+                myWriter.write("\n");
+
+                myWriter.write(count.getText());
+                myWriter.write("\n");
+
+                myWriter.write(Category.getText());
+                myWriter.write("\n");
+
                 myWriter.close();
 
                 Report.setText("محصول با موفقیت ثبت شد!");

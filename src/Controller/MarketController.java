@@ -41,19 +41,26 @@ public class MarketController implements Initializable {
     private VBox chosenBookCard;
 
     @FXML
+    private Label CategoryLab;
+
+    @FXML
+    private Label countLab;
+
+    @FXML
+    private Label nasherLab;
+
+    @FXML
+    private Label translatorLab;
+
+    @FXML
+    private Label writerLab;
+
+    @FXML
     private ScrollPane scroll;
 
     @FXML
     private GridPane grid;
 
-    @FXML
-    private Label writer;
-
-    @FXML
-    private Label nasher;
-
-    @FXML
-    private Label translator;
 
     @FXML
     private AnchorPane rootPane;
@@ -77,6 +84,11 @@ public class MarketController implements Initializable {
                 book.setPrice(myReader.nextLine());
                 book.setImgSrc(myReader.nextLine());
                 book.setColor(myReader.nextLine());
+                book.setWriter(myReader.nextLine());
+                book.setTranslator(myReader.nextLine());
+                book.setNasher(myReader.nextLine());
+                book.setCount(myReader.nextLine());
+                book.setCategory(myReader.nextLine());
                 books.add(book);
             }
             myReader.close();
@@ -281,7 +293,11 @@ public class MarketController implements Initializable {
         selectedBook = book;
         bookNameLable.setText(book.getName());
         bookPriceLabel.setText(Main.CURRENCY + book.getPrice());
-        writer.setText(book.getWriter());
+        writerLab.setText(book.getWriter());
+        translatorLab.setText(book.getTranslator());
+        nasherLab.setText(book.getNasher());
+        countLab.setText(book.getCount());
+        CategoryLab.setText(book.getCategory());
         image = new Image(getClass().getResourceAsStream(book.getImgSrc()));
         bookImg.setImage(image);
         chosenBookCard.setStyle("-fx-background-color: #" + book.getColor() + ";\n" +
