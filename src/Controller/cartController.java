@@ -67,6 +67,10 @@ public class cartController  implements Initializable {
 
                 grid.add(anchorPane, 0, row++);
 
+
+
+
+
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
