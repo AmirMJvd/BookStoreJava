@@ -13,6 +13,7 @@ import model.Cart;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -98,6 +99,13 @@ public class cartController  implements Initializable {
 
     @FXML
     void BackMarketPay(ActionEvent event) throws IOException{
+        try {
+            FileWriter writer = new FileWriter("CartInf.txt", false);
+            writer.write("");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Market.fxml"));
         rootPanecart.getChildren().setAll(pane);
     }
