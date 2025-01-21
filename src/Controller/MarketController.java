@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -72,6 +74,13 @@ public class MarketController implements Initializable {
     @FXML
     private GridPane psychologyGrrid;
 
+    @FXML
+    private TextField SearchTxt;
+
+    @FXML
+    private Button AddCart;
+
+
 
 
     @FXML
@@ -110,7 +119,6 @@ public class MarketController implements Initializable {
                 String category = myReader.nextLine();
                 book.setCategory(category);
 
-                // افزودن به دسته‌بندی مناسب
                 switch (category) {
                     case "علمی":
                         scientificBooks.add(book);
@@ -122,10 +130,9 @@ public class MarketController implements Initializable {
                         psychologyBooks.add(book);
                         break;
                     default:
-                        // دسته‌بندی ناشناخته
                         break;
                 }
-                allBooks.add(book); // افزودن به لیست کلی
+                allBooks.add(book);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -346,10 +353,10 @@ public class MarketController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         BookLists bookLists = getData();
-        allBooks.addAll(bookLists.getAllBooks());          // همه کتاب‌ها
-        scientificBooks.addAll(bookLists.getScientificBooks());  // کتاب‌های علمی
-        politicalBooks.addAll(bookLists.getPoliticalBooks());   // کتاب‌های سیاسی
-        psychologyBooks.addAll(bookLists.getPsychologyBooks());  // کتاب‌های روانشناسی
+        allBooks.addAll(bookLists.getAllBooks());
+        scientificBooks.addAll(bookLists.getScientificBooks());
+        politicalBooks.addAll(bookLists.getPoliticalBooks());
+        psychologyBooks.addAll(bookLists.getPsychologyBooks());
         if (allBooks.size() > 0) {
             setChosenFruit(allBooks.get(0));
             myListener = new MyListener() {
@@ -389,27 +396,25 @@ public class MarketController implements Initializable {
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
 
-                for (int i = 0; i < scientificBooks.size(); i++) {
+            for (int i = 0; i < scientificBooks.size(); i++) {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
-                    ItemController itemController2 = fxmlLoader.getController();
-                    itemController2.setData(scientificBooks.get(i), myListener);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController2 = fxmlLoader.getController();
+                itemController2.setData(scientificBooks.get(i), myListener);
 
-                    scientificGrid.add(anchorPane, column++, row); //(child,column,row)
-                    //set grid width
-                    scientificGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    scientificGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    scientificGrid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    //set grid height
-                    scientificGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    scientificGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    scientificGrid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                    GridPane.setMargin(anchorPane, new Insets(10));
-                }
+                scientificGrid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                scientificGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                scientificGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                scientificGrid.setMaxWidth(Region.USE_PREF_SIZE);
+                //set grid height
+                scientificGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                scientificGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                scientificGrid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
 
             for (int i = 0; i < politicalBooks.size(); i++) {
 
@@ -424,12 +429,10 @@ public class MarketController implements Initializable {
                 politicalGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setMaxWidth(Region.USE_PREF_SIZE);
-
                 //set grid height
                 politicalGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setMaxHeight(Region.USE_PREF_SIZE);
-
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
 
@@ -446,12 +449,10 @@ public class MarketController implements Initializable {
                 psychologyGrrid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setMaxWidth(Region.USE_PREF_SIZE);
-
                 //set grid height
                 psychologyGrrid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setMaxHeight(Region.USE_PREF_SIZE);
-
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
 
@@ -470,12 +471,18 @@ public class MarketController implements Initializable {
     @FXML
     void AdminLoad(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
-        ;
         rootPane.getChildren().setAll(pane);
     }
+    @FXML
+    boolean bookFound = true;
 
     @FXML
     void AddCart(ActionEvent event) throws IOException {
+        if (!bookFound) {
+            // اگر کتابی پیدا نشده باشد، هیچ کاری انجام نمی‌دهیم
+            bookPriceLabel.setText("خطا !");
+            return;
+        }
         FileWriter myWriter = new FileWriter("CartInf.txt", true);
 
         myWriter.write(bookNameLable.getText());
@@ -490,5 +497,36 @@ public class MarketController implements Initializable {
         myWriter.close();
 
     }
+    @FXML
+    void SearchBtn(ActionEvent event) {
+        String search = SearchTxt.getText().trim(); // دریافت متن جستجو شده
+        boolean found = false;
+
+        // جستجوی کتاب مورد نظر در لیست همه کتاب‌ها
+        for (Book book : allBooks) {
+            if (book.getName().equalsIgnoreCase(search)) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
+                setChosenFruit(book); // تنظیم کتاب انتخاب شده
+                found = true;
+                break; // خروج از حلقه بعد از پیدا کردن کتاب
+            }
+        }
+
+        if (!found) {
+            // اگر کتابی پیدا نشد، نمایش پیام به کاربر
+            bookNameLable.setText("کتاب یافت نشد!");
+            bookPriceLabel.setText("0.0");
+            writerLab.setText("");
+            translatorLab.setText("");
+            nasherLab.setText("");
+            countLab.setText("");
+            CategoryLab.setText("");
+            Image Image = new Image(getClass().getResourceAsStream("/img/broken-image.png"));
+            bookImg.setImage(Image);
+            chosenBookCard.setStyle("-fx-background-color: #868686;\n    -fx-background-radius: 30;");
+            bookFound = false;
+        }
+    }
 }
+
+
 
