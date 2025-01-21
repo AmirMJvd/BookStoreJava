@@ -48,7 +48,7 @@
 
 /* استایل کلی TabPane */
 .tab-pane {
-    -fx-border-color: #4CAF50; /* رنگ حاشیه TabPane */
+    -fx-border-color: #FFFFFF; /* رنگ حاشیه TabPane */
     -fx-border-width: 2px; /* عرض حاشیه */
     -fx-background-color: #f5f5f5; /* رنگ پس‌زمینه TabPane */
 }

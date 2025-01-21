@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -332,18 +334,62 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@../values/style.css">
-                           <content>
-                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                 </rowConstraints>
-                              </GridPane>
-                           </content>
+                        <TabPane prefHeight="610.0" prefWidth="785.0" stylesheets="@../values/StyleA.css" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="کل محصولات">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="300.0" styleClass="transparent" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="grid">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </content>
+                            </Tab>
+                              <Tab text="علمی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0">
+                                       <content>
+                                          <GridPane fx:id="scientificGrid">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="سیاسی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0">
+                                       <content>
+                                          <GridPane fx:id="politicalGrid">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="روانشناسی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0">
+                                       <content>
+                                          <GridPane fx:id="psychologyGrrid">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
                            <HBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="10.0" top="15.0" />
                            </HBox.margin>
-                        </ScrollPane>
+                        </TabPane>
                      </children>
                   </HBox>
                </children>

@@ -55,7 +55,6 @@ public class cartController  implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         carts.addAll(getCartData());
         int row = 1;
-
         try {
             for (Cart cart : carts) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
