@@ -1,0 +1,20 @@
+.card-view {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0, 0, 10.0);
+}
+
+.hbox-view1 {
+    -fx-background-color: #d9d7d7;
+    -fx-background-radius: 15;
+}
+
+.hbox-view2 {
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 15;
+}
+
+.image-view {
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 20;
+}

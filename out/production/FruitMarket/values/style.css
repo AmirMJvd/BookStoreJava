@@ -29,6 +29,11 @@
     -fx-background-color: #F16C31;
     -fx-background-radius: 30;
 }
+.chosen-fruit-card1{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
 
 .comboBox{
     -fx-background-color: rgba(255,255,255,0.3);

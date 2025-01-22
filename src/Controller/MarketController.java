@@ -84,6 +84,12 @@ public class MarketController implements Initializable {
     @FXML
     private Button AddCart;
 
+    @FXML
+    private Label countLabel;
+
+
+
+
 
 
 
@@ -508,6 +514,10 @@ public class MarketController implements Initializable {
         myWriter.write(selectedBook.getImgSrc());
         myWriter.write("\n");
 
+        myWriter.write(countLabel.getText());
+        myWriter.write("\n");
+
+
         myWriter.close();
 
     }
@@ -548,6 +558,59 @@ public class MarketController implements Initializable {
     public void setStageManager(StageManager stageManager) {
         this.stageManager = stageManager;
     }
+
+    @FXML
+    void decreaseBtn(ActionEvent event) {
+        int currentNumber = Integer.parseInt((countLabel.getText()));
+
+        if (currentNumber > 1) {
+            currentNumber--;
+            countLabel.setText(String.valueOf(currentNumber));
+            calculateTotal();
+        }
+    }
+
+    @FXML
+    void increaseBtn(ActionEvent event) {
+        int currentNumber = Integer.parseInt( countLabel.getText());
+        currentNumber++;
+        countLabel.setText(String.valueOf(currentNumber));
+        calculateTotal();
+    }
+
+    @FXML
+    void calculateTotal() {
+
+            // گرفتن قیمت از شیء کتاب انتخاب‌شده
+            if (selectedBook == null) {
+                bookPriceLabel.setText("خطا!");
+                return;
+            }
+
+            // تبدیل قیمت از رشته به مقدار عددی
+            double price = Double.parseDouble(selectedBook.getPrice());
+
+            // گرفتن تعداد از countLabel
+            int currentNumber = Integer.parseInt(countLabel.getText());
+
+            // محاسبه مجموع مبلغ
+            double totalAmount = price * currentNumber;
+
+            // نمایش مجموع مبلغ در bookPriceLabel
+            bookPriceLabel.setText(Main.CURRENCY + totalAmount);
+        }
+
+
+    // متد برای استخراج عدد از قیمت
+    private double extractPrice(String priceText) {
+        // فرض می‌کنیم که قیمت با واحدی مثل "تومان" همراه است
+        // حذف تمامی کاراکترهای غیر عددی از قیمت (مثلاً "تومان")
+        String numericPrice = priceText.replaceAll("[^\\d.]", "");
+
+        // تبدیل رشته عددی به مقدار عددی (double)
+        return Double.parseDouble(numericPrice);
+    }
+
 }
 
 

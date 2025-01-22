@@ -24,8 +24,6 @@ public class CartItemController {
     @FXML
     private Label Numberlabel;
 
-    @FXML
-    private Label Number;
 
     private Cart cart;
 
@@ -33,7 +31,7 @@ public class CartItemController {
 
 
 
-    @FXML
+/*    @FXML
     void decrease(ActionEvent event)  {
         int currentNumber = Integer.parseInt((Numberlabel.getText()));
 
@@ -85,15 +83,21 @@ public class CartItemController {
     }
 
 
-
+*/
     public void setData(Cart cart) {
         this.cart = cart;
-        this.cartController = cartController;
+//        this.cartController = cartController;
         nameLabel.setText(cart.getName());
         priceLable.setText(cart.getPrice());
         Image image = new Image(getClass().getResourceAsStream(cart.getImgSrc()));
         img.setImage(image);
-        calculateTotal();
+        Numberlabel.setText(cart.getCount());
+    }
+
+    @FXML
+    void Delet(ActionEvent event) {
+        System.out.println(cart.getImgSrc());
+
     }
 
 

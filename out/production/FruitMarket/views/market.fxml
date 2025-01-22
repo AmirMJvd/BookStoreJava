@@ -209,25 +209,67 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="335.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#AddCart" prefHeight="50.0" prefWidth="179.0" styleClass="add-btn" stylesheets="@../values/style.css" text="افزودن به سبد خرید" textFill="#828282">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
+                              <HBox prefHeight="32.0" prefWidth="120.0" styleClass="add-remove-layout1" stylesheets="@../values/styleCartItem.css">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Label fx:id="countLabel" alignment="CENTER" prefHeight="30.0" prefWidth="63.0" text="1" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cambria" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
                                  <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
+                                    <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
-                              </Button>
-                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="110.0" text="\$2.99" textFill="WHITE">
+                              </HBox>
+                              <Pane prefHeight="42.0" prefWidth="81.0" />
+                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="89.0" text="\$2.99" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="18.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets right="20.0" top="10.0" />
+                                    <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="309.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#AddCart" prefHeight="50.0" prefWidth="137.0" styleClass="add-btn" stylesheets="@../values/style.css" text="افزودن به سبد خرید" textFill="#828282">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <styleClass>
