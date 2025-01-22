@@ -19,6 +19,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketController">
@@ -54,7 +57,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField fx:id="SearchTxt" opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید " styleClass="transparent" stylesheets="@../values/style.css" text="نام کتاب را وارد کنید ">
+                        <TextField fx:id="SearchTxt" opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -246,12 +249,26 @@
                      <children>
                         <Pane prefHeight="65.0" prefWidth="706.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button layoutX="8.0" layoutY="18.0" mnemonicParsing="false" onAction="#AdminLoad" prefHeight="30.0" prefWidth="111.0" text="Button" visible="false" />
-                              <Label id="vorud" layoutX="14.0" layoutY="18.0" prefHeight="30.0" prefWidth="100.0" stylesheets="@../values/style.css" text="ورود / ثبت‌نام">
+                              <Button fx:id="btnvoud" layoutX="8.0" layoutY="18.0" mnemonicParsing="false" onAction="#pressbtnvorud" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: transparent;" text="ورود/ثبت نام">
+                                 <textFill>
+                                    <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.9058823585510254" green="0.27843138575553894" blue="0.16862745583057404" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.13725490868091583" green="0.12941177189350128" blue="0.12941177189350128" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </RadialGradient>
+                                 </textFill>
                                  <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
+                                    <Font size="14.0" />
+                                 </font></Button>
                               <Button layoutX="114.0" layoutY="21.0" mnemonicParsing="false" onAction="#AdminLoad" text="پنل مدیریت" />
                            </children></Pane>
                         <Button mnemonicParsing="false" onAction="#LoadCart" prefHeight="29.0" prefWidth="195.0" stylesheets="@../values/style.css" text="مشاهده سبد خرید">
@@ -335,28 +352,28 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <TabPane prefHeight="610.0" prefWidth="785.0" stylesheets="@../values/StyleA.css" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="کل محصولات">
+                           <tabs>
+                              <Tab text="کل محصولات">
                                  <content>
                                     <ScrollPane prefHeight="570.0" prefWidth="300.0" styleClass="transparent" stylesheets="@../values/style.css">
                                        <content>
                                           <GridPane fx:id="grid">
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
                                           </GridPane>
                                        </content>
                                     </ScrollPane>
                                  </content>
-                            </Tab>
+                              </Tab>
                               <Tab text="علمی">
                                  <content>
                                     <ScrollPane prefHeight="570.0" prefWidth="785.0">
                                        <content>
                                           <GridPane fx:id="scientificGrid">
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
                                  </content>
@@ -366,9 +383,9 @@
                                     <ScrollPane prefHeight="570.0" prefWidth="785.0">
                                        <content>
                                           <GridPane fx:id="politicalGrid">
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
                                  </content>
@@ -378,14 +395,14 @@
                                     <ScrollPane prefHeight="570.0" prefWidth="785.0">
                                        <content>
                                           <GridPane fx:id="psychologyGrrid">
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
                                  </content>
                               </Tab>
-                          </tabs>
+                           </tabs>
                            <HBox.margin>
                               <Insets bottom="10.0" top="15.0" />
                            </HBox.margin>

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -16,10 +17,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import main.Main;
 import main.MyListener;
 import model.Book;
 import model.BookLists;
+import model.StageManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +35,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class MarketController implements Initializable {
+    private StageManager stageManager = new StageManager();
     @FXML
     private ImageView bookImg;
 
@@ -474,6 +478,16 @@ public class MarketController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
     @FXML
+    void pressbtnvorud(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/signin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 971, 770);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle("ورود");
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
     boolean bookFound = true;
 
     @FXML
@@ -525,6 +539,14 @@ public class MarketController implements Initializable {
             chosenBookCard.setStyle("-fx-background-color: #868686;\n    -fx-background-radius: 30;");
             bookFound = false;
         }
+    }
+
+    public StageManager getStageManager() {
+        return stageManager;
+    }
+
+    public void setStageManager(StageManager stageManager) {
+        this.stageManager = stageManager;
     }
 }
 
