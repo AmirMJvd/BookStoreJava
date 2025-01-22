@@ -503,6 +503,12 @@ public class MarketController implements Initializable {
             bookPriceLabel.setText("خطا !");
             return;
         }
+
+        if ( countLab.getText().compareTo("0") ==0){
+            bookPriceLabel.setText("موجودی کافی نیست !");
+            return;
+        }
+
         FileWriter myWriter = new FileWriter("CartInf.txt", true);
 
         myWriter.write(bookNameLable.getText());
