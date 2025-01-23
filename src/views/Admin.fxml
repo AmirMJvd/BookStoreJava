@@ -4,8 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -101,7 +101,230 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ListView layoutX="47.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" styleClass="list-view-list" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <left>
+                                          <VBox prefHeight="579.0" prefWidth="400.0" styleClass="right-bar-Admin" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
+                                                   <children>
+                                                      <HBox prefHeight="60.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="bookNameLable" alignment="TOP_CENTER" prefHeight="44.0" prefWidth="297.0" text="BOOK" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="36.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" top="30.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <ImageView fx:id="bookImg" fitHeight="138.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/logo.png" />
+                                                         </image>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="writerLab" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="نویسنده :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="translatorLab" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="مترجم :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="nasherLab" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="ناشر :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="countLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="61.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria Bold" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="17.0" prefWidth="16.0" />
+                                                            <Label text="تعداد :" textFill="WHITE" />
+                                                            <Pane prefHeight="23.0" prefWidth="7.0" />
+                                                            <Label fx:id="CategoryLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="119.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="23.0" prefWidth="34.0" />
+                                                            <Label prefHeight="17.0" prefWidth="65.0" text="دسته بندی :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="335.0">
+                                                         <children>
+                                                            <HBox prefHeight="32.0" prefWidth="120.0" styleClass="add-remove-layout1" stylesheets="@../values/styleCartItem.css">
+                                                               <children>
+                                                                  <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                                  <Label fx:id="countLabel" alignment="CENTER" prefHeight="30.0" prefWidth="63.0" text="1" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="Cambria" size="18.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Label>
+                                                                  <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </HBox>
+                                                            <Pane prefHeight="42.0" prefWidth="81.0" />
+                                                            <TextField fx:id="PriceTxt" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="89.0" promptText="قیمت" style="-fx-background-color: traparer;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="5.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="309.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#AddChange" prefHeight="50.0" prefWidth="137.0" styleClass="add-btn" stylesheets="@../values/style.css" text="ثبت تغییرات" textFill="#828282">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="20.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                   <styleClass>
+                                                      <String fx:value="chosen-fruit-card" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                                   </VBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                       </left>
+                                       <center>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <HBox prefHeight="593.0" prefWidth="831.0">
+                                                   <children>
+                                                      <ScrollPane prefHeight="579.0" prefWidth="831.0" styleClass="transparent" stylesheets="@../values/style.css">
+                                                         <content>
+                                                            <GridPane fx:id="grid1">
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                            </GridPane>
+                                                         </content>
+                                                      </ScrollPane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
                                  </children></AnchorPane>
                         </content>
                       </Tab>
