@@ -54,6 +54,11 @@ public class cartController  implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        loadCartItems();
+    }
+    private void loadCartItems() {
+        grid.getChildren().clear(); // پاک کردن آیتم‌های قبلی از GridPane
+        carts.clear();
         carts.addAll(getCartData());
         int column = 0;
         int row = 1;
@@ -64,13 +69,14 @@ public class cartController  implements Initializable {
                 HBox anchorPane = fxmlLoader.load();
                 CartItemController cartItemController = fxmlLoader.getController();
                 cartItemController.setData(cart);
+                cartItemController.setCartController(this); // ارجاع به این کنترلر
+
                 if (column == 2) {
                     column = 0;
                     row++;
                 }
 
-
-                grid.add(anchorPane,column++, row);
+                grid.add(anchorPane, column++, row);
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
@@ -85,6 +91,11 @@ public class cartController  implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void refreshCart() {
+        loadCartItems(); // بارگذاری مجدد آیتم‌ها
+    }
+
 
     @FXML
     void BackMarket(ActionEvent event) throws IOException {

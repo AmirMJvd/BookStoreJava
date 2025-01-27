@@ -7,7 +7,13 @@ import javafx.scene.image.ImageView;
 import model.Cart;
 import javafx.event.ActionEvent;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class CartItemController {
@@ -94,12 +100,63 @@ public class CartItemController {
         Numberlabel.setText(cart.getCount());
     }
 
-    @FXML
-    void Delet(ActionEvent event) {
-        System.out.println(cart.getImgSrc());
-
+    public void setCartController(cartController cartController) {
+        this.cartController = cartController;
     }
 
+    @FXML
+    void Delet(ActionEvent event) throws IOException {
+        // فایل CartInf را می‌خوانیم
+        FileReader myReader = new FileReader("CartInf.txt");
+        Scanner scanner = new Scanner(myReader);
+
+        // لیبل نام کتاب را دریافت می‌کنیم
+        String bookName = nameLabel.getText();
+
+        // لیستی برای نگهداری خطوط باقی‌مانده
+        List<String> linesToKeep = new ArrayList<>();
+
+        // مشخص‌کننده اینکه آیا کتاب مورد نظر پیدا شده است
+        boolean found = false;
+        int skipLines = 0;
+
+        // خواندن فایل خط به خط
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+
+            if (found && skipLines > 0) {
+                // اگر کتاب پیدا شده و باید خطوط بعدی را حذف کنیم
+                skipLines--;
+                continue;
+            }
+
+            if (line.equals(bookName)) {
+                // اگر خط فعلی برابر نام کتاب است، شروع حذف
+                found = true;
+                skipLines = 3; // سه خط بعدی را حذف کنیم
+                continue;
+            }
+
+            // اگر خطی برای حذف نیست، آن را به لیست اضافه می‌کنیم
+            linesToKeep.add(line);
+        }
+
+        scanner.close();
+        myReader.close();
+
+        // بازنویسی فایل با خطوط باقی‌مانده
+        FileWriter myWriter = new FileWriter("CartInf.txt", false);
+        for (String line : linesToKeep) {
+            myWriter.write(line + System.lineSeparator());
+        }
+        myWriter.close();
+
+        // بازخوانی داده‌ها و به‌روزرسانی GridPane
+        if (cartController != null) {
+            cartController.refreshCart();
+        }
 
 
+
+    }
 }
