@@ -112,17 +112,9 @@ public class AdminController implements Initializable {
     @FXML
     private Label DateLab;
 
-
-
-
-
-
-
-
     @FXML
     void CameBack(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/market.fxml"));
-        ;
         AdminPane.getChildren().setAll(pane);
     }
 
@@ -176,8 +168,7 @@ public class AdminController implements Initializable {
 
             myWriter.write(Category.getText());
             myWriter.write("\n");
-
-
+            myWriter.close();
 
             Report.setText("محصول با موفقیت ثبت شد!");
             clearFields(); // پاک کردن فیلدها
@@ -231,11 +222,11 @@ public class AdminController implements Initializable {
         politicalBooks.addAll(bookLists.getPoliticalBooks());
         psychologyBooks.addAll(bookLists.getPsychologyBooks());
         if (allBooks.size() > 0) {
-            setChosenFruit(allBooks.get(0));
+            setChosenBook(allBooks.get(0));
             myListener = new MyListener() {
                 @Override
                 public void onClickListener(Book fruit) {
-                    setChosenFruit(fruit);
+                    setChosenBook(fruit);
                 }
             };
         }
@@ -352,7 +343,7 @@ public class AdminController implements Initializable {
 
         return new BookLists(allBooks, scientificBooks, politicalBooks, psychologyBooks);
     }
-    private void setChosenFruit(Book book) {
+    private void setChosenBook (Book book) {
         selectedBook = book;
         bookNameLable.setText(book.getName());
         PriceTxt.setText(Main.CURRENCY + book.getPrice());
@@ -410,6 +401,9 @@ public class AdminController implements Initializable {
             Report.setText("لطفاً تمام اطلاعات را وارد کنید!");
             return;
         }
+
+        // فیلتر کردن تنها اعداد از newPrice
+        newPrice = newPrice.replaceAll("[^0-9]", ""); // حذف همه غیر اعداد
 
         try {
             File inputFile = new File("BookInf.txt");

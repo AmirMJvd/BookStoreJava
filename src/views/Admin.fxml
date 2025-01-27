@@ -107,25 +107,25 @@
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label fx:id="AmountReceivedLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="مبلغ دریافتی" textAlignment="CENTER">
+                                                      <Label fx:id="AmountReceivedLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="مبلغ دریافتی" textAlignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
-                                                      <Label fx:id="totalProfitLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="سود کل" textAlignment="CENTER">
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="totalProfitLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="سود کل" textAlignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
-                                                      <Label fx:id="NumberOfSalesLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="تعداد فروش" textAlignment="CENTER">
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="NumberOfSalesLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="تعداد فروش" textAlignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
-                                                      <Label fx:id="DateLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="آخرین تاریخ ثبت شده" textAlignment="CENTER">
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="DateLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="آخرین تاریخ ثبت شده" textAlignment="CENTER">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -321,8 +321,8 @@
                                                                   <Insets bottom="10.0" top="10.0" />
                                                                </HBox.margin>
                                                             </HBox>
-                                                            <Pane prefHeight="42.0" prefWidth="81.0" />
-                                                            <TextField fx:id="PriceTxt" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="89.0" promptText="قیمت" style="-fx-background-color: traparer;">
+                                                            <Pane prefHeight="42.0" prefWidth="20.0" />
+                                                            <TextField fx:id="PriceTxt" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="150.0" promptText="قیمت" style="-fx-background-color: traparer;">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>

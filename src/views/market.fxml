@@ -242,10 +242,9 @@
                                     <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
                               </HBox>
-                              <Pane prefHeight="42.0" prefWidth="81.0" />
-                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="89.0" text="\$2.99" textFill="WHITE">
+                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="170.0" text="\$2.99" textFill="WHITE">
                                  <font>
-                                    <Font name="Cambria" size="18.0" />
+                                    <Font name="Cambria" size="16.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
@@ -366,12 +365,12 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
                                  <children>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="190.0" text="پشتیبانی7/24" textFill="#878787">
+                                    <Label alignment="CENTER" prefHeight="29.0" prefWidth="190.0" text="پشتیبانی7/24" textFill="#878787">
                                        <font>
                                           <Font name="Cambria Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="20.0" prefWidth="207.0" textFill="#878787">
+                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="207.0" text="09143081984" textFill="#878787">
                                        <font>
                                           <Font name="Cambria" size="15.0" />
                                        </font>
