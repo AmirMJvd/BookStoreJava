@@ -90,15 +90,65 @@
                               <ScrollPane prefHeight="200.0" prefWidth="200.0" />
                            </content>
                            <content>
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                                 <content>
-                                    <GridPane fx:id="grid">
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </content>
-                              </ScrollPane>
+                              <VBox prefHeight="580.0" prefWidth="1231.0">
+                                 <children>
+                                    <ScrollPane prefHeight="483.0" prefWidth="1231.0">
+                                       <content>
+                                          <GridPane fx:id="grid" prefHeight="30.0" prefWidth="0.0">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="1263.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="AmountReceivedLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="مبلغ دریافتی" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
+                                                      <Label fx:id="totalProfitLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="سود کل" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
+                                                      <Label fx:id="NumberOfSalesLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="تعداد فروش" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="97.0" />
+                                                      <Label fx:id="DateLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="181.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="آخرین تاریخ ثبت شده" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onAction="#wasSeenBtn" prefHeight="37.0" prefWidth="82.0" styleClass="search-button" stylesheets="@../values/style.css" text="ثبت شد" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </content>
                       </Tab>
                       <Tab text="لیست محصولات">

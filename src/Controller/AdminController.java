@@ -14,15 +14,13 @@ import main.Main;
 import main.MyListener;
 import model.Book;
 import model.BookLists;
-import model.Cart;
 import model.Report;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -102,6 +100,19 @@ public class AdminController implements Initializable {
     @FXML
     private GridPane grid1;
 
+    @FXML
+    private Label AmountReceivedLab;
+
+    @FXML
+    private Label totalProfitLab;
+
+    @FXML
+    private Label NumberOfSalesLab;
+
+    @FXML
+    private Label DateLab;
+
+
 
 
 
@@ -166,7 +177,7 @@ public class AdminController implements Initializable {
             myWriter.write(Category.getText());
             myWriter.write("\n");
 
-            myWriter.close();
+
 
             Report.setText("محصول با موفقیت ثبت شد!");
             clearFields(); // پاک کردن فیلدها
@@ -286,6 +297,8 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // محاسبه و نمایش مجموع مبلغ دریافتی
+        calculateTotalAmountReceived();
     }
 
     private List<Book> allBooks = new ArrayList<>();
@@ -355,21 +368,21 @@ public class AdminController implements Initializable {
 
     }
 
-            @FXML
+    @FXML
     void decreaseBtn(ActionEvent event) {
-                try {
-                    // دریافت مقدار فعلی از countLabel
-                    int currentCount = Integer.parseInt(countLabel.getText());
-                    // کاهش مقدار (اگر از صفر بزرگ‌تر است)
-                    if (currentCount > 0) {
-                        currentCount--;
-                    }
-                    // به‌روزرسانی countLabel
-                    countLabel.setText(String.valueOf(currentCount));
-                } catch (NumberFormatException e) {
-                    Report.setText("خطا: مقدار تعداد نامعتبر است!");
-                    e.printStackTrace();
-                }
+        try {
+            // دریافت مقدار فعلی از countLabel
+            int currentCount = Integer.parseInt(countLabel.getText());
+            // کاهش مقدار (اگر از صفر بزرگ‌تر است)
+            if (currentCount > 0) {
+                currentCount--;
+            }
+            // به‌روزرسانی countLabel
+            countLabel.setText(String.valueOf(currentCount));
+        } catch (NumberFormatException e) {
+            Report.setText("خطا: مقدار تعداد نامعتبر است!");
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -445,6 +458,103 @@ public class AdminController implements Initializable {
             }
         } catch (IOException e) {
             Report.setText("خطا در دسترسی به فایل!");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void wasSeenBtn(ActionEvent event) {
+        try {
+            // باز کردن فایل در حالت بازنویسی (حالت false باعث پاک شدن محتوای فایل می‌شود)
+            FileWriter writer = new FileWriter("Report.txt", false);
+            writer.write(""); // نوشتن محتوای خالی برای پاک کردن
+            writer.close();
+            // پاک کردن تمام آیتم‌های نمایش‌داده‌شده در grid
+            grid.getChildren().clear();
+
+            AmountReceivedLab.setText("0.00");
+            totalProfitLab.setText("0.00");
+            NumberOfSalesLab.setText("0");
+
+            LocalDate today = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            String formattedDate = today.format(formatter);
+
+            File file = new File("Date.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(formattedDate);
+            fileWriter.write("\n");
+            fileWriter.close();
+            DateLab.setText(formattedDate);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    private void calculateTotalAmountReceived() {
+        double totalAmount = 0.0;
+        int totalCount = 0;
+
+        try {
+            File reportFile = new File("Report.txt");
+            Scanner reader = new Scanner(reportFile);
+
+            int lineCounter = 0;
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                lineCounter++;
+
+                // بررسی سطر دوم هر محصول
+                if (lineCounter % 5 == 2) { // هر 5 خط مربوط به یک محصول است
+                    // حذف کاراکترهای غیرعددی از قیمت
+                    String numericPrice = line.replaceAll("[^\\d.]", "");
+
+                    try {
+                        // تبدیل به عدد و اضافه کردن به مجموع
+                        double price = Double.parseDouble(numericPrice);
+                        totalAmount += price;
+                    } catch (NumberFormatException e) {
+                        System.out.println("خطا در تبدیل قیمت: " + line);
+                    }
+                } else if (lineCounter % 5 == 4) {
+                    String Count = line.replaceAll("[^\\d.]", "");
+                    try {
+                        // تبدیل به عدد و اضافه کردن به مجموع
+                        int count = Integer.parseInt(Count);
+                        totalCount += count;
+                    } catch (NumberFormatException e) {
+                        System.out.println("خطا در تبدیل تعداد: " + line);
+                    }
+                }
+            }
+            reader.close();
+
+            // نمایش مجموع در AmountReceivedLab
+            AmountReceivedLab.setText(String.format( Main.CURRENCY + totalAmount));
+            double profit = totalAmount * 0.10 ;
+            totalProfitLab.setText(String.format( Main.CURRENCY + profit));
+
+            NumberOfSalesLab.setText(String.format(String.valueOf(totalCount)));
+
+            FileReader myReader = new FileReader("Date.txt");
+            Scanner scanner = new Scanner(myReader);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                DateLab.setText(line);
+            }
+
+
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("فایل Report.txt پیدا نشد!");
             e.printStackTrace();
         }
     }
