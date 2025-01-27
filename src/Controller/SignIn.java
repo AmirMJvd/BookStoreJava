@@ -104,7 +104,7 @@ public class SignIn {
                 Stage adminStage = new Stage();
                 adminStage.setTitle("صفحه مدیریت");
                 adminStage.setScene(new Scene(adminRoot, 800, 600)); // اندازه دلخواه صفحه
-                adminStage.setMaximized(true);
+//                adminStage.setMaximized(true);
                 adminStage.show();
             }
 

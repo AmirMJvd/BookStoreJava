@@ -13,12 +13,15 @@
    <children>
       <VBox alignment="CENTER" prefHeight="218.0" prefWidth="105.0" styleClass="image-view" stylesheets="@../values/style-r.css" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fx:id="img" fitHeight="150.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img" fitHeight="117.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
-                  <Insets left="10.0" right="5.0" />
+                  <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </ImageView>
          </children>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </HBox.margin>
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="186.0" prefWidth="214.0" HBox.hgrow="ALWAYS">
          <children>
@@ -46,7 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#Delet" styleClass="search-button" stylesheets="@../values/style.css" text="حذف از سبد خرید">
+            <Button mnemonicParsing="false" onAction="#Delet" prefHeight="25.0" prefWidth="113.0" styleClass="search-button" stylesheets="@../values/style.css" text="حذف از سبد خرید">
                <VBox.margin>
                   <Insets bottom="10.0" top="15.0" />
                </VBox.margin>

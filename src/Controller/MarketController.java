@@ -534,7 +534,12 @@ public class MarketController implements Initializable {
 
         // جستجوی کتاب مورد نظر در لیست همه کتاب‌ها
         for (Book book : allBooks) {
-            if (book.getName().equalsIgnoreCase(search)) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
+//            if (book.getName().equalsIgnoreCase(search)) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
+//                setChosenFruit(book); // تنظیم کتاب انتخاب شده
+//                found = true;
+//                break; // خروج از حلقه بعد از پیدا کردن کتاب
+//            }
+            if (book.getName().toLowerCase().contains(search.toLowerCase())) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
                 setChosenFruit(book); // تنظیم کتاب انتخاب شده
                 found = true;
                 break; // خروج از حلقه بعد از پیدا کردن کتاب
