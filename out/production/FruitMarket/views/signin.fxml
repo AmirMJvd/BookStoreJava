@@ -39,7 +39,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
-        <Label layoutX="103.0" layoutY="401.0" opacity="0.34" prefHeight="38.0" prefWidth="240.0" text="برای ورود در بوک استور لطفا اطلاعات زیر را تکمیل فرمایید" wrapText="true" />
+        <Label layoutX="103.0" layoutY="401.0" opacity="0.34" prefHeight="38.0" prefWidth="240.0" text="برای ورود در بوک استور لطفا اطلاعات زیر را تکمیل فرمایید" textAlignment="CENTER" wrapText="true" />
         <TextField fx:id="txtnamkarbarin" alignment="CENTER_RIGHT" layoutX="158.0" layoutY="481.0" promptText="نام کاربری" style="-fx-background-color: transparent; -fx-border-color: #87CEEB;" />
         <Button fx:id="btnvorudin" layoutX="168.0" layoutY="617.0" mnemonicParsing="false" onAction="#pressbtnvorudin" style="-fx-background-color: transparent;" text="ورود">
             <font>
@@ -61,11 +61,6 @@
                     </stops>
                 </RadialGradient>
             </textFill>
-        </Button>
-        <Button layoutX="393.0" layoutY="734.0" mnemonicParsing="false" opacity="0.77" style="-fx-background-color: transparent;" text="برگشت">
-            <font>
-                <Font size="14.0" />
-            </font>
         </Button>
         <ImageView fitHeight="38.0" fitWidth="58.0" layoutX="99.0" layoutY="478.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
             <image>
