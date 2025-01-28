@@ -30,7 +30,7 @@
                      <children>
                         <ImageView fitHeight="45.0" fitWidth="52.0" onMouseClicked="#CameBack" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/user.png" />
+                              <Image url="@../img/left-arrow-in-circular-button-black-symbol.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />

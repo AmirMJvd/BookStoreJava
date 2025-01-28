@@ -335,7 +335,7 @@ public class AdminController implements Initializable {
                     case "علمی":
                         scientificBooks.add(book);
                         break;
-                    case "سیاسی":
+                    case "تاریخی":
                         politicalBooks.add(book);
                         break;
                     case "روانشناسی":

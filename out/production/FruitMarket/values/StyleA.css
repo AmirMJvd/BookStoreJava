@@ -57,14 +57,14 @@
 
 /* استایل تب‌ها */
 .tab {
-    -fx-background-color: #BCCCDC; /* رنگ پس‌زمینه تب */
+    -fx-background-color: #9B9B9B; /* رنگ پس‌زمینه تب */
     -fx-text-fill: white; /* رنگ نوشته تب */
     -fx-padding: 10px; /* فضای داخلی تب */
 }
 
 /* استایل تب فعال */
 .tab:selected {
-    -fx-background-color: #9AA6B2; /* رنگ پس‌زمینه تب فعال */
+    -fx-background-color: #DCDBDB; /* رنگ پس‌زمینه تب فعال */
     -fx-text-fill: yellow; /* رنگ نوشته تب فعال */
     -fx-font-weight: bold; /* متن ضخیم‌تر */
 }

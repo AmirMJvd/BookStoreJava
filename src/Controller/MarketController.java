@@ -135,7 +135,7 @@ public class MarketController implements Initializable {
                     case "علمی":
                         scientificBooks.add(book);
                         break;
-                    case "سیاسی":
+                    case "تاریخی":
                         politicalBooks.add(book);
                         break;
                     case "روانشناسی":
@@ -347,7 +347,7 @@ public class MarketController implements Initializable {
 //        return allBooks;
 
 
-    private void setChosenFruit(Book book) {
+    private void setChosenBook(Book book) {
         selectedBook = book;
         bookNameLable.setText(book.getName());
         bookPriceLabel.setText(Main.CURRENCY + book.getPrice());
@@ -370,11 +370,11 @@ public class MarketController implements Initializable {
         politicalBooks.addAll(bookLists.getPoliticalBooks());
         psychologyBooks.addAll(bookLists.getPsychologyBooks());
         if (allBooks.size() > 0) {
-            setChosenFruit(allBooks.get(0));
+            setChosenBook(allBooks.get(0));
             myListener = new MyListener() {
                 @Override
                 public void onClickListener(Book fruit) {
-                    setChosenFruit(fruit);
+                    setChosenBook(fruit);
                 }
             };
         }
@@ -407,14 +407,22 @@ public class MarketController implements Initializable {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
+             column = 0;
+             row = 1;
 
             for (int i = 0; i < scientificBooks.size(); i++) {
+
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController2 = fxmlLoader.getController();
                 itemController2.setData(scientificBooks.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
 
                 scientificGrid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
@@ -427,14 +435,20 @@ public class MarketController implements Initializable {
                 scientificGrid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-
+             column = 0;
+             row = 1;
             for (int i = 0; i < politicalBooks.size(); i++) {
+
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController2 = fxmlLoader.getController();
                 itemController2.setData(politicalBooks.get(i), myListener);
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
 
                 politicalGrid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
@@ -447,7 +461,8 @@ public class MarketController implements Initializable {
                 politicalGrid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-
+             column = 0;
+             row = 1;
             for (int i = 0; i < psychologyBooks.size(); i++) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -455,6 +470,11 @@ public class MarketController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController2 = fxmlLoader.getController();
                 itemController2.setData(psychologyBooks.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
 
                 psychologyGrrid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
@@ -479,12 +499,6 @@ public class MarketController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
-//    @FXML
-//    void AdminLoad(ActionEvent event) throws IOException {
-//        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
-//        rootPane.getChildren().setAll(pane);
-//    }
-
     @FXML
     void pressbtnvorud1 (MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/signin.fxml"));
@@ -501,41 +515,101 @@ public class MarketController implements Initializable {
     @FXML
     void AddCart(ActionEvent event) throws IOException {
         if (!bookFound) {
-            // اگر کتابی پیدا نشده باشد، هیچ کاری انجام نمی‌دهیم
-            showAlert("خطا", " محصولی یافت نشد!");
+            showAlert("خطا", "محصولی یافت نشد!");
             return;
         }
 
-        if ( countLab.getText().compareTo("0") ==0){
+        if (countLab.getText().compareTo("0") == 0) {
             showAlert("خطا", "متاسفانه کتاب موجود نیست!");
             return;
         }
 
-        {
-            if (!lblid.getText().trim().isEmpty()) {
+        if (!lblid.getText().trim().isEmpty()) {
             String id = lblid.getText();
-            File fileName = new File(id+".txt");
-             if (!fileName.exists()) {
-                fileName.createNewFile();
+            File fileName = new File(id + ".txt");
+
+            // خواندن فایل
+            List<String> fileContent = new ArrayList<>();
+            boolean bookExists = false;
+            int bookIndex = -1;
+
+            if (fileName.exists()) {
+                try (Scanner scanner = new Scanner(fileName)) {
+                    while (scanner.hasNextLine()) {
+                        fileContent.add(scanner.nextLine());
+                    }
                 }
-             FileWriter myWriter = new FileWriter(fileName, true);
-             myWriter.write(bookNameLable.getText());
-             myWriter.write("\n");
-             myWriter.write(bookPriceLabel.getText());
-             myWriter.write("\n");
-             myWriter.write(selectedBook.getImgSrc());
-             myWriter.write("\n");
-             myWriter.write(countLabel.getText());
-             myWriter.write("\n");
-             myWriter.close();
-             showAlert1("عملیات موفقیت آمیز", "محصول به سبد خرید شما اضافه شد!");
-            } else {
-                showAlert("خطا", "ابتدا باید ورود بفرمایید!");
+
+                // بررسی وجود کتاب در فایل
+                for (int i = 0; i < fileContent.size(); i += 4) {
+                    if (fileContent.get(i).equals(bookNameLable.getText())) {
+                        bookExists = true;
+                        bookIndex = i;
+                        break;
+                    }
+                }
             }
+
+            // حذف کاراکترهای غیرعددی از قیمت لیبل و تبدیل به عدد
+            String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
+            double labelPrice = 0.0;
+
+            try {
+                labelPrice = Double.parseDouble(priceText);
+            } catch (NumberFormatException e) {
+                showAlert("خطا", "فرمت قیمت نامعتبر است!");
+                return;
+            }
+
+            int countToAdd = Integer.parseInt(countLabel.getText()); // تعداد اضافه‌شونده
+            int maxCount = Integer.parseInt(countLab.getText()); // حداکثر تعداد موجودی
+
+            if (bookExists) {
+                // اگر کتاب وجود دارد
+                double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", "")); // قیمت فعلی
+                double newPrice = currentPrice + labelPrice; // جمع قیمت جدید با قیمت فایل
+
+                int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3)); // تعداد فعلی
+                if (currentCount + countToAdd <= maxCount) {
+                    int newCount = currentCount + countToAdd; // به‌روزرسانی تعداد
+                    fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice)); // به‌روزرسانی قیمت
+                    fileContent.set(bookIndex + 3, String.valueOf(newCount)); // به‌روزرسانی تعداد
+
+                    try (FileWriter writer = new FileWriter(fileName, false)) {
+                        for (String line : fileContent) {
+                            writer.write(line + "\n");
+                        }
+                    }
+                    showAlert1("عملیات موفقیت‌آمیز", "قیمت و تعداد محصول به‌روزرسانی شد!");
+                } else {
+                    showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+                }
+            } else {
+                // اگر کتاب وجود ندارد
+                if (countToAdd <= maxCount) {
+                    try (FileWriter myWriter = new FileWriter(fileName, true)) {
+                        myWriter.write(bookNameLable.getText());
+                        myWriter.write("\n");
+                        myWriter.write(String.valueOf(Main.CURRENCY + labelPrice)); // ذخیره قیمت
+                        myWriter.write("\n");
+                        myWriter.write(selectedBook.getImgSrc());
+                        myWriter.write("\n");
+                        myWriter.write(String.valueOf(countToAdd)); // ذخیره تعداد اولیه
+                        myWriter.write("\n");
+                    }
+                    showAlert1("عملیات موفقیت‌آمیز", "محصول به سبد خرید شما اضافه شد!");
+                } else {
+                    showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+                }
+            }
+        } else {
+            showAlert("خطا", "ابتدا باید ورود بفرمایید!");
         }
-
-
     }
+
+
+
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -563,7 +637,7 @@ public class MarketController implements Initializable {
 //                break; // خروج از حلقه بعد از پیدا کردن کتاب
 //            }
             if (book.getName().toLowerCase().contains(search.toLowerCase())) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
-                setChosenFruit(book); // تنظیم کتاب انتخاب شده
+                setChosenBook(book); // تنظیم کتاب انتخاب شده
                 found = true;
                 break; // خروج از حلقه بعد از پیدا کردن کتاب
             }
