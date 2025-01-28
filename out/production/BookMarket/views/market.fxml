@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketController">
+   <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/books-piled-.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="49.0" prefWidth="128.0" text="BOOK" textFill="#878787">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="store" textFill="#878787">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="SearchTxt" opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#SearchBtn" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" text="جست و جو" textFill="WHITE">
+                           <stylesheets>
+                              <URL value="@../values/style.css" />
+                              <URL value="@../../out/production/FruitMarket/values/style.css" />
+                           </stylesheets></Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="60.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="bookNameLable" alignment="TOP_CENTER" prefHeight="44.0" prefWidth="297.0" text="BOOK" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="bookImg" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logo.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="writerLab" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="30.0" prefWidth="31.0" />
+                              <Label prefHeight="41.0" prefWidth="57.0" text="نویسنده :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="translatorLab" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="30.0" prefWidth="31.0" />
+                              <Label prefHeight="41.0" prefWidth="57.0" text="مترجم :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                           <children>
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="nasherLab" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="30.0" prefWidth="31.0" />
+                              <Label prefHeight="41.0" prefWidth="57.0" text="ناشر :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                           <children>
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                              <Separator prefHeight="0.0" prefWidth="118.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="countLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="61.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="17.0" prefWidth="16.0" />
+                              <Label text="تعداد :" textFill="WHITE" />
+                              <Pane prefHeight="23.0" prefWidth="7.0" />
+                              <Label fx:id="CategoryLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="119.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="23.0" prefWidth="34.0" />
+                              <Label prefHeight="17.0" prefWidth="65.0" text="دسته بندی :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="335.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="120.0" styleClass="add-remove-layout1" stylesheets="@../values/styleCartItem.css">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Label fx:id="countLabel" alignment="CENTER" prefHeight="30.0" prefWidth="63.0" text="1" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cambria" size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </HBox>
+                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="170.0" text="\$2.99" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="309.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#AddCart" prefHeight="50.0" prefWidth="137.0" styleClass="add-btn" stylesheets="@../values/style.css" text="افزودن به سبد خرید" textFill="#828282">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="chosen-fruit-card" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="lblsabadkharid" layoutX="84.0" layoutY="6.0" prefHeight="31.0" prefWidth="230.0" textFill="#e11111">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" spacing="10.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="65.0" prefWidth="706.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="lblid" contentDisplay="CENTER" layoutX="73.0" layoutY="6.0" prefHeight="54.0" prefWidth="213.0" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#pressbtnvorud1" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/log-in1.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#LoadCart" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/shopping-cart.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="380.0" styleClass="free-delivery-card" stylesheets="@../values/style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="29.0" prefWidth="190.0" text="ارسال رایگان " textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="16.0" prefWidth="190.0" text="برای خرید بالای 200 ريال" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="49.0" fitWidth="56.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/driver.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card" stylesheets="@../values/style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="29.0" prefWidth="190.0" text="پشتیبانی7/24" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="207.0" text="09143081984" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/24-hours-support.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TabPane prefHeight="610.0" prefWidth="785.0" stylesheets="@../values/StyleA.css" tabClosingPolicy="UNAVAILABLE">
+                           <tabs>
+                              <Tab text="کل محصولات">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="300.0" styleClass="transparent" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="grid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="علمی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="scientificGrid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="سیاسی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="politicalGrid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="روانشناسی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="psychologyGrrid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="15.0" />
+                           </HBox.margin>
+                        </TabPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

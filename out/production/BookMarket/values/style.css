@@ -1,0 +1,140 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.load-cart-button{
+    -fx-background-color: #7E99A3;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.right-bar-Admin{
+    -fx-background-color: #D3D3D3;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-fruit-card{
+    -fx-background-color: #F16C31;
+    -fx-background-radius: 30;
+}
+.chosen-fruit-card1{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+.fruit-item{
+    -fx-background-color: #FFFFFF;
+        -fx-background-radius: 30;
+}
+
+.button:hover {
+    -fx-scale-x: 1.005; /* Grow horizontally */
+    -fx-scale-y: 1.005; /* Grow vertically */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.5, 0, 2); /* Emphasized shadow */
+}
+
+#vorud{
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0, 4);
+}
+#vorud:hover{
+-fx-text-fill: #3498db; /* Default color: light blue */
+}
+
+
+/* Style for vertical scrollbar */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent; /* Transparent background for scrollbar area */
+    -fx-background-radius: 10; /* Rounded scrollbar */
+    -fx-pref-width: 8px; /* Slim scrollbar width */
+}
+
+
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: #C7C8CC; /* Dark gray track */
+    -fx-background-radius: 10; /* Rounded track */
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #4C585B; /* Darker gray thumb */
+    -fx-background-radius: 10; /* Rounded thumb */
+    -fx-padding: 2; /* Padding inside thumb */
+}
+
+/* Style for horizontal scrollbar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Transparent background for scrollbar area */
+    -fx-background-radius: 10; /* Rounded scrollbar */
+    -fx-pref-height: 8px; /* Slim scrollbar height */
+}
+
+
+
+.scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: #4d4d4d; /* Dark gray track */
+    -fx-background-radius: 10; /* Rounded track */
+}
+
+.scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: #2c2c2c; /* Darker gray thumb */
+    -fx-background-radius: 10; /* Rounded thumb */
+    -fx-padding: 2; /* Padding inside thumb */
+}
+
+.ptimary-background {
+    -fx-background-color: #E4E7EC;
+}
+
+.secondary-background {
+    -fx-background-color: #A0B2C0;
+}
+
+.rect-round {
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
+
+.white-border {
+    -fx-border-color: #fff; /* اصلاح "#ffj" به "#fff" یا هر رنگ دلخواه دیگر */
+}
+
+.botton {
+    -fx-background-color: #303030;
+    -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
+}
+

@@ -102,13 +102,15 @@ public class cartController  implements Initializable {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
+            calculateFinalAmountFromFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void refreshCart() {
-        loadCartItems(); // بارگذاری مجدد آیتم‌ها
+        loadCartItems();
+        calculateFinalAmountFromFile();
     }
 
 
@@ -117,10 +119,14 @@ public class cartController  implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
 
+        // تنظیم اندازه دلخواه برای AnchorPane
+        pane.setPrefWidth(1315);
+        pane.setPrefHeight(810);
+
         MarketController marketController = loader.getController();
         String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
         marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
-
+        rootPanecart.setPrefSize(600, 400);
         rootPanecart.getChildren().setAll(pane);
     }
 
@@ -151,20 +157,13 @@ public class cartController  implements Initializable {
                     String imgSrc = cartScanner.nextLine(); // تصویر کتاب
                     int count = Integer.parseInt(cartScanner.nextLine()); // تعداد کتاب
 
-                    // ذخیره اطلاعات برای استفاده در به‌روزرسانی BookInf
                     cartBooks.add(name);
                     cartCounts.add(count);
 
-//                    // نوشتن اطلاعات در فایل گزارش
-//                    reportWriter.write(name + "\n");
-//                    reportWriter.write(price + "\n");
-//                    reportWriter.write(imgSrc + "\n");
-//                    reportWriter.write(count + "\n");
-//                    reportWriter.write(formattedDate + "\n");
+
                 }
                 cartScanner.close();
                 cartReader.close();
-//                reportWriter.close();
 
                 // 3. اطلاعات BookInf را بخوانید و به‌روزرسانی کنید
                 File bookFile = new File("BookInf.txt");
@@ -225,13 +224,17 @@ public class cartController  implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        FinalAmount.setText("0.00");
 
         // بازگشت به صفحه Market
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
+        pane.setPrefWidth(1315);
+        pane.setPrefHeight(810);
         MarketController marketController = loader.getController();
         String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
         marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+        rootPanecart.setPrefSize(600, 400);
         rootPanecart.getChildren().setAll(pane);
 
 
@@ -242,4 +245,57 @@ public class cartController  implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private void calculateFinalAmountFromFile() {
+        double totalAmount = 0.0;
+        try {
+            // دریافت نام کاربری و ساخت مسیر فایل
+            String username = SharedData.getInstance().getUsername();
+            File cartFile = new File(username + ".txt");
+
+            if (!cartFile.exists()) {
+                showAlert("خطا", "فایل سبد خرید یافت نشد!");
+                return;
+            }
+
+            // خواندن فایل
+            Scanner reader = new Scanner(cartFile);
+            int lineCount = 0;
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                lineCount++;
+
+                // استخراج خط دوم از هر 4 خط
+                if (lineCount % 4 == 2) {
+                    // حذف تمام کاراکترهای غیر عددی و غیر اعشاری
+                    String numericString = line.replaceAll("[^\\d.]", "").trim();
+                    try {
+                        double price = Double.parseDouble(numericString);
+                        totalAmount += price; // جمع کردن قیمت‌ها
+                    } catch (NumberFormatException e) {
+                        System.err.println("فرمت قیمت نامعتبر است: " + line);
+                    }
+                }
+            }
+            reader.close();
+
+            // افزودن 50 واحد در صورت نیاز
+            if (totalAmount < 200) {
+                totalAmount += 50;
+            }
+
+            // به‌روزرسانی لیبل
+            FinalAmount.setText(String.format("%.2f", totalAmount));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            showAlert("خطا", "مشکلی در خواندن فایل به وجود آمد.");
+        }
+    }
+
+
+
+
+
+
+
 }

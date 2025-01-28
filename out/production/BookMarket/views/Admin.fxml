@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AdminPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="810.0" prefWidth="1315.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="1295.0" styleClass="right-bar" stylesheets="@../values/StyleA.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="627.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="52.0" onMouseClicked="#CameBack" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/left-arrow-in-circular-button-black-symbol.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="AdminName" prefHeight="49.0" prefWidth="265.0" text="ADMIN NAME">
+                           <font>
+                              <Font name="Copperplate Gothic Light" size="36.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="687.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" rotate="7.4">
+                           <image>
+                              <Image url="@../img/logo.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="56.0" prefWidth="255.0" text="BOOK STORE">
+                           <font>
+                              <Font name="System Bold Italic" size="36.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane prefHeight="710.0" prefWidth="1316.0" styleClass="tab-content-area" stylesheets="@../values/StyleA.css" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
+                    <tabs>
+                      <Tab text="گزارشات مالی">
+                           <content>
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0" />
+                           </content>
+                           <content>
+                              <VBox prefHeight="580.0" prefWidth="1231.0">
+                                 <children>
+                                    <ScrollPane prefHeight="483.0" prefWidth="1231.0">
+                                       <content>
+                                          <GridPane fx:id="grid" prefHeight="30.0" prefWidth="0.0">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="1263.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="AmountReceivedLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="مبلغ دریافتی" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="totalProfitLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="سود کل" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="NumberOfSalesLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="تعداد فروش" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="49.0" prefWidth="60.0" />
+                                                      <Label fx:id="DateLab" alignment="CENTER" contentDisplay="RIGHT" prefHeight="66.0" prefWidth="210.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="آخرین تاریخ ثبت شده" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onAction="#wasSeenBtn" prefHeight="37.0" prefWidth="82.0" styleClass="search-button" stylesheets="@../values/style.css" text="ثبت شد" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                      </Tab>
+                      <Tab text="لیست محصولات">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <left>
+                                          <VBox prefHeight="579.0" prefWidth="400.0" styleClass="right-bar-Admin" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
+                                                   <children>
+                                                      <HBox prefHeight="60.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="bookNameLable" alignment="TOP_CENTER" prefHeight="44.0" prefWidth="297.0" text="BOOK" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="36.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" top="30.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <ImageView fx:id="bookImg" fitHeight="138.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/logo.png" />
+                                                         </image>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </ImageView>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="writerLab" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="نویسنده :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="translatorLab" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="مترجم :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="nasherLab" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="233.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="30.0" prefWidth="31.0" />
+                                                            <Label prefHeight="41.0" prefWidth="57.0" text="ناشر :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="22.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                            <Separator prefHeight="0.0" prefWidth="118.0" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                                                         <children>
+                                                            <Label fx:id="countLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="61.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria Bold" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="17.0" prefWidth="16.0" />
+                                                            <Label text="تعداد :" textFill="WHITE" />
+                                                            <Pane prefHeight="23.0" prefWidth="7.0" />
+                                                            <Label fx:id="CategoryLab" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="119.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Pane prefHeight="23.0" prefWidth="34.0" />
+                                                            <Label prefHeight="17.0" prefWidth="65.0" text="دسته بندی :" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Cambria" size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="335.0">
+                                                         <children>
+                                                            <HBox prefHeight="32.0" prefWidth="120.0" styleClass="add-remove-layout1" stylesheets="@../values/styleCartItem.css">
+                                                               <children>
+                                                                  <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                                  <Label fx:id="countLabel" alignment="CENTER" prefHeight="30.0" prefWidth="63.0" text="1" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="Cambria" size="18.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Label>
+                                                                  <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </HBox>
+                                                            <Pane prefHeight="42.0" prefWidth="20.0" />
+                                                            <TextField fx:id="PriceTxt" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="150.0" promptText="قیمت" style="-fx-background-color: traparer;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="5.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="309.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#AddChange" prefHeight="50.0" prefWidth="137.0" styleClass="add-btn" stylesheets="@../values/style.css" text="ثبت تغییرات" textFill="#828282">
+                                                               <font>
+                                                                  <Font name="System Bold" size="14.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="10.0" left="20.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                   <styleClass>
+                                                      <String fx:value="chosen-fruit-card" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                                   </VBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                       </left>
+                                       <center>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <HBox prefHeight="593.0" prefWidth="831.0">
+                                                   <children>
+                                                      <ScrollPane prefHeight="579.0" prefWidth="831.0" styleClass="transparent" stylesheets="@../values/style.css">
+                                                         <content>
+                                                            <GridPane fx:id="grid1">
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                            </GridPane>
+                                                         </content>
+                                                      </ScrollPane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="افزودن محصول">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox layoutX="516.0" layoutY="239.0" prefHeight="100.0" prefWidth="200.0" styleClass="list-view-list" stylesheets="@../values/StyleA.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox prefHeight="579.0" prefWidth="896.0" styleClass="right-bar" stylesheets="@../values/StyleA.css">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="bookName" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا نام کتاب را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="نام کتاب: ">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="author" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا نام نویسنده را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="نویسنده:">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="translator" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا نام مترجم را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="مترجم:">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="nasher" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا ناشر را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="ناشر:">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="count" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا تعداد جلد را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="تعداد:">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="Color" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا رنگ پس زمینه را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="100.0" prefWidth="79.0" />
+                                                      <Label text="رنگ :">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Pane prefHeight="80.0" prefWidth="203.0" />
+                                                      <TextField fx:id="Category" alignment="CENTER" prefHeight="25.0" prefWidth="220.0" promptText="لطفا  دسته بندی محصول را وارد نمایید" styleClass="search-box" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="80.0" prefWidth="93.0" />
+                                                      <Label text="دسته بندی :">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="80.0" prefWidth="152.0" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="579.0" prefWidth="348.0" styleClass="right-bar" stylesheets="@../values/StyleA.css">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" right="20.0" top="10.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="110.0" prefWidth="342.0" stylesheets="@../values/StyleA.css">
+                                                   <children>
+                                                      <TextField fx:id="ImgAdr" prefHeight="25.0" prefWidth="192.0" promptText="لطفا آدرس عکس را وارد نمایید" styleClass="transparent" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="85.0" prefWidth="0.0" />
+                                                      <Label text="آدرس عکس :" textFill="#b19898">
+                                                         <font>
+                                                            <Font name="System Italic" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <styleClass>
+                                                      <String fx:value="search-box" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <Pane prefHeight="270.0" prefWidth="342.0">
+                                                   <children>
+                                                      <ImageView fitHeight="270.0" fitWidth="342.0" layoutX="-5.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Pane>
+                                                <HBox alignment="CENTER" prefHeight="110.0" prefWidth="342.0" stylesheets="@../values/StyleA.css">
+                                                   <children>
+                                                      <TextField fx:id="priceTextField" prefHeight="25.0" prefWidth="192.0" promptText="لطفا قیمت محصول را وارد نمایید" styleClass="transparent" stylesheets="@../values/StyleA.css" />
+                                                      <Pane prefHeight="85.0" prefWidth="0.0" />
+                                                      <Label text="قیمت محصول :" textFill="#b19898">
+                                                         <font>
+                                                            <Font name="System Italic" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <styleClass>
+                                                      <String fx:value="search-box" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="142.0" prefWidth="317.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onAction="#registration" prefHeight="77.0" prefWidth="117.0" styleClass="search-button" stylesheets="@../values/StyleA.css" text="ثبت">
+                                                         <font>
+                                                            <Font size="36.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="124.0" prefWidth="317.0">
+                                                   <children>
+                                                      <Pane prefHeight="65.0" prefWidth="76.0" />
+                                                      <Pane prefHeight="65.0" prefWidth="19.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

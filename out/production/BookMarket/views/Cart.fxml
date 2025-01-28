@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPanecart" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.cartController">
+   <children>
+      <BorderPane layoutX="284.0" layoutY="152.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="788.0" spacing="20.0" styleClass="ptimary-background" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="728.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#BackMarket" styleClass="botton" text="بازگشت" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" prefHeight="24.0" prefWidth="80.0" text="سبد خرید">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane prefHeight="713.0" prefWidth="728.0">
+                     <content>
+                        <GridPane fx:id="grid">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <Pane prefHeight="800.0" prefWidth="249.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="22.0" prefHeight="783.0" prefWidth="476.0" stylesheets="@../values/style.css">
+                     <styleClass>
+                        <String fx:value="secondary-background" />
+                        <String fx:value="rect-round" />
+                     </styleClass>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="259.0" text="مشخصات کارت">
+                           <font>
+                              <Font name="B Nazanin Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="91.0" prefWidth="476.0" />
+                        <ImageView fitHeight="166.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/CardImg.jpg" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="91.0" prefWidth="476.0" />
+                        <VBox alignment="CENTER" prefHeight="416.0" prefWidth="476.0">
+                           <children>
+                              <VBox prefHeight="84.0" prefWidth="476.0" styleClass="white-border">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="35.0" text="درگاه">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="ملت بانک">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="104.0" prefWidth="476.0" styleClass="white-border">
+                                 <children>
+                                    <Label prefHeight="49.0" prefWidth="113.0" text="شماره کارت">
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField stylesheets="@../values/style.css">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="100.0" />
+                                       </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="search-box" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" styleClass="white-border" stylesheets="@../values/style.css">
+                                       <children>
+                                          <VBox prefHeight="67.0" prefWidth="260.0">
+                                             <children>
+                                                <Label prefHeight="32.0" prefWidth="102.0" text="تاریخ انقضا">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="25.0" prefWidth="186.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+                                                   </VBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="search-box" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="67.0" prefWidth="216.0">
+                                             <children>
+                                                <Label prefHeight="32.0" prefWidth="100.0" text="CVV2">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="25.0" prefWidth="39.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" right="30.0" top="10.0" />
+                                                   </VBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="search-box" />
+                                                      <String fx:value="shadow" />
+                                                   </styleClass>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="473.0">
+                                       <children>
+                                          <Button alignment="CENTER" mnemonicParsing="false" styleClass="botton" text="دریافت رمز پویا" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Pane prefHeight="82.0" prefWidth="21.0" />
+                                          <TextField prefHeight="31.0" prefWidth="189.0">
+                                             <styleClass>
+                                                <String fx:value="search-box" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Pane prefHeight="41.0" prefWidth="476.0">
+                                 <children>
+                                    <Label fx:id="FinalAmount" alignment="CENTER" layoutX="147.0" layoutY="4.0" prefHeight="40.0" prefWidth="182.0" text="The final amount">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children></Pane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="213.0" prefWidth="476.0" stylesheets="@../values/style.css">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="212.0" prefWidth="473.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#BackMarketPay" prefHeight="50.0" prefWidth="230.0" styleClass="botton" text="پرداخت" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -118,13 +118,30 @@ public class AdminController implements Initializable {
 
     @FXML
     void CameBack(MouseEvent event) throws IOException {
+        // بارگذاری فایل FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
+
+        // تنظیم اندازه AnchorPane
+        pane.setPrefWidth(1315);
+        pane.setPrefHeight(810);
+
+        // تنظیم کنترلر و انتقال داده‌ها
         MarketController marketController = loader.getController();
         String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
         marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+
+        // تنظیم اندازه و غیرفعال کردن تغییر اندازه AdminPane
+        AdminPane.setPrefSize(1315, 810); // تنظیم اندازه دلخواه برای AdminPane
+        AdminPane.setMaxWidth(1315);
+        AdminPane.setMaxHeight(810);
+        AdminPane.setMinWidth(1315);
+        AdminPane.setMinHeight(810);
+
+        // جایگزینی محتوای جدید
         AdminPane.getChildren().setAll(pane);
     }
+
 
 
     @FXML

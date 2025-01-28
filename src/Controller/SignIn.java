@@ -112,8 +112,10 @@ public class SignIn {
 
                     Stage marketStage = new Stage();
                     marketStage.setTitle("مارکت");
-                    marketStage.setScene(new Scene(marketRoot, 800, 600));
-                    marketStage.setMaximized(true);
+//                    marketStage.setScene(new Scene(marketRoot, 800, 600));
+                    Scene scene = new Scene(marketRoot, 1315, 810);
+                    marketStage.setScene(scene);
+                    marketStage.setMaximized(false);
                     marketStage.setResizable(false);
                     marketStage.show();
                 } catch (IOException e) {
@@ -148,8 +150,11 @@ public class SignIn {
 
                     Stage marketStage = new Stage();
                     marketStage.setTitle("مدیریت");
-                    marketStage.setScene(new Scene(marketRoot, 800, 600));
-                    marketStage.setMaximized(true);
+//                    marketStage.setScene(new Scene(marketRoot, 1315, 810));
+                    Scene scene = new Scene(marketRoot, 1315, 810);
+                    marketStage.setScene(scene);
+
+                    marketStage.setMaximized(false);
                     marketStage.setResizable(false);
                     marketStage.show();
                 } catch (IOException e) {
