@@ -197,7 +197,7 @@ public class cartController  implements Initializable {
                             reportWriter.write(formattedDate + "\n");
                         } else {
                             System.out.println("تعداد کافی برای کتاب " + bookName + " وجود ندارد.");
-                            showAlert("هشدار", "تعداد کافی برای کتاب " + bookName + " وجود ندارد.");
+                            showAlert("هشدار", "تعداد کافی برای کتاب " + " وجود ندارد.");
                         }
                     }
 
