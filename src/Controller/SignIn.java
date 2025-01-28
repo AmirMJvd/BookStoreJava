@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Main;
+import model.SharedData;
 import model.StageManager;
 import model.UserDataManager;
 
@@ -86,9 +87,38 @@ public class SignIn {
             lblanswerin.setText("ورود موفقیت‌آمیز بود!");
 
             // بستن استیج فعلی (صفحه ورود)
-            Stage currentStage = (Stage) btnvorudin.getScene().getWindow();
-            if (currentStage != null && currentStage.isShowing()) {
-                currentStage.close();
+//            Stage currentStage = (Stage) btnvorudin.getScene().getWindow();
+            SharedData.getInstance().setUsername(username); // ذخیره نام کاربری در SharedData
+//            if (currentStage != null && currentStage.isShowing()) {
+//                currentStage.close();
+//            }
+            // اگر نقش "کاربر" است
+            if (role.equals("کاربر")) {
+                // بستن استیج فعلی
+                Stage currentStage = (Stage) btnvorudin.getScene().getWindow();
+                if (currentStage != null && currentStage.isShowing()) {
+                    currentStage.close();
+                }
+
+                // باز کردن صفحه مارکت
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/market.fxml"));
+                    AnchorPane marketRoot = loader.load();
+
+                    MarketController marketController = loader.getController();
+                    String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
+                    marketController.setId(username1);  // ارسال نام کاربری به کنترلر مارکت
+
+                    Stage marketStage = new Stage();
+                    marketStage.setTitle("مارکت");
+                    marketStage.setScene(new Scene(marketRoot, 800, 600));
+                    marketStage.setMaximized(true);
+                    marketStage.setResizable(false);
+                    marketStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+//                    showAlert("خطا", "باز کردن صفحه مارکت با مشکل مواجه شد!");
+                }
             }
 
             // اگر نقش "مدیر" است

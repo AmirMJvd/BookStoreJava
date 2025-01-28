@@ -6,12 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.GridPane;
@@ -87,14 +85,14 @@ public class MarketController implements Initializable {
     @FXML
     private Label countLabel;
 
-
-
-
-
-
+    @FXML
+    private Label lblid;
 
     @FXML
     private AnchorPane rootPane;
+
+    @FXML
+    private Label lblsabadkharid;
 
     private List<Book> allBooks = new ArrayList<>();
     List<Book> scientificBooks = new ArrayList<>();
@@ -103,6 +101,10 @@ public class MarketController implements Initializable {
     private Image image;
     private MyListener myListener;
     private Book selectedBook;
+
+    public void setId(String username1){
+        lblid.setText(username1); // تنظیم مقدار لیبل با نام کاربری;
+    }
 
 
     private BookLists getData() {
@@ -472,19 +474,19 @@ public class MarketController implements Initializable {
     }
 
     @FXML
-    void LoadCart(ActionEvent event) throws IOException {
+    void LoadCart (MouseEvent event)  throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Cart.fxml"));
-        ;
         rootPane.getChildren().setAll(pane);
     }
 
+//    @FXML
+//    void AdminLoad(ActionEvent event) throws IOException {
+//        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
+//        rootPane.getChildren().setAll(pane);
+//    }
+
     @FXML
-    void AdminLoad(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-    @FXML
-    void pressbtnvorud(ActionEvent event) throws IOException {
+    void pressbtnvorud1 (MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/signin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 971, 770);
         Stage stage = new Stage();
@@ -500,32 +502,49 @@ public class MarketController implements Initializable {
     void AddCart(ActionEvent event) throws IOException {
         if (!bookFound) {
             // اگر کتابی پیدا نشده باشد، هیچ کاری انجام نمی‌دهیم
-            bookPriceLabel.setText("خطا !");
+            showAlert("خطا", " محصولی یافت نشد!");
             return;
         }
 
         if ( countLab.getText().compareTo("0") ==0){
-            bookPriceLabel.setText("موجودی کافی نیست !");
+            showAlert("خطا", "متاسفانه کتاب موجود نیست!");
             return;
         }
 
-        FileWriter myWriter = new FileWriter("CartInf.txt", true);
+        {
+            if (!lblid.getText().trim().isEmpty()) {
+//            lblsabadkharid.setText("کالا با موفقییت به سبد خرید اضافه شد!");
+                showAlert1("عملیات موفقیت آمیز", "محصول به سبد خرید شما اضافه شد!");
+                FileWriter myWriter = new FileWriter("CartInf.txt", true);
+                myWriter.write(bookNameLable.getText());
+                myWriter.write("\n");
+                myWriter.write(bookPriceLabel.getText());
+                myWriter.write("\n");
+                myWriter.write(selectedBook.getImgSrc());
+                myWriter.write("\n");
+                myWriter.write(countLabel.getText());
+                myWriter.write("\n");
+                myWriter.close();
+            } else {
+                showAlert("خطا", "ابتدا باید ورود بفرمایید!");
+            }
+        }
 
-        myWriter.write(bookNameLable.getText());
-        myWriter.write("\n");
 
-        myWriter.write(bookPriceLabel.getText());
-        myWriter.write("\n");
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
-        myWriter.write(selectedBook.getImgSrc());
-        myWriter.write("\n");
-
-        myWriter.write(countLabel.getText());
-        myWriter.write("\n");
-
-
-        myWriter.close();
-
+    private void showAlert1(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("تبریک!");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     @FXML
     void SearchBtn(ActionEvent event) {
@@ -621,6 +640,7 @@ public class MarketController implements Initializable {
         // تبدیل رشته عددی به مقدار عددی (double)
         return Double.parseDouble(numericPrice);
     }
+
 
 }
 

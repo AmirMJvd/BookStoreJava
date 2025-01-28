@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import model.Cart;
+import model.SharedData;
 
 import java.io.*;
 import java.net.URL;
@@ -99,7 +100,13 @@ public class cartController  implements Initializable {
 
     @FXML
     void BackMarket(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Market.fxml"));;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
+        AnchorPane pane = loader.load();
+
+        MarketController marketController = loader.getController();
+        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
+        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+
         rootPanecart.getChildren().setAll(pane);
     }
 
@@ -196,9 +203,13 @@ public class cartController  implements Initializable {
                 e.printStackTrace();
             }
 
-            // بازگشت به صفحه Market
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Market.fxml"));
-            rootPanecart.getChildren().setAll(pane);
+        // بازگشت به صفحه Market
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
+        AnchorPane pane = loader.load();
+        MarketController marketController = loader.getController();
+        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
+        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+        rootPanecart.getChildren().setAll(pane);
 
 
     }
