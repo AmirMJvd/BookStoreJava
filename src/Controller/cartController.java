@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -41,12 +42,15 @@ public class cartController  implements Initializable {
             // دریافت نام کاربری از SharedData
             String username = SharedData.getInstance().getUsername();
             if (username == null || username.isEmpty()) {
-                throw new IllegalArgumentException("نام کاربری معتبر نیست!");
+                showAlert("هشدار", "برای مشاهده سبد خرید اول باید وارد حساب کاربری خود شوید! ");
+//                return carts; // بازگشت لیست خالی
             }
             // ساخت نام فایل با استفاده از نام کاربری
             File cartFile = new File(username + ".txt");
             if (!cartFile.exists()) {
-                throw new FileNotFoundException("فایل مربوط به کاربر یافت نشد: " + cartFile.getName());
+                // اگر فایل یافت نشد، پیام هشدار نمایش داده شود
+                showAlert("هشدار", "فایلی برای کاربر " + username + " یافت نشد.");
+                return carts; // بازگشت لیست خالی
             }
             Scanner reader = new Scanner(cartFile);
             while (reader.hasNextLine()) {
@@ -151,16 +155,16 @@ public class cartController  implements Initializable {
                     cartBooks.add(name);
                     cartCounts.add(count);
 
-                    // نوشتن اطلاعات در فایل گزارش
-                    reportWriter.write(name + "\n");
-                    reportWriter.write(price + "\n");
-                    reportWriter.write(imgSrc + "\n");
-                    reportWriter.write(count + "\n");
-                    reportWriter.write(formattedDate + "\n");
+//                    // نوشتن اطلاعات در فایل گزارش
+//                    reportWriter.write(name + "\n");
+//                    reportWriter.write(price + "\n");
+//                    reportWriter.write(imgSrc + "\n");
+//                    reportWriter.write(count + "\n");
+//                    reportWriter.write(formattedDate + "\n");
                 }
                 cartScanner.close();
                 cartReader.close();
-                reportWriter.close();
+//                reportWriter.close();
 
                 // 3. اطلاعات BookInf را بخوانید و به‌روزرسانی کنید
                 File bookFile = new File("BookInf.txt");
@@ -185,8 +189,15 @@ public class cartController  implements Initializable {
 
                         if (bookCount >= cartCount) {
                             bookCount -= cartCount;
+
+                            reportWriter.write(bookName + "\n");
+                            reportWriter.write(bookDetails.get(0) + "\n"); // فرض: قیمت در bookDetails[0] است
+                            reportWriter.write(bookDetails.get(1) + "\n"); // فرض: تصویر در bookDetails[1] است
+                            reportWriter.write(cartCount + "\n");
+                            reportWriter.write(formattedDate + "\n");
                         } else {
                             System.out.println("تعداد کافی برای کتاب " + bookName + " وجود ندارد.");
+                            showAlert("هشدار", "تعداد کافی برای کتاب " + bookName + " وجود ندارد.");
                         }
                     }
 
@@ -197,6 +208,7 @@ public class cartController  implements Initializable {
                     updatedBookLines.add(subject); // سطر 9: موضوع
                 }
                 bookScanner.close();
+                reportWriter.close();
 
                 // 4. فایل BookInf را به‌روزرسانی کنید
                 FileWriter bookWriter = new FileWriter("BookInf.txt", false);
@@ -223,5 +235,11 @@ public class cartController  implements Initializable {
         rootPanecart.getChildren().setAll(pane);
 
 
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

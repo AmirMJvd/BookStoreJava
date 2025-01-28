@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -62,8 +63,6 @@ public class AdminController implements Initializable {
     private TextField Category;
 
 
-    @FXML
-    private Label Report;
 
     @FXML
     private GridPane grid;
@@ -133,8 +132,8 @@ public class AdminController implements Initializable {
         try {
             // بررسی اینکه هیچ فیلدی خالی نباشد
             if (bookName.getText().isEmpty() || ImgAdr.getText().isEmpty() || Color.getText().isEmpty() ||
-                    priceTextField.getText().isEmpty()) {
-                Report.setText("لطفاً همه فیلدها را پر کنید!");
+                    priceTextField.getText().isEmpty() || author.getText().isEmpty() ||author.getText().isEmpty() ||translator.getText().isEmpty() ||nasher.getText().isEmpty() ||count.getText().isEmpty() ) {
+                showAlert("خطا", "لطفا همه فیلد ها را پر کنید!");
                 return;
             }
 
@@ -145,7 +144,7 @@ public class AdminController implements Initializable {
                 price = Integer.parseInt(priceTextField.getText());
                 countValue = Integer.parseInt(count.getText());
             } catch (NumberFormatException e) {
-                Report.setText("قیمت و تعداد باید عدد باشند!");
+                showAlert("خطا", "قیمت و تعداد باید عدد باشند!");
                 return;
             }
 
@@ -180,11 +179,11 @@ public class AdminController implements Initializable {
             myWriter.write("\n");
             myWriter.close();
 
-            Report.setText("محصول با موفقیت ثبت شد!");
+            showAlert1("عملیات موفقیت‌آمیز", "محصول با موفقیت ثبت شد!");
             clearFields(); // پاک کردن فیلدها
 
         } catch (IOException e) {
-            Report.setText("خطا در ذخیره اطلاعات!");
+            showAlert("خطا", "خطا در ذخیره اطلاعات!");
             e.printStackTrace();
         }
     }
@@ -381,7 +380,7 @@ public class AdminController implements Initializable {
             // به‌روزرسانی countLabel
             countLabel.setText(String.valueOf(currentCount));
         } catch (NumberFormatException e) {
-            Report.setText("خطا: مقدار تعداد نامعتبر است!");
+            showAlert("خطا", " مقدار تعداد نامعتبر است!");
             e.printStackTrace();
         }
     }
@@ -396,7 +395,7 @@ public class AdminController implements Initializable {
             // به‌روزرسانی countLabel
             countLabel.setText(String.valueOf(currentCount));
         } catch (NumberFormatException e) {
-            Report.setText("خطا: مقدار تعداد نامعتبر است!");
+            showAlert("خطا", "مقدار تعداد نامعتبر است!");
             e.printStackTrace();
         }
     }
@@ -408,7 +407,7 @@ public class AdminController implements Initializable {
         String newCount = countLabel.getText();
 
         if (bookNameToUpdate.isEmpty() || newPrice.isEmpty() || newCount.isEmpty()) {
-            Report.setText("لطفاً تمام اطلاعات را وارد کنید!");
+            showAlert("خطا", "لطفاً تمام اطلاعات را وارد کنید!");
             return;
         }
 
@@ -449,19 +448,19 @@ public class AdminController implements Initializable {
             writer.close();
 
             if (!found) {
-                Report.setText("کتاب موردنظر پیدا نشد!");
+                showAlert("خطا", "کتاب موردنظر پیدا نشد!");
                 return;
             }
 
             // جایگزینی فایل اصلی با فایل موقت
             if (inputFile.delete()) {
                 tempFile.renameTo(inputFile);
-                Report.setText("تغییرات با موفقیت ذخیره شد!");
+                showAlert1("عملیات موفقیت‌آمیز", "تغییرات با موفقیت ذخیره شد!");
             } else {
-                Report.setText("خطا در ذخیره تغییرات!");
+                showAlert("خطا", "خطا در ذخیره تغییرات!");
             }
         } catch (IOException e) {
-            Report.setText("خطا در دسترسی به فایل!");
+            showAlert("خطا", "خطا در دسترسی به فایل!");
             e.printStackTrace();
         }
     }
@@ -558,12 +557,27 @@ public class AdminController implements Initializable {
 
 
         } catch (FileNotFoundException e) {
-            System.out.println("فایل Report.txt پیدا نشد!");
+            showAlert("خطا", "فایل Report.txt پیدا نشد!");
             e.printStackTrace();
         }
     }
     public void setId(String username1){
         AdminName.setText(username1); // تنظیم مقدار لیبل با نام کاربری;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showAlert1(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("تبریک!");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

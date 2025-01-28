@@ -239,10 +239,9 @@
                                     <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
                               </HBox>
-                              <Pane prefHeight="42.0" prefWidth="81.0" />
-                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="89.0" text="\$2.99" textFill="WHITE">
+                              <Label fx:id="bookPriceLabel" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="170.0" text="\$2.99" textFill="WHITE">
                                  <font>
-                                    <Font name="Cambria" size="18.0" />
+                                    <Font name="Cambria" size="16.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets bottom="10.0" top="10.0" />

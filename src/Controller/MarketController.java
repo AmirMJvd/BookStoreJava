@@ -524,7 +524,7 @@ public class MarketController implements Initializable {
             return;
         }
 
-        if (!lblid.getText().trim().isEmpty()) {
+        if (!lblid.getText().isEmpty()) {
             String id = lblid.getText();
             File fileName = new File(id + ".txt");
 
