@@ -104,7 +104,8 @@
         <Label fx:id="lblanswer" layoutX="132.0" layoutY="167.0" prefHeight="26.0" prefWidth="240.0">
             <font>
                 <Font size="16.0" />
-            </font></Label>
+            </font>
+        </Label>
         <Label layoutX="319.0" layoutY="397.0" opacity="0.44" prefHeight="45.0" prefWidth="146.0" text="توجه! این قسمت صرفا برای ثبت نام ادمین یا مدیر میباشد!" wrapText="true" />
         <Label fx:id="lbltaeed" layoutX="7.0" layoutY="352.0" prefHeight="38.0" prefWidth="146.0" textAlignment="RIGHT" textFill="#d90f0f" wrapText="true" />
         <PasswordField fx:id="txttaeed" alignment="CENTER_RIGHT" layoutX="158.0" layoutY="415.0" promptText="رمز تاییدیه مدیریت" style="-fx-background-color: transparent; -fx-border-color: #78CEEB;" />
@@ -118,7 +119,7 @@
         </ImageView>
         <HBox layoutX="466.0" prefHeight="770.0" prefWidth="518.0">
             <children>
-                <ImageView fitHeight="766.0" fitWidth="598.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgBackground" fitHeight="777.0" fitWidth="569.0" opacity="0.0" pickOnBounds="true">
                     <image>
                         <Image url="@../img/sign3.jpg" />
                     </image>

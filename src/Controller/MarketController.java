@@ -92,12 +92,16 @@ public class MarketController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
+    private GridPane historicalGrrid;
+
+    @FXML
     private Label lblsabadkharid;
 
     private List<Book> allBooks = new ArrayList<>();
     List<Book> scientificBooks = new ArrayList<>();
     List<Book> politicalBooks = new ArrayList<>();
     List<Book> psychologyBooks = new ArrayList<>();
+    List<Book> historicalBooks = new ArrayList<>();
     private Image image;
     private MyListener myListener;
     private Book selectedBook;
@@ -112,7 +116,7 @@ public class MarketController implements Initializable {
         List<Book> scientificBooks = new ArrayList<>();
         List<Book> politicalBooks = new ArrayList<>();
         List<Book> psychologyBooks = new ArrayList<>();
-
+        List<Book> historicalBooks = new ArrayList<>();
         Book book;
         try {
             File BookInfo = new File("BookInf.txt");
@@ -140,6 +144,9 @@ public class MarketController implements Initializable {
                         break;
                     case "روانشناسی":
                         psychologyBooks.add(book);
+                        break;
+                    case "سیاسی":
+                        historicalBooks.add(book);
                         break;
                     default:
                         break;

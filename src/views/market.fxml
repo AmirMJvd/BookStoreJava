@@ -400,7 +400,7 @@
                                        </content></ScrollPane>
                                  </content>
                               </Tab>
-                              <Tab text="سیاسی">
+                              <Tab text="تاریخی">
                                  <content>
                                     <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
                                        <content>
@@ -422,6 +422,19 @@
                                              </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="سیاسی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="historicalGrrid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
                                  </content>
                               </Tab>
                            </tabs>
