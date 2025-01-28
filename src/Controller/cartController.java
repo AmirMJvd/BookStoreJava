@@ -33,11 +33,21 @@ public class cartController  implements Initializable {
     private Label FinalAmount;
 
 
+
     private List<Cart> carts = new ArrayList<>();
     private List<Cart> getCartData() {
         List<Cart> carts = new ArrayList<>();
         try {
-            File cartFile = new File("CartInf.txt");
+            // دریافت نام کاربری از SharedData
+            String username = SharedData.getInstance().getUsername();
+            if (username == null || username.isEmpty()) {
+                throw new IllegalArgumentException("نام کاربری معتبر نیست!");
+            }
+            // ساخت نام فایل با استفاده از نام کاربری
+            File cartFile = new File(username + ".txt");
+            if (!cartFile.exists()) {
+                throw new FileNotFoundException("فایل مربوط به کاربر یافت نشد: " + cartFile.getName());
+            }
             Scanner reader = new Scanner(cartFile);
             while (reader.hasNextLine()) {
                 Cart cart = new Cart();
@@ -117,12 +127,13 @@ public class cartController  implements Initializable {
             String formattedDate = today.format(formatter);
 
             try {
+                String username = SharedData.getInstance().getUsername();
                 // 1. گزارش پرداخت را ایجاد کنید
                 File reportFile = new File("Report.txt");
                 if (!reportFile.exists()) {
                     reportFile.createNewFile();
                 }
-                FileReader cartReader = new FileReader("CartInf.txt");
+                FileReader cartReader = new FileReader(username +".txt");
                 FileWriter reportWriter = new FileWriter("Report.txt", true);
                 Scanner cartScanner = new Scanner(cartReader);
 
@@ -195,7 +206,7 @@ public class cartController  implements Initializable {
                 bookWriter.close();
 
                 // 5. فایل CartInf را تخلیه کنید
-                FileWriter cartWriter = new FileWriter("CartInf.txt", false);
+                FileWriter cartWriter = new FileWriter( username +".txt", false);
                 cartWriter.write("");
                 cartWriter.close();
 

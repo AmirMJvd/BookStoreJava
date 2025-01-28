@@ -28,12 +28,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="627.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#CameBack" prefHeight="75.0" prefWidth="55.0" styleClass="add-button" stylesheets="@../values/StyleA.css" text="بازگشت">
-                           <HBox.margin>
-                              <Insets bottom="50.0" />
-                           </HBox.margin>
-                        </Button>
-                        <ImageView fitHeight="45.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="45.0" fitWidth="52.0" onMouseClicked="#CameBack" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/user.png" />
                            </image>
@@ -41,7 +36,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="49.0" prefWidth="265.0" text="ADMIN NAME">
+                        <Label fx:id="AdminName" prefHeight="49.0" prefWidth="265.0" text="ADMIN NAME">
                            <font>
                               <Font name="Copperplate Gothic Light" size="36.0" />
                            </font>

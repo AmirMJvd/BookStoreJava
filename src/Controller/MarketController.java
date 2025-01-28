@@ -513,18 +513,22 @@ public class MarketController implements Initializable {
 
         {
             if (!lblid.getText().trim().isEmpty()) {
-//            lblsabadkharid.setText("کالا با موفقییت به سبد خرید اضافه شد!");
-                showAlert1("عملیات موفقیت آمیز", "محصول به سبد خرید شما اضافه شد!");
-                FileWriter myWriter = new FileWriter("CartInf.txt", true);
-                myWriter.write(bookNameLable.getText());
-                myWriter.write("\n");
-                myWriter.write(bookPriceLabel.getText());
-                myWriter.write("\n");
-                myWriter.write(selectedBook.getImgSrc());
-                myWriter.write("\n");
-                myWriter.write(countLabel.getText());
-                myWriter.write("\n");
-                myWriter.close();
+            String id = lblid.getText();
+            File fileName = new File(id+".txt");
+             if (!fileName.exists()) {
+                fileName.createNewFile();
+                }
+             FileWriter myWriter = new FileWriter(fileName, true);
+             myWriter.write(bookNameLable.getText());
+             myWriter.write("\n");
+             myWriter.write(bookPriceLabel.getText());
+             myWriter.write("\n");
+             myWriter.write(selectedBook.getImgSrc());
+             myWriter.write("\n");
+             myWriter.write(countLabel.getText());
+             myWriter.write("\n");
+             myWriter.close();
+             showAlert1("عملیات موفقیت آمیز", "محصول به سبد خرید شما اضافه شد!");
             } else {
                 showAlert("خطا", "ابتدا باید ورود بفرمایید!");
             }

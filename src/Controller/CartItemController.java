@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Cart;
 import javafx.event.ActionEvent;
+import model.SharedData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -106,8 +107,9 @@ public class CartItemController {
 
     @FXML
     void Delet(ActionEvent event) throws IOException {
+        String username = SharedData.getInstance().getUsername();
         // فایل CartInf را می‌خوانیم
-        FileReader myReader = new FileReader("CartInf.txt");
+        FileReader myReader = new FileReader(username +".txt");
         Scanner scanner = new Scanner(myReader);
 
         // لیبل نام کتاب را دریافت می‌کنیم
@@ -145,7 +147,7 @@ public class CartItemController {
         myReader.close();
 
         // بازنویسی فایل با خطوط باقی‌مانده
-        FileWriter myWriter = new FileWriter("CartInf.txt", false);
+        FileWriter myWriter = new FileWriter(username+".txt", false);
         for (String line : linesToKeep) {
             myWriter.write(line + System.lineSeparator());
         }

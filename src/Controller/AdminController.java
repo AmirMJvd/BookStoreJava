@@ -9,12 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import main.Main;
 import main.MyListener;
 import model.Book;
 import model.BookLists;
 import model.Report;
+import model.SharedData;
 
 
 import java.io.*;
@@ -113,10 +115,18 @@ public class AdminController implements Initializable {
     private Label DateLab;
 
     @FXML
-    void CameBack(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/market.fxml"));
+    private Label AdminName;
+
+    @FXML
+    void CameBack(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
+        AnchorPane pane = loader.load();
+        MarketController marketController = loader.getController();
+        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
+        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
         AdminPane.getChildren().setAll(pane);
     }
+
 
     @FXML
     void registration(ActionEvent event) {
@@ -551,6 +561,9 @@ public class AdminController implements Initializable {
             System.out.println("فایل Report.txt پیدا نشد!");
             e.printStackTrace();
         }
+    }
+    public void setId(String username1){
+        AdminName.setText(username1); // تنظیم مقدار لیبل با نام کاربری;
     }
 
 }

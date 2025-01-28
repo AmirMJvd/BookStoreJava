@@ -109,6 +109,7 @@ public class SignIn {
                     String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
                     marketController.setId(username1);  // ارسال نام کاربری به کنترلر مارکت
 
+
                     Stage marketStage = new Stage();
                     marketStage.setTitle("مارکت");
                     marketStage.setScene(new Scene(marketRoot, 800, 600));
@@ -128,14 +129,33 @@ public class SignIn {
                     Main.primaryStage.close();
                 }
 
-                // باز کردن صفحه مدیریت
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Admin.fxml"));
-                AnchorPane adminRoot = loader.load();
-                Stage adminStage = new Stage();
-                adminStage.setTitle("صفحه مدیریت");
-                adminStage.setScene(new Scene(adminRoot, 800, 600)); // اندازه دلخواه صفحه
-//                adminStage.setMaximized(true);
-                adminStage.show();
+//                // باز کردن صفحه مدیریت
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Admin.fxml"));
+//                AnchorPane adminRoot = loader.load();
+//                Stage adminStage = new Stage();
+//                adminStage.setTitle("صفحه مدیریت");
+//                adminStage.setScene(new Scene(adminRoot, 800, 600)); // اندازه دلخواه صفحه
+////                adminStage.setMaximized(true);
+//                adminStage.show();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Admin.fxml"));
+                    AnchorPane marketRoot = loader.load();
+
+                    AdminController AdminController = loader.getController();
+                    String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
+                    AdminController.setId(username1);  // ارسال نام کاربری به کنترلر مارکت
+
+
+                    Stage marketStage = new Stage();
+                    marketStage.setTitle("مدیریت");
+                    marketStage.setScene(new Scene(marketRoot, 800, 600));
+                    marketStage.setMaximized(true);
+                    marketStage.setResizable(false);
+                    marketStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+//
+                }
             }
 
             // اگر نقش "کاربر" است
