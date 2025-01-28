@@ -117,6 +117,10 @@ public class AdminController implements Initializable {
     private Label AdminName;
 
     @FXML
+    private ImageView image1;
+
+
+    @FXML
     void CameBack(MouseEvent event) throws IOException {
         // بارگذاری فایل FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));

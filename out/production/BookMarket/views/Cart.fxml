@@ -31,7 +31,11 @@
                <children>
                   <HBox prefHeight="30.0" prefWidth="728.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#BackMarket" styleClass="botton" text="بازگشت" textFill="WHITE" />
+                        <ImageView fitHeight="34.0" fitWidth="51.0" onMouseClicked="#BackMarket" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/left-arrow-in-circular-button-black-symbol.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <Label alignment="CENTER" prefHeight="24.0" prefWidth="80.0" text="سبد خرید">
@@ -68,7 +72,7 @@
                         <Pane prefHeight="91.0" prefWidth="476.0" />
                         <ImageView fitHeight="166.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/CardImg.jpg" />
+                              <Image url="@../img/atm-card.png" />
                            </image>
                         </ImageView>
                         <Pane prefHeight="91.0" prefWidth="476.0" />

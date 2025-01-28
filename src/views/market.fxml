@@ -301,7 +301,7 @@
                               </Label>
                               <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#pressbtnvorud1" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/log-in1.png" />
+                                    <Image url="@../img/arrow.png" />
                                  </image>
                               </ImageView>
                            </children></Pane>
@@ -422,19 +422,6 @@
                                              </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
-                                 </content>
-                              </Tab>
-                              <Tab text="سیاسی">
-                                 <content>
-                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
-                                       <content>
-                                          <GridPane fx:id="historicalGrrid">
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                          </GridPane>
-                                       </content>
-                                    </ScrollPane>
                                  </content>
                               </Tab>
                            </tabs>
