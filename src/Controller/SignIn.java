@@ -25,7 +25,7 @@ public class SignIn {
     private UserDataManager userManager = new UserDataManager();
 
     @FXML
-    private Label welcomeText; // شناسه متن خوش آمدید
+    private Label welcomeText;
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -45,7 +45,7 @@ public class SignIn {
     @FXML
     private PasswordField txtramzin;
     @FXML
-    private ImageView imageViewBook; // شناسه تصویر انیمیشنی
+    private ImageView imageViewBook;
     @FXML
     void initialize() {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(3), imageViewBook);
@@ -137,26 +137,16 @@ public class SignIn {
                     marketController.setId(username1);
 
 
-//                    Stage marketStage = new Stage();
-//                    marketStage.setTitle("مارکت");
-//                    marketStage.setScene(new Scene(marketRoot, 800, 600));
-//                    marketStage.setMaximized(true);
-//                    marketStage.setResizable(false);
-//                    marketStage.show();
-
 
                     Stage marketStage = new Stage();
                     marketStage.setTitle("مدیریت");
 
-                    // تنظیم اندازه و Scene
                     Scene scene = new Scene(marketRoot, 1315, 810);
                     marketStage.setScene(scene);
 
-                    // غیرفعال کردن ماکسیمایز و تغییر اندازه
                     marketStage.setMaximized(false);
                     marketStage.setResizable(false);
 
-                    // نمایش پنجره
                     marketStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -172,26 +162,16 @@ public class SignIn {
                     AdminController adminController = loader.getController();
                     String username1 = SharedData.getInstance().getUsername();
                     adminController.setId(username1);
-//
-//                    Stage adminStage = new Stage();
-//                    adminStage.setTitle("مدیریت");
-//                    adminStage.setScene(new Scene(adminRoot, 800, 600));
-//                    adminStage.setMaximized(true);
-//                    adminStage.setResizable(false);
-//                    adminStage.show();
 
                     Stage marketStage = new Stage();
                     marketStage.setTitle("مدیریت");
 
-                    // تنظیم اندازه و Scene
                     Scene scene = new Scene(adminRoot, 1315, 810);
                     marketStage.setScene(scene);
 
-                    // غیرفعال کردن ماکسیمایز و تغییر اندازه
                     marketStage.setMaximized(false);
                     marketStage.setResizable(false);
 
-                    // نمایش پنجره
                     marketStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();

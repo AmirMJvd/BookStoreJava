@@ -48,23 +48,6 @@ public class Book {
 
     public void setCategory(String category) {this.category = category;}
 
-
-/*    public String getPublisher() {
-        return Publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        Publisher = publisher;
-    }
-
-    public String getDragoman() {
-        return dragoman;
-    }
-
-    public void setDragoman(String dragoman) {
-        this.dragoman = dragoman;
-    }
-*/
     public String getName() {return name;}
 
     public void setName(String name) {

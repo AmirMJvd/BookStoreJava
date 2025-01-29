@@ -93,7 +93,6 @@ public class CartItemController {
 */
     public void setData(Cart cart) {
         this.cart = cart;
-//        this.cartController = cartController;
         nameLabel.setText(cart.getName());
         priceLable.setText(cart.getPrice());
         Image image = new Image(getClass().getResourceAsStream(cart.getImgSrc()));
@@ -108,52 +107,42 @@ public class CartItemController {
     @FXML
     void Delet(ActionEvent event) throws IOException {
         String username = SharedData.getInstance().getUsername();
-        // فایل CartInf را می‌خوانیم
         FileReader myReader = new FileReader(username +".txt");
         Scanner scanner = new Scanner(myReader);
 
-        // لیبل نام کتاب را دریافت می‌کنیم
         String bookName = nameLabel.getText();
 
-        // لیستی برای نگهداری خطوط باقی‌مانده
         List<String> linesToKeep = new ArrayList<>();
 
-        // مشخص‌کننده اینکه آیا کتاب مورد نظر پیدا شده است
+
         boolean found = false;
         int skipLines = 0;
 
-        // خواندن فایل خط به خط
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
 
             if (found && skipLines > 0) {
-                // اگر کتاب پیدا شده و باید خطوط بعدی را حذف کنیم
                 skipLines--;
                 continue;
             }
 
             if (line.equals(bookName)) {
-                // اگر خط فعلی برابر نام کتاب است، شروع حذف
                 found = true;
-                skipLines = 3; // سه خط بعدی را حذف کنیم
+                skipLines = 3;
                 continue;
             }
-
-            // اگر خطی برای حذف نیست، آن را به لیست اضافه می‌کنیم
             linesToKeep.add(line);
         }
 
         scanner.close();
         myReader.close();
 
-        // بازنویسی فایل با خطوط باقی‌مانده
         FileWriter myWriter = new FileWriter(username+".txt", false);
         for (String line : linesToKeep) {
             myWriter.write(line + System.lineSeparator());
         }
         myWriter.close();
 
-        // بازخوانی داده‌ها و به‌روزرسانی GridPane
         if (cartController != null) {
             cartController.refreshCart();
         }

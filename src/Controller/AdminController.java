@@ -67,7 +67,6 @@ public class AdminController implements Initializable {
     @FXML
     private GridPane grid;
 
-    //-------
     @FXML
     private Label CategoryLab;
 
@@ -122,27 +121,26 @@ public class AdminController implements Initializable {
 
     @FXML
     void CameBack(MouseEvent event) throws IOException {
-        // بارگذاری فایل FXML
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
 
-        // تنظیم اندازه AnchorPane
+
         pane.setPrefWidth(1315);
         pane.setPrefHeight(810);
 
-        // تنظیم کنترلر و انتقال داده‌ها
-        MarketController marketController = loader.getController();
-        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
-        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
 
-        // تنظیم اندازه و غیرفعال کردن تغییر اندازه AdminPane
-        AdminPane.setPrefSize(1315, 810); // تنظیم اندازه دلخواه برای AdminPane
+        MarketController marketController = loader.getController();
+        String username1 = SharedData.getInstance().getUsername();
+        marketController.setId(username1);
+
+
+        AdminPane.setPrefSize(1315, 810);
         AdminPane.setMaxWidth(1315);
         AdminPane.setMaxHeight(810);
         AdminPane.setMinWidth(1315);
         AdminPane.setMinHeight(810);
 
-        // جایگزینی محتوای جدید
         AdminPane.getChildren().setAll(pane);
     }
 
@@ -151,14 +149,13 @@ public class AdminController implements Initializable {
     @FXML
     void registration(ActionEvent event) {
         try {
-            // بررسی اینکه هیچ فیلدی خالی نباشد
+
             if (bookName.getText().isEmpty() || ImgAdr.getText().isEmpty() || Color.getText().isEmpty() ||
                     priceTextField.getText().isEmpty() || author.getText().isEmpty() ||author.getText().isEmpty() ||translator.getText().isEmpty() ||nasher.getText().isEmpty() ||count.getText().isEmpty() ) {
                 showAlert("خطا", "لطفا همه فیلد ها را پر کنید!");
                 return;
             }
 
-            // بررسی مقدار عددی بودن فیلدهای قیمت و تعداد
             int price;
             int countValue;
             try {
@@ -169,7 +166,6 @@ public class AdminController implements Initializable {
                 return;
             }
 
-            // نوشتن داده‌ها در فایل
             FileWriter myWriter = new FileWriter("BookInf.txt", true);
 
             myWriter.write(bookName.getText());
@@ -201,7 +197,7 @@ public class AdminController implements Initializable {
             myWriter.close();
 
             showAlert1("عملیات موفقیت‌آمیز", "محصول با موفقیت ثبت شد!");
-            clearFields(); // پاک کردن فیلدها
+            clearFields();
 
         } catch (IOException e) {
             showAlert("خطا", "خطا در ذخیره اطلاعات!");
@@ -209,7 +205,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    // متد برای پاک کردن فیلدهای ورودی پس از ثبت اطلاعات
     private void clearFields() {
         bookName.clear();
         author.clear();
@@ -223,26 +218,6 @@ public class AdminController implements Initializable {
 
 
     private List<model.Report> reports = new ArrayList<>();
-//    private List<Report> getReportData() {
-//        List<Report> reports = new ArrayList<>();
-//        try {
-//            File cartFile = new File("Report.txt");
-//            Scanner reader = new Scanner(cartFile);
-//            while (reader.hasNextLine()) {
-//                Report report = new Report();
-//                report.setName(reader.nextLine());
-//                report.setPrice(reader.nextLine());
-//                report.setImgSrc(reader.nextLine());
-//                report.setCount(reader.nextLine());
-//                report.setDate(reader.nextLine());
-//                reports.add(report);
-//            }
-//            reader.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return reports;
-//    }
 
     private List<Report> getReportData() {
         List<Report> reports = new ArrayList<>();
@@ -253,21 +228,17 @@ public class AdminController implements Initializable {
                 Report report = new Report();
                 report.setName(reader.nextLine());
 
-                // پردازش قیمت
                 String rawPrice = reader.nextLine();
-                double price = extractPrice(rawPrice); // استخراج عدد از قیمت
+                double price = extractPrice(rawPrice);
 
                 report.setImgSrc(reader.nextLine());
 
-                // پردازش تعداد
                 String rawCount = reader.nextLine();
-                int count = Integer.parseInt(rawCount.trim()); // تبدیل تعداد به عدد
+                int count = Integer.parseInt(rawCount.trim());
 
-                // محاسبه قیمت کل و تنظیم آن
                 double totalPrice = price * count;
                 report.setPrice(String.valueOf(totalPrice));
                 report.setCount(String.valueOf(count));
-                // تنظیم قیمت کل
 
                 report.setDate(reader.nextLine());
                 reports.add(report);
@@ -279,11 +250,10 @@ public class AdminController implements Initializable {
         return reports;
     }
 
-    // متدی برای استخراج عدد از رشته قیمت
     private double extractPrice(String priceString) {
         StringBuilder numberBuilder = new StringBuilder();
         for (char ch : priceString.toCharArray()) {
-            if (Character.isDigit(ch) || ch == '.') { // شامل اعداد و نقطه اعشاری
+            if (Character.isDigit(ch) || ch == '.') {
                 numberBuilder.append(ch);
             }
         }
@@ -291,7 +261,7 @@ public class AdminController implements Initializable {
             return Double.parseDouble(numberBuilder.toString());
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            return 0.0; // مقدار پیش‌فرض در صورت بروز خطا
+            return 0.0;
         }
     }
 
@@ -352,13 +322,11 @@ public class AdminController implements Initializable {
                         row++;
                     }
 
-                    grid1.add(anchorPane, column++, row); //(child,column,row)
-                    //set grid width
+                    grid1.add(anchorPane, column++, row);
                     grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
                     grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
                     grid1.setMaxWidth(Region.USE_PREF_SIZE);
 
-                    //set grid height
                     grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
                     grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
                     grid1.setMaxHeight(Region.USE_PREF_SIZE);
@@ -370,7 +338,6 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // محاسبه و نمایش مجموع مبلغ دریافتی
         calculateTotalAmountReceived();
     }
 
@@ -444,13 +411,10 @@ public class AdminController implements Initializable {
     @FXML
     void decreaseBtn(ActionEvent event) {
         try {
-            // دریافت مقدار فعلی از countLabel
             int currentCount = Integer.parseInt(countLabel.getText());
-            // کاهش مقدار (اگر از صفر بزرگ‌تر است)
             if (currentCount > 0) {
                 currentCount--;
             }
-            // به‌روزرسانی countLabel
             countLabel.setText(String.valueOf(currentCount));
         } catch (NumberFormatException e) {
             showAlert("خطا", " مقدار تعداد نامعتبر است!");
@@ -461,11 +425,8 @@ public class AdminController implements Initializable {
     @FXML
     void increaseBtn(ActionEvent event) {
         try {
-            // دریافت مقدار فعلی از countLabel
             int currentCount = Integer.parseInt(countLabel.getText());
-            // افزایش مقدار
             currentCount++;
-            // به‌روزرسانی countLabel
             countLabel.setText(String.valueOf(currentCount));
         } catch (NumberFormatException e) {
             showAlert("خطا", "مقدار تعداد نامعتبر است!");
@@ -484,8 +445,7 @@ public class AdminController implements Initializable {
             return;
         }
 
-        // فیلتر کردن تنها اعداد از newPrice
-        newPrice = newPrice.replaceAll("[^0-9]", ""); // حذف همه غیر اعداد
+        newPrice = newPrice.replaceAll("[^0-9]", "");
 
         try {
             File inputFile = new File("BookInf.txt");
@@ -499,19 +459,18 @@ public class AdminController implements Initializable {
                 String line = scanner.nextLine();
 
                 if (line.equals(bookNameToUpdate)) {
-                    // اگر نام کتاب پیدا شد
                     found = true;
-                    writer.write(line + "\n"); // نام کتاب
-                    writer.write(newPrice + "\n"); // قیمت جدید
-                    scanner.nextLine(); // رد کردن قیمت قبلی
-                    writer.write(scanner.nextLine() + "\n"); // آدرس تصویر
-                    writer.write(scanner.nextLine() + "\n"); // رنگ
-                    writer.write(scanner.nextLine() + "\n"); // نویسنده
-                    writer.write(scanner.nextLine() + "\n"); // مترجم
-                    writer.write(scanner.nextLine() + "\n"); // ناشر
-                    writer.write(newCount + "\n"); // تعداد جدید
-                    scanner.nextLine(); // رد کردن تعداد قبلی
-                    writer.write(scanner.nextLine() + "\n"); // دسته‌بندی
+                    writer.write(line + "\n");
+                    writer.write(newPrice + "\n");
+                    scanner.nextLine();
+                    writer.write(scanner.nextLine() + "\n");
+                    writer.write(scanner.nextLine() + "\n");
+                    writer.write(scanner.nextLine() + "\n");
+                    writer.write(scanner.nextLine() + "\n");
+                    writer.write(scanner.nextLine() + "\n");
+                    writer.write(newCount + "\n");
+                    scanner.nextLine();
+                    writer.write(scanner.nextLine() + "\n");
                 } else {
                     writer.write(line + "\n");
                 }
@@ -525,7 +484,6 @@ public class AdminController implements Initializable {
                 return;
             }
 
-            // جایگزینی فایل اصلی با فایل موقت
             if (inputFile.delete()) {
                 tempFile.renameTo(inputFile);
                 showAlert1("عملیات موفقیت‌آمیز", "تغییرات با موفقیت ذخیره شد!");
@@ -541,11 +499,10 @@ public class AdminController implements Initializable {
     @FXML
     void wasSeenBtn(ActionEvent event) {
         try {
-            // باز کردن فایل در حالت بازنویسی (حالت false باعث پاک شدن محتوای فایل می‌شود)
+
             FileWriter writer = new FileWriter("Report.txt", false);
-            writer.write(""); // نوشتن محتوای خالی برای پاک کردن
+            writer.write("");
             writer.close();
-            // پاک کردن تمام آیتم‌های نمایش‌داده‌شده در grid
             grid.getChildren().clear();
 
             AmountReceivedLab.setText("0.00");
@@ -587,13 +544,11 @@ public class AdminController implements Initializable {
                 String line = reader.nextLine();
                 lineCounter++;
 
-                // بررسی سطر دوم هر محصول
-                if (lineCounter % 5 == 2) { // هر 5 خط مربوط به یک محصول است
-                    // حذف کاراکترهای غیرعددی از قیمت
+                if (lineCounter % 5 == 2) {
+
                     String numericPrice = line.replaceAll("[^\\d.]", "");
 
                     try {
-                        // تبدیل به عدد و اضافه کردن به مجموع
                         double price = Double.parseDouble(numericPrice);
                         totalAmount += price;
                     } catch (NumberFormatException e) {
@@ -602,7 +557,6 @@ public class AdminController implements Initializable {
                 } else if (lineCounter % 5 == 4) {
                     String Count = line.replaceAll("[^\\d.]", "");
                     try {
-                        // تبدیل به عدد و اضافه کردن به مجموع
                         int count = Integer.parseInt(Count);
                         totalCount += count;
                     } catch (NumberFormatException e) {
@@ -612,7 +566,6 @@ public class AdminController implements Initializable {
             }
             reader.close();
 
-            // نمایش مجموع در AmountReceivedLab
             AmountReceivedLab.setText(String.format( Main.CURRENCY + totalAmount));
             double profit = totalAmount * 0.10 ;
             totalProfitLab.setText(String.format( Main.CURRENCY + profit));
@@ -635,7 +588,7 @@ public class AdminController implements Initializable {
         }
     }
     public void setId(String username1){
-        AdminName.setText(username1); // تنظیم مقدار لیبل با نام کاربری;
+        AdminName.setText(username1);
     }
 
     private void showAlert(String title, String message) {

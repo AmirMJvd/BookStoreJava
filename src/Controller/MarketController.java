@@ -104,7 +104,7 @@ public class MarketController implements Initializable {
     private Book selectedBook;
 
     public void setId(String username1){
-        lblid.setText(username1); // تنظیم مقدار لیبل با نام کاربری;
+        lblid.setText(username1);
     }
 
 
@@ -201,13 +201,10 @@ public class MarketController implements Initializable {
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+                grid.add(anchorPane, column++, row);
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                //set grid height
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
@@ -232,12 +229,10 @@ public class MarketController implements Initializable {
                     row++;
                 }
 
-                scientificGrid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+                scientificGrid.add(anchorPane, column++, row);
                 scientificGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 scientificGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 scientificGrid.setMaxWidth(Region.USE_PREF_SIZE);
-                //set grid height
                 scientificGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 scientificGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 scientificGrid.setMaxHeight(Region.USE_PREF_SIZE);
@@ -258,12 +253,10 @@ public class MarketController implements Initializable {
                     row++;
                 }
 
-                politicalGrid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+                politicalGrid.add(anchorPane, column++, row);
                 politicalGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setMaxWidth(Region.USE_PREF_SIZE);
-                //set grid height
                 politicalGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 politicalGrid.setMaxHeight(Region.USE_PREF_SIZE);
@@ -284,12 +277,11 @@ public class MarketController implements Initializable {
                     row++;
                 }
 
-                psychologyGrrid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+                psychologyGrrid.add(anchorPane, column++, row);
+
                 psychologyGrrid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setMaxWidth(Region.USE_PREF_SIZE);
-                //set grid height
                 psychologyGrrid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 psychologyGrrid.setMaxHeight(Region.USE_PREF_SIZE);
@@ -336,7 +328,6 @@ public class MarketController implements Initializable {
             String id = lblid.getText();
             File fileName = new File(id + ".txt");
 
-            // خواندن فایل
             List<String> fileContent = new ArrayList<>();
             boolean bookExists = false;
             int bookIndex = -1;
@@ -348,7 +339,6 @@ public class MarketController implements Initializable {
                     }
                 }
 
-                // بررسی وجود کتاب در فایل
                 for (int i = 0; i < fileContent.size(); i += 4) {
                     if (fileContent.get(i).equals(bookNameLable.getText())) {
                         bookExists = true;
@@ -358,7 +348,6 @@ public class MarketController implements Initializable {
                 }
             }
 
-            // حذف کاراکترهای غیرعددی از قیمت لیبل و تبدیل به عدد
             String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
             double labelPrice = 0.0;
 
@@ -369,19 +358,18 @@ public class MarketController implements Initializable {
                 return;
             }
 
-            int countToAdd = Integer.parseInt(countLabel.getText()); // تعداد اضافه‌شونده
-            int maxCount = Integer.parseInt(countLab.getText()); // حداکثر تعداد موجودی
+            int countToAdd = Integer.parseInt(countLabel.getText());
+            int maxCount = Integer.parseInt(countLab.getText());
 
             if (bookExists) {
-                // اگر کتاب وجود دارد
-                double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", "")); // قیمت فعلی
-                double newPrice = currentPrice + labelPrice; // جمع قیمت جدید با قیمت فایل
+                double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", ""));
+                double newPrice = currentPrice + labelPrice;
 
-                int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3)); // تعداد فعلی
+                int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3));
                 if (currentCount + countToAdd <= maxCount) {
-                    int newCount = currentCount + countToAdd; // به‌روزرسانی تعداد
-                    fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice)); // به‌روزرسانی قیمت
-                    fileContent.set(bookIndex + 3, String.valueOf(newCount)); // به‌روزرسانی تعداد
+                    int newCount = currentCount + countToAdd;
+                    fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice));
+                    fileContent.set(bookIndex + 3, String.valueOf(newCount));
 
                     try (FileWriter writer = new FileWriter(fileName, false)) {
                         for (String line : fileContent) {
@@ -393,16 +381,15 @@ public class MarketController implements Initializable {
                     showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
                 }
             } else {
-                // اگر کتاب وجود ندارد
                 if (countToAdd <= maxCount) {
                     try (FileWriter myWriter = new FileWriter(fileName, true)) {
                         myWriter.write(bookNameLable.getText());
                         myWriter.write("\n");
-                        myWriter.write(String.valueOf(Main.CURRENCY + labelPrice)); // ذخیره قیمت
+                        myWriter.write(String.valueOf(Main.CURRENCY + labelPrice));
                         myWriter.write("\n");
                         myWriter.write(selectedBook.getImgSrc());
                         myWriter.write("\n");
-                        myWriter.write(String.valueOf(countToAdd)); // ذخیره تعداد اولیه
+                        myWriter.write(String.valueOf(countToAdd));
                         myWriter.write("\n");
                     }
                     showAlert1("عملیات موفقیت‌آمیز", "محصول به سبد خرید شما اضافه شد!");
@@ -434,25 +421,18 @@ public class MarketController implements Initializable {
     }
     @FXML
     void SearchBtn(ActionEvent event) {
-        String search = SearchTxt.getText().trim(); // دریافت متن جستجو شده
+        String search = SearchTxt.getText().trim();
         boolean found = false;
 
-        // جستجوی کتاب مورد نظر در لیست همه کتاب‌ها
         for (Book book : allBooks) {
-//            if (book.getName().equalsIgnoreCase(search)) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
-//                setChosenFruit(book); // تنظیم کتاب انتخاب شده
-//                found = true;
-//                break; // خروج از حلقه بعد از پیدا کردن کتاب
-//            }
-            if (book.getName().toLowerCase().contains(search.toLowerCase())) { // مقایسه نام کتاب به صورت غیرحساس به حروف بزرگ و کوچک
-                setChosenBook(book); // تنظیم کتاب انتخاب شده
+            if (book.getName().toLowerCase().contains(search.toLowerCase())) {
+                setChosenBook(book);
                 found = true;
-                break; // خروج از حلقه بعد از پیدا کردن کتاب
+                break;
             }
         }
 
         if (!found) {
-            // اگر کتابی پیدا نشد، نمایش پیام به کاربر
             bookNameLable.setText("کتاب یافت نشد!");
             bookPriceLabel.setText("0.0");
             writerLab.setText("");
@@ -497,33 +477,26 @@ public class MarketController implements Initializable {
     @FXML
     void calculateTotal() {
 
-            // گرفتن قیمت از شیء کتاب انتخاب‌شده
             if (selectedBook == null) {
                 bookPriceLabel.setText("خطا!");
                 return;
             }
 
-            // تبدیل قیمت از رشته به مقدار عددی
             double price = Double.parseDouble(selectedBook.getPrice());
 
-            // گرفتن تعداد از countLabel
             int currentNumber = Integer.parseInt(countLabel.getText());
 
-            // محاسبه مجموع مبلغ
             double totalAmount = price * currentNumber;
 
-            // نمایش مجموع مبلغ در bookPriceLabel
             bookPriceLabel.setText(Main.CURRENCY + totalAmount);
         }
 
 
-    // متد برای استخراج عدد از قیمت
     private double extractPrice(String priceText) {
-        // فرض می‌کنیم که قیمت با واحدی مثل "تومان" همراه است
-        // حذف تمامی کاراکترهای غیر عددی از قیمت (مثلاً "تومان")
+
         String numericPrice = priceText.replaceAll("[^\\d.]", "");
 
-        // تبدیل رشته عددی به مقدار عددی (double)
+
         return Double.parseDouble(numericPrice);
     }
 

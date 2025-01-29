@@ -35,7 +35,6 @@ public class ReportItemController {
 
     public void setData(Report report) {
         this.report = report;
-//        this.AdminController = AdminController;
         namelab.setText(report.getName());
         pricelab.setText(report.getPrice());
         Image image = new Image(getClass().getResourceAsStream(report.getImgSrc()));
@@ -43,25 +42,20 @@ public class ReportItemController {
         numlab.setText(report.getCount());
         datelab.setText(report.getDate());
 
-        calculateProfit(); // محاسبه سود و نمایش در profitlab
+        calculateProfit();
     }
     private void calculateProfit() {
         String priceText = pricelab.getText();
 
-        // حذف تمامی کاراکترهای غیرعددی
         String numericPrice = priceText.replaceAll("[^\\d.]", "");
 
         try {
-            // تبدیل رشته به عدد
             double price = Double.parseDouble(numericPrice);
 
-            // محاسبه 10 درصد از قیمت
             double profit = price * 0.10;
 
-            // تنظیم مقدار محاسبه‌شده در profitlab
             profitlab.setText(String.format( Main.CURRENCY + profit));
         } catch (NumberFormatException e) {
-            // اگر خطایی در تبدیل قیمت رخ داد
             profitlab.setText("خطا");
             e.printStackTrace();
         }

@@ -41,7 +41,7 @@ public class SignUp {
     @FXML
     private Label lblanswer;
     @FXML
-    private ImageView imgBackground;  // تصویر پس‌زمینه برای تغییر شفافیت
+    private ImageView imgBackground;
     private static final String MASTER_KEY = "admin123";
     @FXML
     void initialize() {

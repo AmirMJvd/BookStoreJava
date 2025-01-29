@@ -40,18 +40,17 @@ public class cartController  implements Initializable {
     private List<Cart> getCartData() {
         List<Cart> carts = new ArrayList<>();
         try {
-            // دریافت نام کاربری از SharedData
             String username = SharedData.getInstance().getUsername();
             if (username == null || username.isEmpty()) {
                 showAlert("هشدار", "برای مشاهده سبد خرید اول باید وارد حساب کاربری خود شوید! ");
-//                return carts; // بازگشت لیست خالی
+
             }
-            // ساخت نام فایل با استفاده از نام کاربری
+
             File cartFile = new File(username + ".txt");
             if (!cartFile.exists()) {
-                // اگر فایل یافت نشد، پیام هشدار نمایش داده شود
+
                 showAlert("هشدار", "فایلی برای کاربر " + username + " یافت نشد.");
-                return carts; // بازگشت لیست خالی
+                return carts;
             }
             Scanner reader = new Scanner(cartFile);
             while (reader.hasNextLine()) {
@@ -73,7 +72,7 @@ public class cartController  implements Initializable {
         loadCartItems();
     }
     private void loadCartItems() {
-        grid.getChildren().clear(); // پاک کردن آیتم‌های قبلی از GridPane
+        grid.getChildren().clear();
         carts.clear();
         carts.addAll(getCartData());
         int column = 0;
@@ -85,7 +84,7 @@ public class cartController  implements Initializable {
                 HBox anchorPane = fxmlLoader.load();
                 CartItemController cartItemController = fxmlLoader.getController();
                 cartItemController.setData(cart);
-                cartItemController.setCartController(this); // ارجاع به این کنترلر
+                cartItemController.setCartController(this);
 
                 if (column == 2) {
                     column = 0;
@@ -120,13 +119,12 @@ public class cartController  implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
 
-        // تنظیم اندازه دلخواه برای AnchorPane
         pane.setPrefWidth(1315);
         pane.setPrefHeight(810);
 
         MarketController marketController = loader.getController();
-        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
-        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+        String username1 = SharedData.getInstance().getUsername();
+        marketController.setId(username1);
         rootPanecart.setPrefSize(600, 400);
         rootPanecart.getChildren().setAll(pane);
     }
@@ -139,7 +137,6 @@ public class cartController  implements Initializable {
 
             try {
                 String username = SharedData.getInstance().getUsername();
-                // 1. گزارش پرداخت را ایجاد کنید
                 File reportFile = new File("Report.txt");
                 if (!reportFile.exists()) {
                     reportFile.createNewFile();
@@ -147,16 +144,14 @@ public class cartController  implements Initializable {
                 FileReader cartReader = new FileReader(username +".txt");
                 FileWriter reportWriter = new FileWriter("Report.txt", true);
                 Scanner cartScanner = new Scanner(cartReader);
-
-                // 2. اطلاعات CartInf را بخوانید و به گزارش اضافه کنید
                 List<String> cartBooks = new ArrayList<>();
                 List<Integer> cartCounts = new ArrayList<>();
 
                 while (cartScanner.hasNextLine()) {
-                    String name = cartScanner.nextLine(); // نام کتاب
-                    String price = cartScanner.nextLine(); // قیمت کتاب
-                    String imgSrc = cartScanner.nextLine(); // تصویر کتاب
-                    int count = Integer.parseInt(cartScanner.nextLine()); // تعداد کتاب
+                    String name = cartScanner.nextLine();
+                    String price = cartScanner.nextLine();
+                    String imgSrc = cartScanner.nextLine();
+                    int count = Integer.parseInt(cartScanner.nextLine());
 
                     cartBooks.add(name);
                     cartCounts.add(count);
@@ -166,23 +161,23 @@ public class cartController  implements Initializable {
                 cartScanner.close();
                 cartReader.close();
 
-                // 3. اطلاعات BookInf را بخوانید و به‌روزرسانی کنید
+
                 File bookFile = new File("BookInf.txt");
                 List<String> updatedBookLines = new ArrayList<>();
                 Scanner bookScanner = new Scanner(bookFile);
 
                 while (bookScanner.hasNextLine()) {
-                    String bookName = bookScanner.nextLine(); // نام کتاب
+                    String bookName = bookScanner.nextLine();
                     List<String> bookDetails = new ArrayList<>();
-                    for (int i = 0; i < 6; i++) { // خواندن جزئیات کتاب
+                    for (int i = 0; i < 6; i++) {
                         bookDetails.add(bookScanner.nextLine());
                     }
 
-                    int bookCount = Integer.parseInt(bookScanner.nextLine()); // تعداد موجودی کتاب
-                    String subject = bookScanner.nextLine(); // سطر 9: موضوع کتاب
+                    int bookCount = Integer.parseInt(bookScanner.nextLine());
+                    String subject = bookScanner.nextLine();
 
 
-                    // اگر کتاب در CartInf موجود است، تعداد را کاهش دهید
+
                     if (cartBooks.contains(bookName)) {
                         int index = cartBooks.indexOf(bookName);
                         int cartCount = cartCounts.get(index);
@@ -191,8 +186,8 @@ public class cartController  implements Initializable {
                             bookCount -= cartCount;
 
                             reportWriter.write(bookName + "\n");
-                            reportWriter.write(bookDetails.get(0) + "\n"); // فرض: قیمت در bookDetails[0] است
-                            reportWriter.write(bookDetails.get(1) + "\n"); // فرض: تصویر در bookDetails[1] است
+                            reportWriter.write(bookDetails.get(0) + "\n");
+                            reportWriter.write(bookDetails.get(1) + "\n");
                             reportWriter.write(cartCount + "\n");
                             reportWriter.write(formattedDate + "\n");
                         } else {
@@ -201,23 +196,19 @@ public class cartController  implements Initializable {
                         }
                     }
 
-                    // ذخیره اطلاعات بدون تغییر، به جز تعداد
                     updatedBookLines.add(bookName);
                     updatedBookLines.addAll(bookDetails);
-                    updatedBookLines.add(String.valueOf(bookCount)); // سطر 8: تعداد جدید
-                    updatedBookLines.add(subject); // سطر 9: موضوع
+                    updatedBookLines.add(String.valueOf(bookCount));
+                    updatedBookLines.add(subject);
                 }
                 bookScanner.close();
                 reportWriter.close();
 
-                // 4. فایل BookInf را به‌روزرسانی کنید
                 FileWriter bookWriter = new FileWriter("BookInf.txt", false);
                 for (String line : updatedBookLines) {
                     bookWriter.write(line + "\n");
                 }
                 bookWriter.close();
-
-                // 5. فایل CartInf را تخلیه کنید
                 FileWriter cartWriter = new FileWriter( username +".txt", false);
                 cartWriter.write("");
                 cartWriter.close();
@@ -227,14 +218,13 @@ public class cartController  implements Initializable {
             }
         FinalAmount.setText("0.00");
 
-        // بازگشت به صفحه Market
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
         AnchorPane pane = loader.load();
         pane.setPrefWidth(1315);
         pane.setPrefHeight(810);
         MarketController marketController = loader.getController();
-        String username1 = SharedData.getInstance().getUsername(); // دریافت نام کاربری از SharedData
-        marketController.setId(username1); // تنظیم مجدد نام کاربری در صفحه Market
+        String username1 = SharedData.getInstance().getUsername();
+        marketController.setId(username1);
         rootPanecart.setPrefSize(600, 400);
         rootPanecart.getChildren().setAll(pane);
 
@@ -250,7 +240,7 @@ public class cartController  implements Initializable {
     private void calculateFinalAmountFromFile() {
         double totalAmount = 0.0;
         try {
-            // دریافت نام کاربری و ساخت مسیر فایل
+
             String username = SharedData.getInstance().getUsername();
             File cartFile = new File(username + ".txt");
 
@@ -259,20 +249,17 @@ public class cartController  implements Initializable {
                 return;
             }
 
-            // خواندن فایل
             Scanner reader = new Scanner(cartFile);
             int lineCount = 0;
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 lineCount++;
 
-                // استخراج خط دوم از هر 4 خط
                 if (lineCount % 4 == 2) {
-                    // حذف تمام کاراکترهای غیر عددی و غیر اعشاری
                     String numericString = line.replaceAll("[^\\d.]", "").trim();
                     try {
                         double price = Double.parseDouble(numericString);
-                        totalAmount += price; // جمع کردن قیمت‌ها
+                        totalAmount += price;
                     } catch (NumberFormatException e) {
                         System.err.println("فرمت قیمت نامعتبر است: " + line);
                     }
@@ -280,12 +267,10 @@ public class cartController  implements Initializable {
             }
             reader.close();
 
-            // افزودن 50 واحد در صورت نیاز
             if (totalAmount < 200) {
                 totalAmount += 50;
             }
 
-            // به‌روزرسانی لیبل
             FinalAmount.setText(String.format("%.2f", totalAmount));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
