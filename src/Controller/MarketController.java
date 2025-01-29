@@ -500,6 +500,23 @@ public class MarketController implements Initializable {
         return Double.parseDouble(numericPrice);
     }
 
+    @FXML
+    void LodAdmin(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    void LodLogin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 810);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle("Book Store");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 }
 

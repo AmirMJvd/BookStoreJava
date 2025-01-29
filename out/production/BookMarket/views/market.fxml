@@ -304,6 +304,8 @@
                                     <Image url="@../img/arrow.png" />
                                  </image>
                               </ImageView>
+                              <Button layoutX="286.0" layoutY="21.0" mnemonicParsing="false" onAction="#LodLogin" text="ورود" />
+                              <Button layoutX="338.0" layoutY="21.0" mnemonicParsing="false" onAction="#LodAdmin" text="پنل مدیریت" />
                            </children></Pane>
                         <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#LoadCart" pickOnBounds="true" preserveRatio="true">
                            <image>
