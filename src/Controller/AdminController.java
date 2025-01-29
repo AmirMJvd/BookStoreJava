@@ -223,6 +223,27 @@ public class AdminController implements Initializable {
 
 
     private List<model.Report> reports = new ArrayList<>();
+//    private List<Report> getReportData() {
+//        List<Report> reports = new ArrayList<>();
+//        try {
+//            File cartFile = new File("Report.txt");
+//            Scanner reader = new Scanner(cartFile);
+//            while (reader.hasNextLine()) {
+//                Report report = new Report();
+//                report.setName(reader.nextLine());
+//                report.setPrice(reader.nextLine());
+//                report.setImgSrc(reader.nextLine());
+//                report.setCount(reader.nextLine());
+//                report.setDate(reader.nextLine());
+//                reports.add(report);
+//            }
+//            reader.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return reports;
+//    }
+
     private List<Report> getReportData() {
         List<Report> reports = new ArrayList<>();
         try {
@@ -231,9 +252,23 @@ public class AdminController implements Initializable {
             while (reader.hasNextLine()) {
                 Report report = new Report();
                 report.setName(reader.nextLine());
-                report.setPrice(reader.nextLine());
+
+                // پردازش قیمت
+                String rawPrice = reader.nextLine();
+                double price = extractPrice(rawPrice); // استخراج عدد از قیمت
+
                 report.setImgSrc(reader.nextLine());
-                report.setCount(reader.nextLine());
+
+                // پردازش تعداد
+                String rawCount = reader.nextLine();
+                int count = Integer.parseInt(rawCount.trim()); // تبدیل تعداد به عدد
+
+                // محاسبه قیمت کل و تنظیم آن
+                double totalPrice = price * count;
+                report.setPrice(String.valueOf(totalPrice));
+                report.setCount(String.valueOf(count));
+                // تنظیم قیمت کل
+
                 report.setDate(reader.nextLine());
                 reports.add(report);
             }
@@ -243,6 +278,23 @@ public class AdminController implements Initializable {
         }
         return reports;
     }
+
+    // متدی برای استخراج عدد از رشته قیمت
+    private double extractPrice(String priceString) {
+        StringBuilder numberBuilder = new StringBuilder();
+        for (char ch : priceString.toCharArray()) {
+            if (Character.isDigit(ch) || ch == '.') { // شامل اعداد و نقطه اعشاری
+                numberBuilder.append(ch);
+            }
+        }
+        try {
+            return Double.parseDouble(numberBuilder.toString());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0.0; // مقدار پیش‌فرض در صورت بروز خطا
+        }
+    }
+
 
     public void initialize(URL location, ResourceBundle resources) {
         reports.addAll(getReportData());
