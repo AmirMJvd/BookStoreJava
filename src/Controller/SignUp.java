@@ -13,6 +13,8 @@ import javafx.util.Duration;
 import model.UserDataManager;
 import java.io.IOException;
 import java.util.Objects;
+
+
 public class SignUp {
 
     private UserDataManager userManager = new UserDataManager();
@@ -82,6 +84,12 @@ public class SignUp {
         stage.setScene(newScene);
         stage.show();
     }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     private void pressbtnsignup(ActionEvent event) {
         if (!btnmodir.isSelected() && !btnkarbar.isSelected()) {
@@ -98,6 +106,12 @@ public class SignUp {
             alert.showAndWait();
             return;
         }
+        if (txtramzup.getText().length()<8||txttekrarramzup.getText().length()<8){
+            showAlert("خطا","تکرار رمز عبور و رمز عبور باید بیشتر و یا کمتر از 8کاراکتر باشد!");
+            txttekrarramzup.setText("");
+            txtramzup.setText("");
+        }
+
         if (!txtramzup.getText().equals(txttekrarramzup.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("هشدار");
@@ -105,6 +119,7 @@ public class SignUp {
             alert.showAndWait();
             return;
         }
+
         String username = txtnamkarbarup.getText();
         String password = txtramzup.getText();
         String role = btnkarbar.isSelected() ? "کاربر" : "مدیر";

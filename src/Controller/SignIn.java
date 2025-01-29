@@ -156,6 +156,10 @@ public class SignIn {
                 if (Main.primaryStage != null && Main.primaryStage.isShowing()) {
                     Main.primaryStage.close();
                 }
+                Stage currentStage = (Stage) btnvorudin.getScene().getWindow();
+                if (currentStage != null && currentStage.isShowing()) {
+                    currentStage.close();
+                }
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Admin.fxml"));
                     AnchorPane adminRoot = loader.load();
