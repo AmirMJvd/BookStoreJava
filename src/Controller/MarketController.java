@@ -92,6 +92,9 @@ public class MarketController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
+    @FXML
+    private Label QuantityInCart;
+
 
     @FXML
     private Label lblsabadkharid;
@@ -294,6 +297,7 @@ public class MarketController implements Initializable {
                 lblid.setText(currentUser);
             }
             setId();
+            updateQuantityInCart();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -321,96 +325,99 @@ public class MarketController implements Initializable {
     }
     @FXML
     boolean bookFound = true;
-
     @FXML
     void AddCart(ActionEvent event) throws IOException {
-        if (!bookFound) {
-            showAlert("خطا", "محصولی یافت نشد!");
-            return;
+       if (!bookFound) {
+        showAlert("خطا", "محصولی یافت نشد!");
+        return;
+       }
+
+         if (countLab.getText().compareTo("0") == 0) {
+        showAlert("خطا", "متاسفانه کتاب موجود نیست!");
+        return;
+         }
+
+    // بررسی مقدار lblid قبل از استفاده از آن
+    if (lblid.getText() == null || lblid.getText().isEmpty()) {
+        showAlert("خطا", "ابتدا باید ورود بفرمایید!");
+        return;
+    }
+
+    String id = lblid.getText();
+    File fileName = new File(id + ".txt");
+
+    List<String> fileContent = new ArrayList<>();
+    boolean bookExists = false;
+    int bookIndex = -1;
+
+    if (fileName.exists()) {
+        try (Scanner scanner = new Scanner(fileName)) {
+            while (scanner.hasNextLine()) {
+                fileContent.add(scanner.nextLine());
+            }
         }
 
-        if (countLab.getText().compareTo("0") == 0) {
-            showAlert("خطا", "متاسفانه کتاب موجود نیست!");
-            return;
-        }
-
-        if (!lblid.getText().isEmpty()) {
-            String id = lblid.getText();
-            File fileName = new File(id + ".txt");
-
-            List<String> fileContent = new ArrayList<>();
-            boolean bookExists = false;
-            int bookIndex = -1;
-
-            if (fileName.exists()) {
-                try (Scanner scanner = new Scanner(fileName)) {
-                    while (scanner.hasNextLine()) {
-                        fileContent.add(scanner.nextLine());
-                    }
-                }
-
-                for (int i = 0; i < fileContent.size(); i += 4) {
-                    if (fileContent.get(i).equals(bookNameLable.getText())) {
-                        bookExists = true;
-                        bookIndex = i;
-                        break;
-                    }
-                }
+        for (int i = 0; i < fileContent.size(); i += 4) {
+            if (fileContent.get(i).equals(bookNameLable.getText())) {
+                bookExists = true;
+                bookIndex = i;
+                break;
             }
-
-            String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
-            double labelPrice = 0.0;
-
-            try {
-                labelPrice = Double.parseDouble(priceText);
-            } catch (NumberFormatException e) {
-                showAlert("خطا", "فرمت قیمت نامعتبر است!");
-                return;
-            }
-
-            int countToAdd = Integer.parseInt(countLabel.getText());
-            int maxCount = Integer.parseInt(countLab.getText());
-
-            if (bookExists) {
-                double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", ""));
-                double newPrice = currentPrice + labelPrice;
-
-                int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3));
-                if (currentCount + countToAdd <= maxCount) {
-                    int newCount = currentCount + countToAdd;
-                    fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice));
-                    fileContent.set(bookIndex + 3, String.valueOf(newCount));
-
-                    try (FileWriter writer = new FileWriter(fileName, false)) {
-                        for (String line : fileContent) {
-                            writer.write(line + "\n");
-                        }
-                    }
-                    showAlert1("عملیات موفقیت‌آمیز", "قیمت و تعداد محصول به‌روزرسانی شد!");
-                } else {
-                    showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
-                }
-            } else {
-                if (countToAdd <= maxCount) {
-                    try (FileWriter myWriter = new FileWriter(fileName, true)) {
-                        myWriter.write(bookNameLable.getText());
-                        myWriter.write("\n");
-                        myWriter.write(String.valueOf(Main.CURRENCY + labelPrice));
-                        myWriter.write("\n");
-                        myWriter.write(selectedBook.getImgSrc());
-                        myWriter.write("\n");
-                        myWriter.write(String.valueOf(countToAdd));
-                        myWriter.write("\n");
-                    }
-                    showAlert1("عملیات موفقیت‌آمیز", "محصول به سبد خرید شما اضافه شد!");
-                } else {
-                    showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
-                }
-            }
-        } else {
-            showAlert("خطا", "ابتدا باید ورود بفرمایید!");
         }
     }
+
+    String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
+    double labelPrice = 0.0;
+
+    try {
+        labelPrice = Double.parseDouble(priceText);
+    } catch (NumberFormatException e) {
+        showAlert("خطا", "فرمت قیمت نامعتبر است!");
+        return;
+    }
+
+    int countToAdd = Integer.parseInt(countLabel.getText());
+    int maxCount = Integer.parseInt(countLab.getText());
+
+    if (bookExists) {
+        double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", ""));
+        double newPrice = currentPrice + labelPrice;
+
+        int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3));
+        if (currentCount + countToAdd <= maxCount) {
+            int newCount = currentCount + countToAdd;
+            fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice));
+            fileContent.set(bookIndex + 3, String.valueOf(newCount));
+
+            try (FileWriter writer = new FileWriter(fileName, false)) {
+                for (String line : fileContent) {
+                    writer.write(line + "\n");
+                }
+            }
+            showAlert1("عملیات موفقیت‌آمیز", "قیمت و تعداد محصول به‌روزرسانی شد!");
+        } else {
+            showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+        }
+    } else {
+        if (countToAdd <= maxCount) {
+            try (FileWriter myWriter = new FileWriter(fileName, true)) {
+                myWriter.write(bookNameLable.getText());
+                myWriter.write("\n");
+                myWriter.write(String.valueOf(Main.CURRENCY + labelPrice));
+                myWriter.write("\n");
+                myWriter.write(selectedBook.getImgSrc());
+                myWriter.write("\n");
+                myWriter.write(String.valueOf(countToAdd));
+                myWriter.write("\n");
+            }
+            showAlert1("عملیات موفقیت‌آمیز", "محصول به سبد خرید شما اضافه شد!");
+        } else {
+            showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+        }
+    }
+    updateQuantityInCart();
+    }
+
 
 
 
@@ -516,16 +523,36 @@ public class MarketController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
-    @FXML
-    void LodLogin(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1080, 810);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle("Book Store");
-        stage.setScene(scene);
-        stage.show();
+
+    private void updateQuantityInCart() {
+        String id = lblid.getText();
+        File fileName = new File(id + ".txt");
+
+        if (!fileName.exists()) {
+            return; // اگر فایل وجود نداشت، هیچ تغییری ایجاد نکن
+        }
+
+        int lineCount = 0;
+
+        try (Scanner scanner = new Scanner(fileName)) {
+            while (scanner.hasNextLine()) {
+                scanner.nextLine();
+                lineCount++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        if (lineCount <= 1) {
+            return; // اگر فقط یک خط بود، یعنی محصولی وجود ندارد، پس نمایش نده
+        }
+
+        int productCount = lineCount / 4; // محاسبه تعداد محصولات
+        QuantityInCart.setText(String.valueOf(productCount));
     }
+
+
 
 
 }

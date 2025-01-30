@@ -53,7 +53,12 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField fx:id="SearchTxt" opacity="0.47" prefHeight="40.0" prefWidth="223.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
+                        <ImageView fitHeight="36.0" fitWidth="40.0" onMouseClicked="#SearchBtn" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/loupe.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="SearchTxt" alignment="CENTER_RIGHT" opacity="0.47" prefHeight="40.0" prefWidth="303.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -61,11 +66,6 @@
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <ImageView fitHeight="36.0" fitWidth="40.0" onMouseClicked="#SearchBtn" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/loupe.png" />
-                           </image>
-                        </ImageView>
                      </children>
                      <styleClass>
                         <String fx:value="search-box" />
@@ -303,17 +303,22 @@
                                     <Image url="@../img/arrow.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="286.0" layoutY="21.0" mnemonicParsing="false" onAction="#LodLogin" text="ورود" />
                               <Button layoutX="338.0" layoutY="21.0" mnemonicParsing="false" onAction="#LodAdmin" text="پنل مدیریت" />
                            </children></Pane>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#LoadCart" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/shopping-cart.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <Pane prefHeight="49.0" prefWidth="51.0">
+                           <children>
+                              <Label fx:id="QuantityInCart" layoutX="23.0" layoutY="9.0" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="6.0" layoutY="13.0" onMouseClicked="#LoadCart" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/shopping-cart.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
