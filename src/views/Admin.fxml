@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
@@ -22,7 +23,7 @@
 
 <AnchorPane fx:id="AdminPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
    <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="810.0" prefWidth="1315.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox prefHeight="100.0" prefWidth="1295.0" styleClass="right-bar" stylesheets="@../values/StyleA.css" BorderPane.alignment="CENTER">
                <children>
@@ -494,7 +495,7 @@
                                                 </HBox>
                                                 <Pane prefHeight="270.0" prefWidth="342.0">
                                                    <children>
-                                                      <ImageView fx:id="image1" fitHeight="139.0" fitWidth="137.0" layoutX="90.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="image1" fitHeight="139.0" fitWidth="137.0" layoutX="90.0" layoutY="47.0" onMouseClicked="#choseImg" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../img/image-11.png" />
                                                          </image></ImageView>
@@ -539,6 +540,113 @@
                                     </HBox>
                                  </children></AnchorPane>
                           </content>
+                        </Tab>
+                        <Tab text="افزودن مدیر">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="list-view-list">
+                                 <children>
+                                    <VBox layoutX="339.0" layoutY="-2.0" prefHeight="580.0" prefWidth="553.0" style="-fx-background-color: #d3d3d3; -fx-background-radius: 30;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="10.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="509.0">
+                                             <children>
+                                                <TextField fx:id="userName" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="نام کاربری" styleClass="search-box" stylesheets="@../values/StyleA.css">
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                   <font>
+                                                      <Font name="System Italic" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Pane prefHeight="100.0" prefWidth="18.0" />
+                                                <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/programmer.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="phineNumber" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="شماره موبایل" styleClass="search-box" stylesheets="@../values/StyleA.css">
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                   <font>
+                                                      <Font name="System Italic" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Pane prefHeight="100.0" prefWidth="18.0" />
+                                                <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/iphone.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="bDay" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="آدرس پست الکترونیک" styleClass="search-box" stylesheets="@../values/StyleA.css">
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                   <font>
+                                                      <Font name="System Italic" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Pane prefHeight="100.0" prefWidth="18.0" />
+                                                <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/email1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <PasswordField fx:id="password" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="رمز ورود" styleClass="search-box">
+                                                   <font>
+                                                      <Font name="System Italic" size="16.0" />
+                                                   </font>
+                                                </PasswordField>
+                                                <Pane prefHeight="100.0" prefWidth="18.0" />
+                                                <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/password1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <PasswordField fx:id="PasswordRepet" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="تکرار رمز ورود" styleClass="search-box">
+                                                   <font>
+                                                      <Font name="System Italic" size="16.0" />
+                                                   </font>
+                                                </PasswordField>
+                                                <Pane prefHeight="100.0" prefWidth="18.0" />
+                                                <ImageView fitHeight="61.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/password1.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="125.0" prefWidth="553.0">
+                                             <children>
+                                                <Button fx:id="Registration" mnemonicParsing="false" onAction="#Registration" prefHeight="54.0" prefWidth="118.0" styleClass="search-button" text="ثبت نام" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="24.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children></AnchorPane>
+                           </content>
                         </Tab>
                     </tabs>
                   </TabPane>

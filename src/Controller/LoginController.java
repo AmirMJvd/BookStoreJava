@@ -37,6 +37,12 @@ public class LoginController {
     }
 
     @FXML
+    void Reset(MouseEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/forgetfulness.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
     void Login(ActionEvent event) {
         String username = userName.getText().trim();
         String pass = password.getText().trim();

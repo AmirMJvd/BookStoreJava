@@ -430,7 +430,7 @@ public class MarketController implements Initializable {
         alert.showAndWait();
     }
     @FXML
-    void SearchBtn(ActionEvent event) {
+    void SearchBtn(MouseEvent event) {
         String search = SearchTxt.getText().trim();
         boolean found = false;
 
