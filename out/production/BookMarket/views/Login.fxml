@@ -106,7 +106,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="553.0">
                      <children>
-                        <Label prefHeight="120.0" prefWidth="116.0" text="بازنشانی رمز عبور" textFill="#868686">
+                        <Label onMouseClicked="#Reset" prefHeight="120.0" prefWidth="116.0" text="بازنشانی رمز عبور" textFill="#868686">
                            <font>
                               <Font size="16.0" />
                            </font>
