@@ -60,7 +60,7 @@
                   <HBox prefHeight="121.0" prefWidth="553.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="نام کاربری" styleClass="search-box" stylesheets="@../values/StyleA.css">
+                        <TextField fx:id="userName" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="نام کاربری" styleClass="search-box" stylesheets="@../values/StyleA.css">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>
@@ -78,7 +78,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <PasswordField alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="رمز ورود" styleClass="search-box">
+                        <PasswordField fx:id="password" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="295.0" promptText="رمز ورود" styleClass="search-box">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>
@@ -94,7 +94,7 @@
                   <HBox alignment="CENTER" prefHeight="15.0" prefWidth="553.0" />
                   <HBox alignment="CENTER" prefHeight="125.0" prefWidth="553.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="118.0" styleClass="search-button" text="ورود" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#Login" prefHeight="54.0" prefWidth="118.0" styleClass="search-button" text="ورود" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>

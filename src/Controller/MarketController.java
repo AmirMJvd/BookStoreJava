@@ -20,6 +20,7 @@ import main.Main;
 import main.MyListener;
 import model.Book;
 import model.BookLists;
+import model.SharedData;
 import model.StageManager;
 
 import java.io.File;
@@ -287,10 +288,19 @@ public class MarketController implements Initializable {
                 psychologyGrrid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
+            // تنظیم نام کاربری در lblid
+            String currentUser = SharedData.getInstance().getUsername();
+            if (currentUser != null && !currentUser.isEmpty()) {
+                lblid.setText(currentUser);
+            }
+            setId();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void setId() {
+        lblid.setText(SharedData.getInstance().getUsername());
     }
 
     @FXML
@@ -301,8 +311,8 @@ public class MarketController implements Initializable {
 
     @FXML
     void pressbtnvorud1 (MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/signin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 971, 770);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 810);
         Stage stage = new Stage();
         stage.setResizable(false);
         stage.setTitle("ورود");
