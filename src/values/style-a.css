@@ -1,0 +1,68 @@
+.tab-content-area {
+    -fx-background-color: #FFFFFF; /* رنگ پس‌زمینه محتوای تب */
+    -fx-padding: 20px; /* فضای داخلی محتوای تب */
+    -fx-border-color: #E0E0E0; /* رنگ حاشیه محتوای تب */
+    -fx-border-width: 1px; /* عرض حاشیه */
+}
+.tab{
+    -fx-font-family: "B Roya";
+    -fx-font-size: 18px;
+    -fx-background-color: #c3c6c9; /* رنگ پس‌زمینه تب */
+    -fx-text-fill: white; /* رنگ نوشته تب */
+    -fx-padding: 12px; /* فضای داخلی تب */
+}
+
+.tab-pane {
+    -fx-border-color: #FFFFFF; /* رنگ حاشیه TabPane */
+    -fx-border-width: 2px; /* عرض حاشیه */
+    -fx-background-color: #f5f5f5; /* رنگ پس‌زمینه TabPane */
+}
+
+.tab:selected {
+    -fx-background-color: #7d8185; /* رنگ پس‌زمینه تب فعال */
+    -fx-font-weight: bold; /* متن ضخیم‌تر */
+}
+
+.text-field{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.vbox-style{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 20;
+}
+
+.hbox-style{
+    -fx-background-color: #e8eced;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.vbox-style{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+.Vbox-style{
+    -fx-background-color: #6c6c91;
+    -fx-background-radius: 30;
+}
+
+.Hbox-style{
+    -fx-border-radius: 50;
+    -fx-border-width: 1;
+    -fx-border-color: #FFFFFF;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}

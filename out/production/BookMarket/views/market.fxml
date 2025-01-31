@@ -58,7 +58,13 @@
                               <Image url="@../img/loupe.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="SearchTxt" alignment="CENTER_RIGHT" opacity="0.47" prefHeight="40.0" prefWidth="303.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
+                        <Pane prefHeight="200.0" prefWidth="15.0" />
+                        <ImageView fitHeight="15.0" fitWidth="15.0" onMouseClicked="#cancel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/close111.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="SearchTxt" alignment="CENTER_RIGHT" opacity="0.47" prefHeight="40.0" prefWidth="272.0" promptText="نام کتاب را وارد کنید" styleClass="transparent" stylesheets="@../values/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

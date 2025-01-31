@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -99,6 +100,9 @@ public class MarketController implements Initializable {
     @FXML
     private Label lblsabadkharid;
 
+    private List<Book> initialBooks = new ArrayList<>();
+
+
     private List<Book> allBooks = new ArrayList<>();
     List<Book> scientificBooks = new ArrayList<>();
     List<Book> politicalBooks = new ArrayList<>();
@@ -181,6 +185,9 @@ public class MarketController implements Initializable {
         scientificBooks.addAll(bookLists.getScientificBooks());
         politicalBooks.addAll(bookLists.getPoliticalBooks());
         psychologyBooks.addAll(bookLists.getPsychologyBooks());
+        initialBooks.addAll(allBooks);
+
+
         if (allBooks.size() > 0) {
             setChosenBook(allBooks.get(0));
             myListener = new MyListener() {
@@ -436,21 +443,42 @@ public class MarketController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     @FXML
     void SearchBtn(MouseEvent event) {
-        String search = SearchTxt.getText().trim();
-        boolean found = false;
+    String search = SearchTxt.getText().trim();
+    boolean found = false;
 
-        for (Book book : allBooks) {
-            if (book.getName().toLowerCase().contains(search.toLowerCase())) {
-                setChosenBook(book);
-                found = true;
-                break;
+    grid.getChildren().clear(); // پاک کردن محتوای گرید
+
+    int column = 0;
+    int row = 1;
+
+    for (Book book : allBooks) {
+        if (book.getName().toLowerCase().contains(search.toLowerCase())) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+            try {
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(book, myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            found = true;
         }
+    }
 
-        if (!found) {
-            bookNameLable.setText("کتاب یافت نشد!");
+    if (!found) {
+        bookNameLable.setText("کتاب یافت نشد!");
             bookPriceLabel.setText("0.0");
             writerLab.setText("");
             translatorLab.setText("");
@@ -461,8 +489,9 @@ public class MarketController implements Initializable {
             bookImg.setImage(Image);
             chosenBookCard.setStyle("-fx-background-color: #868686;\n    -fx-background-radius: 30;");
             bookFound = false;
-        }
     }
+}
+
 
     public StageManager getStageManager() {
         return stageManager;
@@ -519,7 +548,7 @@ public class MarketController implements Initializable {
 
     @FXML
     void LodAdmin(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Admin.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/admin1.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
@@ -551,6 +580,36 @@ public class MarketController implements Initializable {
         int productCount = lineCount / 4; // محاسبه تعداد محصولات
         QuantityInCart.setText(String.valueOf(productCount));
     }
+
+    @FXML
+    void cancel(MouseEvent event) {
+        grid.getChildren().clear(); // پاک کردن محتوای گرید
+
+        int column = 0;
+        int row = 1;
+
+        // بازگرداندن کتاب‌ها به حالت اولیه
+        for (Book book : initialBooks) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(book, myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
 

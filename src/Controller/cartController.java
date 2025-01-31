@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.Properties;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -15,6 +17,9 @@ import javafx.scene.layout.Region;
 import model.Cart;
 import model.SharedData;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
@@ -33,6 +38,12 @@ public class cartController  implements Initializable {
 
     @FXML
     private Label FinalAmount;
+
+    @FXML
+    private TextField password;
+
+    @FXML
+    private TextField phoneNumber;
 
 
 
@@ -276,7 +287,66 @@ public class cartController  implements Initializable {
             e.printStackTrace();
             showAlert("خطا", "مشکلی در خواندن فایل به وجود آمد.");
         }
+
+
     }
+
+    @FXML
+    void send(ActionEvent event) {
+        String email = phoneNumber.getText().trim();
+
+        if (email.isEmpty() || !email.contains("@")) {
+            showAlert("خطا", "لطفاً یک ایمیل معتبر وارد کنید.");
+            return;
+        }
+
+        String generatedCode = generateVerificationCode();
+        password.setText(generatedCode); // نمایش کد در فیلد رمز
+
+        boolean success = sendEmail(email, generatedCode);
+
+        if (success) {
+            showAlert("موفق", "کد به ایمیل ارسال شد.");
+        } else {
+            showAlert("خطا", "ارسال ایمیل ناموفق بود. لطفاً دوباره تلاش کنید.");
+        }
+    }
+    private String generateVerificationCode() {
+        int code = (int) (Math.random() * 900000) + 100000; // عدد 6 رقمی تصادفی
+        return String.valueOf(code);
+    }
+
+    private boolean sendEmail(String recipient, String code) {
+        final String senderEmail = "bookstore.java.1403@gmail.com";
+        final String senderPassword = "grgf ycdk suio bxbl"; // پسورد یا App Password
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject("کد تأیید شما");
+            message.setText("کد تأیید شما: " + code);
+
+            Transport.send(message);
+            return true;
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 
 

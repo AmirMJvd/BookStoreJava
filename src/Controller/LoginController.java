@@ -31,6 +31,13 @@ public class LoginController {
     private static final String FILE_NAME = "user.txt";
 
     @FXML
+    public void initialize() {
+        userName.setOnAction(event -> password.requestFocus());
+        password.setOnAction(event -> Login(new ActionEvent()));
+    }
+
+
+    @FXML
     void LodRegister(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Registration.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -65,7 +72,7 @@ public class LoginController {
                 openPage("../views/market.fxml", "Market", username);
                 closeAllWindows();
             } else if (role.equals("مدیر")) {
-                openPage("../views/admin.fxml", "Admin Panel", username);
+                openPage("../views/admin1.fxml", "Admin Panel", username);
                 closeAllWindows();
             }
         } else {
@@ -128,7 +135,7 @@ public class LoginController {
                 MarketController controller = loader.getController();
                 controller.setId(username);
             } else if (title.equals("Admin Panel")) {
-                AdminController controller = loader.getController();
+                admin1Controller controller = loader.getController();
                 controller.setId(username);
             }
 
@@ -150,140 +157,3 @@ public class LoginController {
         alert.showAndWait();
     }
 }
-/*
-package Controller;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-import model.SharedData;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
-public class LoginController {
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private TextField userName;
-
-    private static final String FILE_NAME = "user.txt";
-
-    @FXML
-    void LodRegister(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Registration.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    @FXML
-    void Login(ActionEvent event) {
-        String username = userName.getText().trim();
-        String pass = password.getText().trim();
-
-        if (username.isEmpty() || pass.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "خطا", "نام کاربری و رمز عبور نمی‌توانند خالی باشند!");
-            return;
-        }
-
-        if (validateLogin(username, pass)) {
-            SharedData.getInstance().setUsername(username); // ذخیره نام کاربری در SharedData
-            createUserFile(username); // ایجاد فایل متنی برای نام کاربری
-            showAlert(Alert.AlertType.INFORMATION, "موفقیت", "ورود با موفقیت انجام شد!");
-            closeAllWindows(); // بستن همه پنجره‌ها
-            openMarketPage(username); // باز کردن صفحه مارکت
-        } else {
-            showAlert(Alert.AlertType.ERROR, "خطا", "نام کاربری یا رمز عبور اشتباه است!");
-        }
-    }
-
-    private boolean validateLogin(String username, String password) {
-        File file = new File(FILE_NAME);
-        if (!file.exists()) return false;
-
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String existingUsername = scanner.nextLine().trim();
-                String existingPassword = "";
-
-                if (scanner.hasNextLine()) {
-                    existingPassword = scanner.nextLine().trim();
-                }
-                if (scanner.hasNextLine()) scanner.nextLine();
-                if (scanner.hasNextLine()) scanner.nextLine();
-                if (scanner.hasNextLine()) scanner.nextLine();
-
-                if (existingUsername.equals(username) && existingPassword.equals(password)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private void createUserFile(String username) {
-        File userFile = new File(username + ".txt");
-        try {
-            if (userFile.createNewFile()) {
-                System.out.println("فایل " + username + ".txt" + " ایجاد شد.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void closeAllWindows() {
-        for (Window window : Stage.getWindows()) {
-            if (window instanceof Stage) {
-                ((Stage) window).close();
-            }
-        }
-    }
-    private void closeLoginWindow() {
-        Stage stage = (Stage) rootPane.getScene().getWindow();
-        stage.close();
-    }
-
-    private void openMarketPage(String username) {
-        try {
-            closeLoginWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/market.fxml"));
-            AnchorPane pane = loader.load();
-            MarketController marketController = loader.getController();
-            marketController.setId(username); // ارسال نام کاربری به کنترلر صفحه مارکت
-
-            Scene scene = new Scene(pane, 1315, 810);
-            Stage marketStage = new Stage();
-            marketStage.setScene(scene);
-            marketStage.setTitle("Market");
-            marketStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-}
- */

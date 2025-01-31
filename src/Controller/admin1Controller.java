@@ -3,13 +3,14 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import main.Main;
 import main.MyListener;
@@ -18,59 +19,53 @@ import model.BookLists;
 import model.Report;
 import model.SharedData;
 
-
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class AdminController implements Initializable {
-
+public class admin1Controller implements Initializable{
 
     @FXML
     private AnchorPane AdminPane;
 
     @FXML
-    private TextField Color;
+    private ColorPicker color;
 
     @FXML
-    private TextField ImgAdr;
-
-    @FXML
-    private TextField author;
-
-    @FXML
-    private TextField bookName;
-
-    @FXML
-    private TextField count;
-
-    @FXML
-    private TextField nasher;
-
-    @FXML
-    private TextField priceTextField;
-
-    @FXML
-    private TextField translator;
+    private Label AdminName;
 
     @FXML
     private TextField Category;
-
-
-
-    @FXML
-    private GridPane grid;
 
     @FXML
     private Label CategoryLab;
 
     @FXML
+    private TextField ImgAdr;
+
+    @FXML
+    private TextField PasswordRepet;
+
+    @FXML
+    private TextField PriceTxt;
+
+    @FXML
+    private Button Registration;
+
+    @FXML
+    private TextField author;
+
+    @FXML
+    private TextField bDay;
+
+    @FXML
     private ImageView bookImg;
+
+    @FXML
+    private TextField bookName;
 
     @FXML
     private Label bookNameLable;
@@ -79,100 +74,56 @@ public class AdminController implements Initializable {
     private VBox chosenBookCard;
 
     @FXML
+    private TextField count;
+
+    @FXML
     private Label countLab;
 
     @FXML
     private Label countLabel;
 
     @FXML
-    private Label nasherLab;
-
-    @FXML
-    private Label translatorLab;
-
-    @FXML
-    private Label writerLab;
-
-    @FXML
-    private TextField PriceTxt;
+    private Button decreaseBtn;
 
     @FXML
     private GridPane grid1;
 
     @FXML
-    private Label AmountReceivedLab;
-
-    @FXML
-    private Label totalProfitLab;
-
-    @FXML
-    private Label NumberOfSalesLab;
-
-    @FXML
-    private Label DateLab;
-
-    @FXML
-    private Label AdminName;
-
-    @FXML
     private ImageView image1;
 
     @FXML
-    private ImageView adminImg;
+    private TextField nasher;
 
     @FXML
-    private PasswordField PasswordRepet;
+    private Label nasherLab;
 
     @FXML
-    private Button Registration;
-
-    @FXML
-    private TextField bDay;
-
-    @FXML
-    private PasswordField password;
+    private TextField password;
 
     @FXML
     private TextField phineNumber;
 
     @FXML
-    private TextField userName;
-
-
-
+    private TextField priceTextField;
 
     @FXML
-    void CameBack(MouseEvent event) throws IOException {
+    private TextField translator;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
-        AnchorPane pane = loader.load();
+    @FXML
+    private Label translatorLab;
 
+    @FXML
+    private TextField userName;
 
-        pane.setPrefWidth(1315);
-        pane.setPrefHeight(810);
-
-
-        MarketController marketController = loader.getController();
-        String username1 = SharedData.getInstance().getUsername();
-        marketController.setId(username1);
-
-
-        AdminPane.setPrefSize(1315, 810);
-        AdminPane.setMaxWidth(1315);
-        AdminPane.setMaxHeight(810);
-        AdminPane.setMinWidth(1315);
-        AdminPane.setMinHeight(810);
-
-        AdminPane.getChildren().setAll(pane);
-    }
-
+    @FXML
+    private Label writerLab;
 
 
     @FXML
     void registration(ActionEvent event) {
         try {
 
-            if (bookName.getText().isEmpty() || ImgAdr.getText().isEmpty() || Color.getText().isEmpty() ||
+            if (bookName.getText().isEmpty() || ImgAdr.getText().isEmpty() ||
                     priceTextField.getText().isEmpty() || author.getText().isEmpty() ||author.getText().isEmpty() ||translator.getText().isEmpty() ||nasher.getText().isEmpty() ||count.getText().isEmpty() ) {
                 showAlert("خطا", "لطفا همه فیلد ها را پر کنید!");
                 return;
@@ -188,6 +139,10 @@ public class AdminController implements Initializable {
                 return;
             }
 
+            // دریافت رنگ انتخاب شده از ColorPicker و تبدیل آن به HEX
+            Color selectedColor = color.getValue();
+            String hexColor = toHex(selectedColor);
+
             FileWriter myWriter = new FileWriter("BookInf.txt", true);
 
             myWriter.write(bookName.getText());
@@ -199,7 +154,7 @@ public class AdminController implements Initializable {
             myWriter.write(ImgAdr.getText());
             myWriter.write("\n");
 
-            myWriter.write(Color.getText());
+            myWriter.write(hexColor);
             myWriter.write("\n");
 
             myWriter.write(author.getText());
@@ -233,141 +188,63 @@ public class AdminController implements Initializable {
         translator.clear();
         nasher.clear();
         ImgAdr.clear();
-        Color.clear();
         priceTextField.clear();
         count.clear();
     }
 
-
-    private List<model.Report> reports = new ArrayList<>();
-
-    private List<Report> getReportData() {
-        List<Report> reports = new ArrayList<>();
-        try {
-            File cartFile = new File("Report.txt");
-            Scanner reader = new Scanner(cartFile);
-            while (reader.hasNextLine()) {
-                Report report = new Report();
-                report.setName(reader.nextLine());
-
-                String rawPrice = reader.nextLine();
-                double price = extractPrice(rawPrice);
-
-                report.setImgSrc(reader.nextLine());
-
-                String rawCount = reader.nextLine();
-                int count = Integer.parseInt(rawCount.trim());
-
-                double totalPrice = price * count;
-                report.setPrice(String.valueOf(totalPrice));
-                report.setCount(String.valueOf(count));
-
-                report.setDate(reader.nextLine());
-                reports.add(report);
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return reports;
-    }
-
-    private double extractPrice(String priceString) {
-        StringBuilder numberBuilder = new StringBuilder();
-        for (char ch : priceString.toCharArray()) {
-            if (Character.isDigit(ch) || ch == '.') {
-                numberBuilder.append(ch);
-            }
-        }
-        try {
-            return Double.parseDouble(numberBuilder.toString());
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return 0.0;
-        }
+    private String toHex(Color color) {
+        return String.format("%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
 
-    public void initialize(URL location, ResourceBundle resources) {
-        reports.addAll(getReportData());
-        BookLists bookLists = getData();
-        allBooks.addAll(bookLists.getAllBooks());
-        scientificBooks.addAll(bookLists.getScientificBooks());
-        politicalBooks.addAll(bookLists.getPoliticalBooks());
-        psychologyBooks.addAll(bookLists.getPsychologyBooks());
-        if (allBooks.size() > 0) {
-            setChosenBook(allBooks.get(0));
-            myListener = new MyListener() {
-                @Override
-                public void onClickListener(Book fruit) {
-                    setChosenBook(fruit);
-                }
-            };
-        }
-        int row = 1;
-        int column = 0;
-        try {
-            for (Report report : reports) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/report.fxml"));
-                HBox HBox = fxmlLoader.load();
+    @FXML
+    void CameBack(MouseEvent event) throws IOException {
 
-                ReportItemController cartItemController = fxmlLoader.getController();
-                cartItemController.setData(report);
-
-                if (column == 2) {
-                    column = 0;
-                    row++;
-                }
-                grid.add(HBox, column++, row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(HBox, new Insets(10));
-            }
-             row = 1;
-             column = 0;
-                for (int i = 0; i < allBooks.size(); i++) {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
-                    ItemController itemController = fxmlLoader.getController();
-                    itemController.setData(allBooks.get(i), myListener);
-
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
-
-                    grid1.add(anchorPane, column++, row);
-                    grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    grid1.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    grid1.setMaxHeight(Region.USE_PREF_SIZE);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/Market.fxml"));
+        AnchorPane pane = loader.load();
 
 
-                    GridPane.setMargin(anchorPane, new Insets(10));
-                }
+        pane.setPrefWidth(1315);
+        pane.setPrefHeight(810);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        calculateTotalAmountReceived();
-        userName.setOnAction(event -> phineNumber.requestFocus());
-        phineNumber.setOnAction(event -> bDay.requestFocus());
-        bDay.setOnAction(event -> password.requestFocus());
-        password.setOnAction(event -> PasswordRepet.requestFocus());
-        PasswordRepet.setOnAction(event -> {
-            Registration(new ActionEvent());
-        });
+
+        MarketController marketController = loader.getController();
+        String username1 = SharedData.getInstance().getUsername();
+        marketController.setId(username1);
+
+
+        AdminPane.setPrefSize(1315, 810);
+        AdminPane.setMaxWidth(1315);
+        AdminPane.setMaxHeight(810);
+        AdminPane.setMinWidth(1315);
+        AdminPane.setMinHeight(810);
+
+        AdminPane.getChildren().setAll(pane);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    private void showAlert1(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("تبریک!");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private List<Book> allBooks = new ArrayList<>();
@@ -421,6 +298,88 @@ public class AdminController implements Initializable {
 
         return new BookLists(allBooks, scientificBooks, politicalBooks, psychologyBooks);
     }
+    @FXML
+    public void initialize (URL location, ResourceBundle resources) {
+//        reports.addAll(getReportData());
+        BookLists bookLists = getData();
+        allBooks.addAll(bookLists.getAllBooks());
+        scientificBooks.addAll(bookLists.getScientificBooks());
+        politicalBooks.addAll(bookLists.getPoliticalBooks());
+        psychologyBooks.addAll(bookLists.getPsychologyBooks());
+        if (allBooks.size() > 0) {
+            setChosenBook(allBooks.get(0));
+            myListener = new MyListener() {
+                @Override
+                public void onClickListener(Book fruit) {
+                    setChosenBook(fruit);
+                }
+            };
+        }
+        int row = 1;
+        int column = 0;
+
+//            for (Report report : reports) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("/views/report.fxml"));
+//                HBox HBox = fxmlLoader.load();
+//
+//                ReportItemController cartItemController = fxmlLoader.getController();
+//                cartItemController.setData(report);
+//
+//                if (column == 2) {
+//                    column = 0;
+//                    row++;
+//                }
+//                grid.add(HBox, column++, row);
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//
+//                GridPane.setMargin(HBox, new Insets(10));
+//            }
+        try {
+            for (int i = 0; i < allBooks.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(allBooks.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid1.add(anchorPane, column++, row);
+                grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid1.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid1.setMaxHeight(Region.USE_PREF_SIZE);
+
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        calculateTotalAmountReceived();
+        userName.setOnAction(event -> phineNumber.requestFocus());
+        phineNumber.setOnAction(event -> bDay.requestFocus());
+        bDay.setOnAction(event -> password.requestFocus());
+        password.setOnAction(event -> PasswordRepet.requestFocus());
+        PasswordRepet.setOnAction(event -> {Registration(new ActionEvent());
+        });
+    }
+
+
     private void setChosenBook (Book book) {
         selectedBook = book;
         bookNameLable.setText(book.getName());
@@ -438,7 +397,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    void decreaseBtn(ActionEvent event) {
+    void decreaseBtn (ActionEvent event) {
         try {
             int currentCount = Integer.parseInt(countLabel.getText());
             if (currentCount > 0) {
@@ -525,116 +484,9 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    void wasSeenBtn(ActionEvent event) {
-        try {
-
-            FileWriter writer = new FileWriter("Report.txt", false);
-            writer.write("");
-            writer.close();
-            grid.getChildren().clear();
-
-            AmountReceivedLab.setText("0.00");
-            totalProfitLab.setText("0.00");
-            NumberOfSalesLab.setText("0");
-
-            LocalDate today = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            String formattedDate = today.format(formatter);
-
-            File file = new File("Date.txt");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write(formattedDate);
-            fileWriter.write("\n");
-            fileWriter.close();
-            DateLab.setText(formattedDate);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-    private void calculateTotalAmountReceived() {
-        double totalAmount = 0.0;
-        int totalCount = 0;
-
-        try {
-            File reportFile = new File("Report.txt");
-            Scanner reader = new Scanner(reportFile);
-
-            int lineCounter = 0;
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                lineCounter++;
-
-                if (lineCounter % 5 == 2) {
-
-                    String numericPrice = line.replaceAll("[^\\d.]", "");
-
-                    try {
-                        double price = Double.parseDouble(numericPrice);
-                        totalAmount += price;
-                    } catch (NumberFormatException e) {
-                        System.out.println("خطا در تبدیل قیمت: " + line);
-                    }
-                } else if (lineCounter % 5 == 4) {
-                    String Count = line.replaceAll("[^\\d.]", "");
-                    try {
-                        int count = Integer.parseInt(Count);
-                        totalCount += count;
-                    } catch (NumberFormatException e) {
-                        System.out.println("خطا در تبدیل تعداد: " + line);
-                    }
-                }
-            }
-            reader.close();
-
-            AmountReceivedLab.setText(String.format( Main.CURRENCY + totalAmount));
-            double profit = totalAmount * 0.10 ;
-            totalProfitLab.setText(String.format( Main.CURRENCY + profit));
-
-            NumberOfSalesLab.setText(String.format(String.valueOf(totalCount)));
-
-            FileReader myReader = new FileReader("Date.txt");
-            Scanner scanner = new Scanner(myReader);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                DateLab.setText(line);
-            }
-
-
-
-
-        } catch (FileNotFoundException e) {
-            showAlert("خطا", "فایل Report.txt پیدا نشد!");
-            e.printStackTrace();
-        }
-    }
     public void setId(String username1){
         AdminName.setText(username1);
     }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void showAlert1(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText("تبریک!");
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-    
 
     @FXML
     void choseImg(MouseEvent event) {
@@ -733,15 +585,6 @@ public class AdminController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     private void clearFields1() {
         userName.clear();
         phineNumber.clear();
@@ -750,12 +593,4 @@ public class AdminController implements Initializable {
         PasswordRepet.clear();
     }
 
-
 }
-
-
-
-
-
-
-
