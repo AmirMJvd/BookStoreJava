@@ -357,7 +357,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card" stylesheets="@../values/style.css">
+                        <HBox alignment="CENTER" onMouseClicked="#map" prefHeight="100.0" prefWidth="336.0" stylesheets="@../values/style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
                                  <children>
@@ -379,6 +379,10 @@
                                  </image>
                               </ImageView>
                            </children>
+                           <styleClass>
+                              <String fx:value="shopping-online-card" />
+                              <String fx:value="HBox" />
+                           </styleClass>
                         </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>

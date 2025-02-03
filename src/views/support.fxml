@@ -1,16 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.support"
-            prefHeight="400.0" prefWidth="600.0" >
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.support">
 
-</AnchorPane>
-
-
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+            <StackPane prefHeight="534.0" prefWidth="800.0">
+                <children>
+                    <ImageView fitHeight="534.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../img/joanna-kosinska-1_CMoFsPfso-unsplash.jpg" />
+                        </image>
+                    </ImageView>
+                    <VBox prefHeight="350.0" prefWidth="600.0" spacing="15.0">
+                        <StackPane.margin>
+                            <Insets bottom="65.0" left="340.0" right="130.0" top="80.0" />
+                        </StackPane.margin>
+                        <children>
+                            <HBox alignment="CENTER" prefHeight="92.0" prefWidth="285.0">
+                                <children>
+                                    <ImageView fitHeight="49.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../img/books.png" />
+                                        </image>
+                                        <HBox.margin>
+                                            <Insets left="25.0" />
+                                        </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="50.0" prefWidth="117.0" text="BOOK" textFill="#737373">
+                                        <font>
+                                            <Font name="Cambria Bold" size="40.0" />
+                                        </font>
+                                        <HBox.margin>
+                                            <Insets left="5.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                    <Label text="store" textFill="#7b7b7b">
+                                        <font>
+                                            <Font name="Cambria" size="40.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="52.0" prefWidth="285.0">
+                                <children>
+                                    <Label alignment="CENTER" prefHeight="50.0" prefWidth="306.0" text="09143081984">
+                                        <font>
+                                            <Font size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../img/services.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </HBox>
+                            <HBox onMouseClicked="#mail" prefHeight="52.0" prefWidth="285.0">
+                                <children>
+                                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="281.0" text="bookstore.java.1403@gmail.com">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
+                                    <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../img/email1.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="54.0" prefWidth="285.0">
+                                <children>
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="281.0" text="ایران - تبریز - دانشگاه تبریز - دانشکده کامپیوتر" />
+                                    <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../img/office.png" />
+                                        </image>
+                                    </ImageView>
+                                </children>
+                            </HBox>
+                            <WebView fx:id="webView" prefHeight="200.0" prefWidth="322.0">
+                        <VBox.margin>
+                           <Insets left="23.0" />
+                        </VBox.margin></WebView>
+                        </children>
+                    </VBox>
+                </children>
+            </StackPane>
+        </children>
+    </AnchorPane>
+</VBox>

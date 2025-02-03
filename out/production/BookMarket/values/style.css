@@ -54,11 +54,6 @@
     -fx-background-radius: 30;
 }
 
-.shopping-online-card{
-    -fx-background-color: #BAEAC3;
-    -fx-background-radius: 30;
-}
-
 .fruit-item{
     -fx-background-color: #FFFFFF;
         -fx-background-radius: 30;
@@ -138,3 +133,12 @@
     -fx-background-radius: 20; /* اصلاح کلمه "redius" به "radius" */
 }
 
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+/* حالت hover (زمانی که موس روی HBox می‌رود) */
+.HBox:hover {
+    -fx-background-color: #9fecad; /* تغییر رنگ پس‌زمینه  */
+}

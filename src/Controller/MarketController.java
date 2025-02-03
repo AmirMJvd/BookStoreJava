@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -319,7 +320,19 @@ public class MarketController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/newCart.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-
+    @FXML
+    public void map() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/support.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("support");
+            stage.setScene(new Scene(root, 800, 534.4));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void pressbtnvorud1 (MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/Login.fxml"));
