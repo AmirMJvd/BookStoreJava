@@ -1,0 +1,27 @@
+.vbox-style{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.hbox-style{
+    -fx-background-color: #e8eced;
+    -fx-background-radius: 30;
+}
+
+.custom-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.custom-scroll-pane .viewport {
+    -fx-background-color: #D3D3D3;
+}
+
+.custom-scroll-pane .scroll-bar {
+    -fx-background-color: #bdc3c7;
+}
+
+.button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 20;
+}
