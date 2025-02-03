@@ -384,7 +384,7 @@ import java.util.Scanner;
         e.printStackTrace();
     }
         // خواندن تاریخ ذخیره‌شده از فایل
-        try (BufferedReader reader = new BufferedReader(new FileReader("lastDownload.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Date.txt"))) {
             String savedDate = reader.readLine();
             if (savedDate != null && !savedDate.isEmpty()) {
                 DateLab.setText(savedDate);
