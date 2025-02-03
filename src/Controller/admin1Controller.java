@@ -29,12 +29,14 @@ import org.apache.poi.ss.usermodel.Row;
 
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class admin1Controller implements Initializable{
+    public class admin1Controller implements Initializable{
 
     @FXML
     private AnchorPane AdminPane;
@@ -106,6 +108,18 @@ public class admin1Controller implements Initializable{
     private Label nasherLab;
 
     @FXML
+    private Label DateLab;
+
+    @FXML
+    private Label NumberOfSalesLab;
+
+    @FXML
+    private Label AmountReceivedLab;
+
+    @FXML
+    private Label totalProfitLab;
+
+    @FXML
     private TextField password;
 
     @FXML
@@ -125,6 +139,8 @@ public class admin1Controller implements Initializable{
 
     @FXML
     private Label writerLab;
+
+    private String lastDownloadDate = "";
 
 
     @FXML
@@ -306,86 +322,118 @@ public class admin1Controller implements Initializable{
 
         return new BookLists(allBooks, scientificBooks, politicalBooks, psychologyBooks);
     }
+
     @FXML
-    public void initialize (URL location, ResourceBundle resources) {
-//        reports.addAll(getReportData());
-        BookLists bookLists = getData();
-        allBooks.addAll(bookLists.getAllBooks());
-        scientificBooks.addAll(bookLists.getScientificBooks());
-        politicalBooks.addAll(bookLists.getPoliticalBooks());
-        psychologyBooks.addAll(bookLists.getPsychologyBooks());
-        if (allBooks.size() > 0) {
-            setChosenBook(allBooks.get(0));
-            myListener = new MyListener() {
-                @Override
-                public void onClickListener(Book fruit) {
-                    setChosenBook(fruit);
-                }
-            };
-        }
-        int row = 1;
-        int column = 0;
+    public void initialize(URL location, ResourceBundle resources) {
+    // دریافت داده‌ها از متد getData()
+    BookLists bookLists = getData();
+    allBooks.addAll(bookLists.getAllBooks());
+    scientificBooks.addAll(bookLists.getScientificBooks());
+    politicalBooks.addAll(bookLists.getPoliticalBooks());
+    psychologyBooks.addAll(bookLists.getPsychologyBooks());
 
-//            for (Report report : reports) {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/views/report.fxml"));
-//                HBox HBox = fxmlLoader.load();
-//
-//                ReportItemController cartItemController = fxmlLoader.getController();
-//                cartItemController.setData(report);
-//
-//                if (column == 2) {
-//                    column = 0;
-//                    row++;
-//                }
-//                grid.add(HBox, column++, row);
-//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-//                grid.setMaxWidth(Region.USE_PREF_SIZE);
-//
-//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-//                grid.setMaxHeight(Region.USE_PREF_SIZE);
-//
-//                GridPane.setMargin(HBox, new Insets(10));
-//            }
-        try {
-            for (int i = 0; i < allBooks.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-                ItemController itemController = fxmlLoader.getController();
-                itemController.setData(allBooks.get(i), myListener);
+    // اطمینان از این که حداقل یک کتاب موجود است
+    if (!allBooks.isEmpty()) {
+        setChosenBook(allBooks.get(0));
 
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
+        // تنظیم MyListener برای واکنش به کلیک بر روی کتاب
+        myListener = new MyListener() {
+            @Override
+            public void onClickListener(Book book) {
+                setChosenBook(book);
+            }
+        };
+    }
 
-                grid1.add(anchorPane, column++, row);
-                grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid1.setMaxWidth(Region.USE_PREF_SIZE);
+    // راه‌اندازی گرید برای نمایش کتاب‌ها
+    int row = 1;
+    int column = 0;
+    try {
+        for (int i = 0; i < allBooks.size(); i++) {
+            // بارگذاری فایل FXML کتاب
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
 
-                grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid1.setMaxHeight(Region.USE_PREF_SIZE);
+            // راه‌اندازی کنترلر ItemController
+            ItemController itemController = fxmlLoader.getController();
+            itemController.setData(allBooks.get(i), myListener);
 
-
-                GridPane.setMargin(anchorPane, new Insets(10));
+            // مدیریت جایگذاری در گرید
+            if (column == 3) {
+                column = 0;
+                row++;
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            grid1.add(anchorPane, column++, row);
+
+            // تنظیم اندازه‌های گرید
+            grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
+            grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            grid1.setMaxWidth(Region.USE_PREF_SIZE);
+
+            grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
+            grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            grid1.setMaxHeight(Region.USE_PREF_SIZE);
+
+            // اضافه کردن فاصله بین سلول‌ها
+            GridPane.setMargin(anchorPane, new Insets(10));
         }
-//        calculateTotalAmountReceived();
-        userName.setOnAction(event -> phineNumber.requestFocus());
-        phineNumber.setOnAction(event -> bDay.requestFocus());
-        bDay.setOnAction(event -> password.requestFocus());
-        password.setOnAction(event -> PasswordRepet.requestFocus());
-        PasswordRepet.setOnAction(event -> {Registration(new ActionEvent());
-        });
+
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+        // خواندن تاریخ ذخیره‌شده از فایل
+        try (BufferedReader reader = new BufferedReader(new FileReader("lastDownload.txt"))) {
+            String savedDate = reader.readLine();
+            if (savedDate != null && !savedDate.isEmpty()) {
+                DateLab.setText(savedDate);
+            }
+        } catch (IOException e) {
+            System.err.println("هیچ تاریخ دانلودی یافت نشد!");
+        }
+
+        double totalAmount = readAndCalculateTotal("Report.txt",2);
+        double totalProfit = readAndCalculateTotal("Report.txt", 3);
+        double totalSales = readAndCalculateTotal("Report.txt", 4);
+        AmountReceivedLab.setText(String.format("%.2f", totalAmount));
+        totalProfitLab.setText(String.format("%.2f", totalProfit));
+        NumberOfSalesLab.setText(String.format("%.0f", totalSales));
+
+
+    // تنظیمات فیلدهای فرم (در صورت استفاده از فیلدهای ورود اطلاعات)
+    userName.setOnAction(event -> phineNumber.requestFocus());
+    phineNumber.setOnAction(event -> bDay.requestFocus());
+    bDay.setOnAction(event -> password.requestFocus());
+    password.setOnAction(event -> PasswordRepet.requestFocus());
+    PasswordRepet.setOnAction(event -> {
+        Registration(new ActionEvent());
+    });
+}
+
+    private double readAndCalculateTotal(String fileName, int targetLine) {
+        double total = 0.0;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                int lineCounter = 0;
+                while ((line = br.readLine()) != null) {
+                    lineCounter++;
+                    if (lineCounter % 11 == targetLine) { // خط مورد نظر هر محصول
+                        String valueStr = line.replaceAll("[^\\d.]", "").trim();
+                        try {
+                            total += Double.parseDouble(valueStr);
+                        } catch (NumberFormatException e) {
+                            System.err.println("خطا در تبدیل مقدار: " + line);
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return total;
+    }
+
+
 
 
     private void setChosenBook (Book book) {
@@ -603,6 +651,13 @@ public class admin1Controller implements Initializable{
 
     @FXML
     void downlod(ActionEvent event) {
+        // دریافت تاریخ و زمان فعلی
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        lastDownloadDate = now.format(formatter);
+
+        // به روز رسانی تاریخ در لیبل
+        DateLab.setText(lastDownloadDate);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("انتخاب مسیر ذخیره‌سازی");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
@@ -718,6 +773,13 @@ public class admin1Controller implements Initializable{
             showAlert("خطا", "مشکلی در پردازش فایل رخ داد!");
             e.printStackTrace();
         }
+        // ذخیره تاریخ در فایل
+        try (FileWriter writer = new FileWriter("Date.txt")) {
+            writer.write(lastDownloadDate);
+        } catch (IOException e) {
+            System.err.println("خطا در ذخیره تاریخ دانلود!");
+        }
+
     }
 
     // تابع برای ایجاد استایل هدر
