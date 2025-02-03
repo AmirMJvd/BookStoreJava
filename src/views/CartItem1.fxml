@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -33,14 +34,28 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="Numberlabel" alignment="TOP_CENTER" prefHeight="27.0" prefWidth="210.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="تعداد">
+            <HBox prefHeight="29.0" prefWidth="264.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#decreaseBtn" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: trasparent;" text="-">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="Numberlabel" alignment="TOP_CENTER" prefHeight="27.0" prefWidth="155.0" stylesheets="@../values/style-r.css" text="تعداد">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#increaseBtn" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: trasparent;" text="+">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets left="5.0" right="5.0" top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            </HBox>
             <Label fx:id="priceLable" alignment="TOP_CENTER" prefHeight="27.0" prefWidth="210.0" styleClass="hbox-view1" stylesheets="@../values/style-r.css" text="قیمت محصول">
                <VBox.margin>
                   <Insets top="15.0" />
@@ -49,11 +64,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#Delet" prefHeight="25.0" prefWidth="113.0" styleClass="search-button" stylesheets="@../values/style.css" text="حذف از سبد خرید">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="15.0" />
-               </VBox.margin>
-            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#Delet" prefHeight="25.0" prefWidth="113.0" styleClass="search-button" stylesheets="@../values/style.css" text="حذف از سبد خرید" />
+                  <Pane prefHeight="54.0" prefWidth="22.0" />
+                  <Label fx:id="BasePrice" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="70.0" styleClass="hbox-view2" stylesheets="@../values/style-r.css" text="قیمت پایه" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

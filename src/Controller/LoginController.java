@@ -134,6 +134,7 @@ public class LoginController {
             if (title.equals("Market")) {
                 MarketController controller = loader.getController();
                 controller.setId(username);
+
             } else if (title.equals("Admin Panel")) {
                 admin1Controller controller = loader.getController();
                 controller.setId(username);

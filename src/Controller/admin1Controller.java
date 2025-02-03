@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,8 +17,15 @@ import main.Main;
 import main.MyListener;
 import model.Book;
 import model.BookLists;
-import model.Report;
 import model.SharedData;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+
 
 import java.io.*;
 import java.net.URL;
@@ -592,5 +600,141 @@ public class admin1Controller implements Initializable{
         password.clear();
         PasswordRepet.clear();
     }
+
+    @FXML
+    void downlod(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("انتخاب مسیر ذخیره‌سازی");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+
+        File saveFile = fileChooser.showSaveDialog(null);
+        if (saveFile == null) {
+            return; // اگر کاربر لغو کند، عملیات متوقف شود
+        }
+
+        try {
+            // چک کردن اینکه فایل ورودی موجود است
+            File inputFile = new File("Report.txt");
+            if (!inputFile.exists()) {
+                showAlert("خطا", "فایل گزارش یافت نشد!");
+                return;
+            }
+
+            // خواندن محتویات فایل
+            Scanner scanner = new Scanner(inputFile);
+            List<List<String>> products = new ArrayList<>();
+            double totalPrice = 0.0;
+            double totalDiscountPrice = 0.0;
+            int totalQuantity = 0;
+
+            while (scanner.hasNextLine()) {
+                List<String> productData = new ArrayList<>();
+                productData.add(scanner.nextLine().split(":")[1].trim()); // نام محصول
+
+                if (!scanner.hasNextLine()) break;
+                String price = scanner.nextLine().split(":")[1].trim(); // قیمت
+                price = price.replace("ريال", "").trim(); // حذف کلمه "ريال" و فاصله‌های اضافی
+                productData.add(price);
+                totalPrice += Double.parseDouble(price); // تبدیل به عدد و افزودن به جمع
+
+                if (!scanner.hasNextLine()) break;
+                String discountPrice = scanner.nextLine().split(":")[1].trim(); // ۱۰٪ قیمت
+                discountPrice = discountPrice.replace("ريال", "").trim(); // حذف کلمه "ريال"
+                productData.add(discountPrice);
+                totalDiscountPrice += Double.parseDouble(discountPrice); // تبدیل به عدد و افزودن به جمع
+
+                if (!scanner.hasNextLine()) break;
+                String quantity = scanner.nextLine().split(":")[1].trim(); // تعداد
+                productData.add(quantity);
+                totalQuantity += Integer.parseInt(quantity); // تبدیل به عدد صحیح و افزودن به جمع
+
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // تاریخ
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // نام خریدار
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // نام تحویل گیرنده
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // آدرس
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // کد پستی
+                if (!scanner.hasNextLine()) break;
+                productData.add(scanner.nextLine().split(":")[1].trim()); // شماره تماس
+
+                // افزودن اطلاعات به لیست محصولات
+                products.add(productData);
+
+                // گذر از خط جداکننده
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine(); // خط جداکننده
+                }
+            }
+            scanner.close();
+
+            // ایجاد سند Excel
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("گزارش خرید");
+
+            // ایجاد ردیف هدر
+            Row headerRow = sheet.createRow(0);
+            String[] headers = {"نام محصول", "قیمت", "سود", "تعداد", "تاریخ", "نام حساب کاربری", "نام تحویل گیرنده", "آدرس", "کد پستی", "شماره تماس"};
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(headers[i]);
+                cell.setCellStyle(getHeaderStyle(workbook)); // تنظیم استایل برای هدر
+            }
+
+            // افزودن داده‌ها به اکسل
+            int rowNum = 1;
+            for (List<String> product : products) {
+                Row row = sheet.createRow(rowNum++);
+                for (int i = 0; i < product.size(); i++) {
+                    row.createCell(i).setCellValue(product.get(i));
+                }
+            }
+
+            // ردیف جمع
+            Row totalRow = sheet.createRow(rowNum++);
+            totalRow.createCell(0).setCellValue("جمع");
+            totalRow.createCell(1).setCellValue(totalPrice); // جمع قیمت
+            totalRow.createCell(2).setCellValue(totalDiscountPrice); // جمع ۱۰٪ قیمت
+            totalRow.createCell(3).setCellValue(totalQuantity); // جمع تعداد
+
+            // تنظیم عرض ستون‌ها برای نمایش بهتر
+            for (int i = 0; i < headers.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // ذخیره در مسیر انتخاب شده
+            try (FileOutputStream out = new FileOutputStream(saveFile)) {
+                workbook.write(out);
+            }
+            workbook.close();
+
+            // نمایش پیام موفقیت
+            showAlert1("عملیات موفقیت‌آمیز", "فایل اکسل با موفقیت ذخیره شد!");
+
+        } catch (IOException e) {
+            showAlert("خطا", "مشکلی در پردازش فایل رخ داد!");
+            e.printStackTrace();
+        }
+    }
+
+    // تابع برای ایجاد استایل هدر
+    private CellStyle getHeaderStyle(XSSFWorkbook workbook) {
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        font.setBold(true);
+        style.setFont(font);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        return style;
+    }
+
+
+
+
+
+
 
 }

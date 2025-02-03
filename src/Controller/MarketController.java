@@ -316,7 +316,7 @@ public class MarketController implements Initializable {
 
     @FXML
     void LoadCart (MouseEvent event)  throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Cart.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/newCart.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
