@@ -36,14 +36,14 @@
                               <VBox prefHeight="200.0" prefWidth="100.0" />
                            </content>
                            <content>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-style" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-style" stylesheets="@../values/style-a.css">
                                  <children>
-                                    <VBox prefHeight="550.0" prefWidth="369.0" styleClass="vbox-style" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                                    <VBox prefHeight="550.0" prefWidth="369.0" styleClass="vbox-style" stylesheets="@../values/style-a.css">
                                        <HBox.margin>
                                           <Insets bottom="30.0" top="30.0" />
                                        </HBox.margin>
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" stylesheets="@../values/style-a.css">
                                              <styleClass>
                                                 <String fx:value="hbox-style" />
                                                 <String fx:value="text-field" />
@@ -78,7 +78,7 @@
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" styleClass="text-field" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" styleClass="text-field" stylesheets="@../values/style-a.css">
                                              <children>
                                                 <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                                    <HBox.margin>
@@ -109,7 +109,7 @@
                                                 <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" stylesheets="@../values/style-a.css">
                                              <styleClass>
                                                 <String fx:value="hbox-style" />
                                                 <String fx:value="text-field" />
@@ -144,7 +144,7 @@
                                                 <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" styleClass="text-field" stylesheets="@../../../../../New%20folder/ADMIN/ADMIN/src/main/resources/style-a.css">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 50;" styleClass="text-field" stylesheets="@../values/style-a.css">
                                              <children>
                                                 <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                                    <HBox.margin>

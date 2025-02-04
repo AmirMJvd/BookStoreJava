@@ -12,12 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Main;
 import main.MyListener;
 import model.Book;
@@ -34,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.animation.TranslateTransition;
 
 public class MarketController implements Initializable {
     private StageManager stageManager = new StageManager();
@@ -82,8 +81,7 @@ public class MarketController implements Initializable {
     @FXML
     private TextField SearchTxt;
 
-    @FXML
-    private Button AddCart;
+
 
     @FXML
     private Label countLabel;
@@ -98,8 +96,11 @@ public class MarketController implements Initializable {
     private Label QuantityInCart;
 
 
+
     @FXML
     private Label lblsabadkharid;
+
+    private boolean isPaneVisible = false;
 
     private List<Book> initialBooks = new ArrayList<>();
 
@@ -181,6 +182,8 @@ public class MarketController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         BookLists bookLists = getData();
         allBooks.addAll(bookLists.getAllBooks());
         scientificBooks.addAll(bookLists.getScientificBooks());
@@ -311,6 +314,8 @@ public class MarketController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
     public void setId() {
         lblid.setText(SharedData.getInstance().getUsername());
     }
@@ -335,13 +340,11 @@ public class MarketController implements Initializable {
     }
     @FXML
     void pressbtnvorud1 (MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../views/Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1080, 810);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle("ورود");
-        stage.setScene(scene);
-        stage.show();
+        if (lblid.getText() == null || lblid.getText().isEmpty()) {
+            openWindow("../views/Login.fxml", "ورود");
+        } else {
+            openWindow1("../views/Profile.fxml", "ورود به سیستم");
+        }
     }
     @FXML
     boolean bookFound = true;
@@ -622,6 +625,28 @@ public class MarketController implements Initializable {
             }
         }
     }
+
+
+
+    private void openWindow(String fxmlPath, String title) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 810);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
+    }
+    private void openWindow1(String fxmlPath, String title) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
+        Scene scene = new Scene(fxmlLoader.load(), 1315, 810);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 
