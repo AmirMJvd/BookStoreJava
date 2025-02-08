@@ -264,8 +264,9 @@ public class NewCartController  implements Initializable {
 //
 //
 //    }
-@FXML
-void BackMarketPay(ActionEvent event) throws IOException {
+
+    @FXML
+    void BackMarketPay(ActionEvent event) throws IOException {
     String enteredCode = password.getText().trim(); // دریافت مقدار وارد شده توسط کاربر
 
     if (generatedCode == null) {
@@ -298,15 +299,33 @@ void BackMarketPay(ActionEvent event) throws IOException {
         if (!reportFile.exists()) {
             reportFile.createNewFile();
         }
-
-        FileReader cartReader = new FileReader(username + ".txt");
+        File cartFile = new File(username + ".txt");
+        FileReader cartReader = new FileReader(cartFile);
+        File historyFile = new File(username + "-history.txt");
+        // بررسی و ایجاد فایل history در صورت عدم وجود
+        if (!historyFile.exists()) {
+            historyFile.createNewFile();
+        }
         FileWriter reportWriter = new FileWriter("Report.txt", true);
+        FileWriter historyWriter = new FileWriter(historyFile, true);
         Scanner cartScanner = new Scanner(cartReader);
+        // خواندن اطلاعات BookInf.txt
+        File bookFile = new File("BookInf.txt");
+        List<String> updatedBookLines = new ArrayList<>();
+        Scanner bookScanner = new Scanner(bookFile);
+        List<String> bookLines = new ArrayList<>();
+
+        while (bookScanner.hasNextLine()) {
+            bookLines.add(bookScanner.nextLine());
+        }
+        bookScanner.close();
+
+
 
         while (cartScanner.hasNextLine()) {
             String name = cartScanner.nextLine(); // نام محصول
             String priceStr = cartScanner.nextLine(); // قیمت محصول
-            cartScanner.nextLine(); // پرش از آدرس تصویر (نیاز نداریم)
+           String image = cartScanner.nextLine(); // ادرس عکس
             int count = Integer.parseInt(cartScanner.nextLine()); // تعداد محصول
 
             // استخراج عدد از قیمت (حذف واحد پول و تبدیل به عدد)
@@ -325,11 +344,35 @@ void BackMarketPay(ActionEvent event) throws IOException {
             reportWriter.write("کد پستی: " + postalCode + "\n");
             reportWriter.write("شماره تماس: " + phone + "\n");
             reportWriter.write("-------------------------------------------------\n");
+
+            historyWriter.write(name + "\n");
+            historyWriter.write(count + "\n");
+            historyWriter.write(priceStr + "\n");
+            historyWriter.write(formattedDate + "\n");
+            historyWriter.write(image + "\n");
+
+            // کاهش موجودی در BookInf.txt
+            for (int i = 0; i < bookLines.size(); i += 9) {
+                if (bookLines.get(i).equals(name)) {
+                    int availableCount = Integer.parseInt(bookLines.get(i + 7));
+                    availableCount -= count;
+                    bookLines.set(i + 7, String.valueOf(availableCount));
+                }
+            }
         }
+
 
         cartScanner.close();
         cartReader.close();
         reportWriter.close();
+        historyWriter.close();
+
+        // به‌روزرسانی فایل BookInf.txt با مقادیر جدید
+        FileWriter bookWriter = new FileWriter("BookInf.txt", false);
+        for (String line : bookLines) {
+            bookWriter.write(line + "\n");
+        }
+        bookWriter.close();
 
         // پاک کردن سبد خرید بعد از خرید
         FileWriter cartWriter = new FileWriter(username + ".txt", false);

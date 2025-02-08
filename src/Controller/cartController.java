@@ -153,6 +153,7 @@ public class cartController  implements Initializable {
                     reportFile.createNewFile();
                 }
                 FileReader cartReader = new FileReader(username +".txt");
+
                 FileWriter reportWriter = new FileWriter("Report.txt", true);
                 Scanner cartScanner = new Scanner(cartReader);
                 List<String> cartBooks = new ArrayList<>();
@@ -165,8 +166,6 @@ public class cartController  implements Initializable {
                     int count = Integer.parseInt(cartScanner.nextLine());
 
                     cartBooks.add(name);
-                    cartCounts.add(count);
-
 
                 }
                 cartScanner.close();

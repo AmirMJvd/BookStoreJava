@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final String CURRENCY = "ريال  ";
+    public static final String CURRENCY = "ريال";
     public static Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws Exception{

@@ -190,6 +190,11 @@ public class MarketController implements Initializable {
         politicalBooks.addAll(bookLists.getPoliticalBooks());
         psychologyBooks.addAll(bookLists.getPsychologyBooks());
         initialBooks.addAll(allBooks);
+        // اگر مقداری ذخیره‌شده باشد، عملیات جستجو را انجام بده
+        String savedSearch = ReportItemController.getLastSearchedItem();
+        if (savedSearch != null && !savedSearch.isEmpty()) {
+            searchItem(savedSearch);
+        }
 
 
         if (allBooks.size() > 0) {
@@ -360,20 +365,20 @@ public class MarketController implements Initializable {
         return;
          }
 
-    // بررسی مقدار lblid قبل از استفاده از آن
-    if (lblid.getText() == null || lblid.getText().isEmpty()) {
+     // بررسی مقدار lblid قبل از استفاده از آن
+     if (lblid.getText() == null || lblid.getText().isEmpty()) {
         showAlert("خطا", "ابتدا باید ورود بفرمایید!");
         return;
-    }
+     }
 
-    String id = lblid.getText();
-    File fileName = new File(id + ".txt");
+     String id = lblid.getText();
+     File fileName = new File(id + ".txt");
 
-    List<String> fileContent = new ArrayList<>();
-    boolean bookExists = false;
-    int bookIndex = -1;
+     List<String> fileContent = new ArrayList<>();
+     boolean bookExists = false;
+     int bookIndex = -1;
 
-    if (fileName.exists()) {
+     if (fileName.exists()) {
         try (Scanner scanner = new Scanner(fileName)) {
             while (scanner.hasNextLine()) {
                 fileContent.add(scanner.nextLine());
@@ -389,15 +394,15 @@ public class MarketController implements Initializable {
         }
     }
 
-    String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
-    double labelPrice = 0.0;
+     String priceText = bookPriceLabel.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
+     double labelPrice = 0.0;
 
-    try {
+     try {
         labelPrice = Double.parseDouble(priceText);
-    } catch (NumberFormatException e) {
+     } catch (NumberFormatException e) {
         showAlert("خطا", "فرمت قیمت نامعتبر است!");
         return;
-    }
+     }
 
     int countToAdd = Integer.parseInt(countLabel.getText());
     int maxCount = Integer.parseInt(countLab.getText());
@@ -426,7 +431,7 @@ public class MarketController implements Initializable {
             try (FileWriter myWriter = new FileWriter(fileName, true)) {
                 myWriter.write(bookNameLable.getText());
                 myWriter.write("\n");
-                myWriter.write(String.valueOf(Main.CURRENCY + labelPrice));
+                myWriter.write( labelPrice +Main.CURRENCY );
                 myWriter.write("\n");
                 myWriter.write(selectedBook.getImgSrc());
                 myWriter.write("\n");
@@ -440,10 +445,6 @@ public class MarketController implements Initializable {
     }
     updateQuantityInCart();
     }
-
-
-
-
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -505,6 +506,54 @@ public class MarketController implements Initializable {
             bookImg.setImage(Image);
             chosenBookCard.setStyle("-fx-background-color: #868686;\n    -fx-background-radius: 30;");
             bookFound = false;
+    }
+}
+
+    public void searchItem(String search) {
+
+        boolean found = false;
+        grid.getChildren().clear(); // پاک کردن محتوای گرید
+
+
+        int column = 0;
+
+        int row = 1;
+
+
+        for (Book book : allBooks) {
+            if (book.getName().toLowerCase().contains(search.toLowerCase())) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                try {
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    ItemController itemController = fxmlLoader.getController();
+                    itemController.setData(book, myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            found = true;
+        }
+    }
+
+    if (!found) {
+        bookNameLable.setText("کتاب یافت نشد!");
+        bookPriceLabel.setText("0.0");
+        writerLab.setText("");
+        translatorLab.setText("");
+        nasherLab.setText("");
+        countLab.setText("");
+        CategoryLab.setText("");
+        Image Image = new Image(getClass().getResourceAsStream("/img/broken-image.png"));
+        bookImg.setImage(Image);
+        chosenBookCard.setStyle("-fx-background-color: #868686;\n    -fx-background-radius: 30;");
     }
 }
 
