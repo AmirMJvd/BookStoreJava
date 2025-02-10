@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.infoController">
+   <right>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="197.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="bookImg" fitHeight="200.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="38.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@../img/almani.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#downlodpdf" prefWidth="105.0" style="-fx-border-color: #828282; -fx-background-color: colorless;" text="خلاصه کتاب">
+               <font>
+                  <Font name="B Nazanin" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/download.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/save-instagram.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <Pane prefHeight="60.0" prefWidth="200.0" />
+                  <Label fx:id="BookNamelab" alignment="CENTER_RIGHT" prefWidth="216.0" text="نام کتاب">
+                     <font>
+                        <Font name="B Yekan" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="200.0">
+               <children>
+                  <Separator prefWidth="420.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="Translatorlab" alignment="CENTER_RIGHT" prefWidth="120.0" text="نام مترجم">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="63.0" text="مترجم:" textFill="#736d6d">
+                     <HBox.margin>
+                        <Insets right="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Writerlab" alignment="CENTER_RIGHT" prefWidth="120.0" text="نام نویسنده">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="نویسنده:" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="Publishedlab" alignment="CENTER_RIGHT" prefWidth="120.0" text="1300">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="63.0" text="سال چاپ:" textFill="#736d6d">
+                     <HBox.margin>
+                        <Insets right="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Nasherlab" alignment="CENTER_RIGHT" prefWidth="120.0" text="نام انتشارات">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="ناشر:" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="BookSizelab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="63.0" text="قطع:" textFill="#736d6d">
+                     <HBox.margin>
+                        <Insets right="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Coverlab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="جلد:" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="publicationlab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="63.0" text="نوبت چاپ:" textFill="#736d6d">
+                     <HBox.margin>
+                        <Insets right="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="PageNumlab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="تعداد صفحات:" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="countLab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="63.0" text="موجودی:" textFill="#736d6d">
+                     <HBox.margin>
+                        <Insets right="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CategoryLab" alignment="CENTER_RIGHT" prefWidth="120.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="دسته بندی :" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="200.0">
+               <children>
+                  <Separator prefWidth="420.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <HBox fx:id="combobox" layoutX="9.0" layoutY="10.0" prefHeight="32.0" prefWidth="139.0" styleClass="add-remove-layout2" stylesheets="@../values/styleCartItem.css">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Label fx:id="countLabel" alignment="CENTER" prefHeight="29.0" prefWidth="95.0" text="0">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button fx:id="addCart" alignment="CENTER" layoutX="7.0" layoutY="9.0" mnemonicParsing="false" onAction="#addCart" prefWidth="140.0" style="-fx-background-color: Colorless; -fx-border-color: #828282;" text="افزودن به سبد خرید">
+                           <font>
+                              <Font name="B Nazanin" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/shopping-cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Label fx:id="Pricelab" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="110.0" text="40">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefWidth="85.0" text="قیمت محصول:" textFill="#736d6d">
+                     <font>
+                        <Font name="B Nazanin" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
