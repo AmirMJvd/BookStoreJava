@@ -600,7 +600,7 @@ public class MarketController implements Initializable {
             double totalAmount = price * currentNumber;
 
             bookPriceLabel.setText(Main.CURRENCY + totalAmount);
-        }
+    }
 
 
     private double extractPrice(String priceText) {
@@ -696,12 +696,20 @@ public class MarketController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void openInfo(MouseEvent event) {
+        try {
+            // مقدار نام کتاب را به InfoController ارسال کنید
+            infoController.bookName = bookNameLable.getText();
 
+            // بارگذاری FXML جدید
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/info.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.show();
 
-
-
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-
-

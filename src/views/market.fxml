@@ -82,7 +82,7 @@
                      </styleClass>
                   </HBox>
                   <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
+                  <VBox fx:id="chosenBookCard" alignment="CENTER" onMouseClicked="#openInfo" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>

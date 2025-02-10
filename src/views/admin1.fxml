@@ -786,6 +786,583 @@
                                  </children></AnchorPane>
                           </content>
                         </Tab>
+                        <Tab text="افزودن محصول">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="560.0" layoutY="163.0" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-style" stylesheets="@../values/style-a.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox prefHeight="530.0" prefWidth="643.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/book%20(1).png" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <Label text="شناسنامه کتاب:">
+                                                         <font>
+                                                            <Font name="B Homa" size="20.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="633.0" styleClass="vbox-style" stylesheets="@../values/style-a.css">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="نام کتاب:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="BookNamelab" prefHeight="30.0" promptText="نام کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="نام نویسنده:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Writerlab" prefHeight="30.0" promptText="نام نویسنده">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="مترجم:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Translatorlab" prefHeight="30.0" promptText="نام مترجم">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text=" انتشارات:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Nasherlab" prefHeight="30.0" promptText="انتشارات">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="سال چاپ:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Publishedlab" prefHeight="30.0" promptText="سال چاپ کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="نوبت چاپ:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="publicationlab" prefHeight="30.0" promptText="نوبت چاپ کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="643.0">
+                                                   <children>
+                                                      <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                         <image>
+                                                            <Image url="@../img/book-cover.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="مشخصات ظاهری کتاب:">
+                                                         <font>
+                                                            <Font name="B Homa" size="20.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="166.0" prefWidth="643.0" styleClass="vbox-style" stylesheets="@../values/style-a.css">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="قطع:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="BookSizelab" prefHeight="30.0" promptText="نوع قطع کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="جلد:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Coverlab" prefHeight="30.0" promptText="نوع جلد کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="تعداد صفحات:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="PageNumlab" prefHeight="30.0" promptText="تعداد صفحات کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0">
+                                                               <children>
+                                                                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/available.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="دسته بندی:">
+                                                                           <font>
+                                                                              <Font size="16.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <TextField fx:id="Categorylab" prefHeight="30.0" promptText="دسته بندی کتاب">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="70.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </TextField>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" left="10.0" />
+                                                   </VBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="465.0" prefWidth="373.0" styleClass="vbox-style" stylesheets="@../values/style-a.css">
+                                             <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="45.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="61.0" prefWidth="374.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                                                         <children>
+                                                            <ImageView fitHeight="90.0" fitWidth="90.0" onMouseClicked="#chosepdf" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/img.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </HBox.margin>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                                                         <children>
+                                                            <ImageView fx:id="image11" fitHeight="90.0" fitWidth="90.0" onMouseClicked="#choseImage" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/image-11.png" />
+                                                               </image>
+                                                               <VBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </VBox.margin>
+                                                            </ImageView>
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets right="30.0" />
+                                                         </HBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/available.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="آدرس عکس:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="ImgAdr1" prefHeight="30.0" prefWidth="230.0" promptText="آدرس عکس جلد کتاب">
+                                                         <HBox.margin>
+                                                            <Insets left="50.0" />
+                                                         </HBox.margin>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="25.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/available.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="آدرس PDF:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="PdfAdr" prefHeight="30.0" prefWidth="230.0" promptText="آدرس PDF خلاصه کتاب">
+                                                         <HBox.margin>
+                                                            <Insets left="50.0" />
+                                                         </HBox.margin>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="25.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="30.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/available.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="موجودی انبار:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="25.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <TextField fx:id="Countlab" prefHeight="30.0" prefWidth="230.0" promptText="تعداد موجودی کتاب">
+                                                         <HBox.margin>
+                                                            <Insets left="50.0" />
+                                                         </HBox.margin>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="30.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/available.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="قیمت:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="priceTextField1" prefHeight="30.0" prefWidth="230.0" promptText="قیمت نهایی کتاب">
+                                                         <HBox.margin>
+                                                            <Insets left="50.0" />
+                                                         </HBox.margin>
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="25.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox prefHeight="30.0" prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets left="70.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/available.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label text="رنگ پس زمینه:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ColorPicker fx:id="color1" prefHeight="30.0" prefWidth="230.0" styleClass="text-field" stylesheets="@../../../../../New%20folder/ADMIN1/ADMIN/src/main/resources/style-a.css">
+                                                         <HBox.margin>
+                                                            <Insets left="50.0" />
+                                                         </HBox.margin>
+                                                      </ColorPicker>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="25.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <Button mnemonicParsing="false" onAction="#ProductRegistration" prefHeight="35.0" prefWidth="100.0" text="ثبت محصول" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="135.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
                     </tabs>
                   </TabPane>
                </children>

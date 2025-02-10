@@ -29,6 +29,8 @@ import org.apache.poi.ss.usermodel.Row;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -38,107 +40,155 @@ import java.util.Scanner;
 
     public class admin1Controller implements Initializable{
 
-    @FXML
-    private AnchorPane AdminPane;
+        @FXML
+        private Label AdminName;
 
-    @FXML
-    private ColorPicker color;
+        @FXML
+        private AnchorPane AdminPane;
 
-    @FXML
-    private Label AdminName;
+        @FXML
+        private Label AmountReceivedLab;
 
-    @FXML
-    private TextField Category;
+        @FXML
+        private TextField BookNamelab;
 
-    @FXML
-    private Label CategoryLab;
+        @FXML
+        private TextField BookSizelab;
 
-    @FXML
-    private TextField ImgAdr;
+        @FXML
+        private TextField Category;
 
-    @FXML
-    private TextField PasswordRepet;
+        @FXML
+        private Label CategoryLab;
 
-    @FXML
-    private TextField PriceTxt;
+        @FXML
+        private TextField Categorylab;
 
-    @FXML
-    private Button Registration;
+        @FXML
+        private TextField Countlab;
 
-    @FXML
-    private TextField author;
+        @FXML
+        private TextField Coverlab;
 
-    @FXML
-    private TextField bDay;
+        @FXML
+        private Label DateLab;
 
-    @FXML
-    private ImageView bookImg;
+        @FXML
+        private TextField ImgAdr;
 
-    @FXML
-    private TextField bookName;
+        @FXML
+        private TextField ImgAdr1;
 
-    @FXML
-    private Label bookNameLable;
+        @FXML
+        private TextField Nasherlab;
 
-    @FXML
-    private VBox chosenBookCard;
+        @FXML
+        private Label NumberOfSalesLab;
 
-    @FXML
-    private TextField count;
+        @FXML
+        private TextField PageNumlab;
 
-    @FXML
-    private Label countLab;
+        @FXML
+        private TextField PasswordRepet;
 
-    @FXML
-    private Label countLabel;
+        @FXML
+        private TextField PdfAdr;
 
-    @FXML
-    private Button decreaseBtn;
+        @FXML
+        private TextField PriceTxt;
 
-    @FXML
-    private GridPane grid1;
+        @FXML
+        private TextField Publishedlab;
 
-    @FXML
-    private ImageView image1;
+        @FXML
+        private Button Registration;
 
-    @FXML
-    private TextField nasher;
+        @FXML
+        private TextField Translatorlab;
 
-    @FXML
-    private Label nasherLab;
+        @FXML
+        private TextField Writerlab;
 
-    @FXML
-    private Label DateLab;
+        @FXML
+        private TextField author;
 
-    @FXML
-    private Label NumberOfSalesLab;
+        @FXML
+        private TextField bDay;
 
-    @FXML
-    private Label AmountReceivedLab;
+        @FXML
+        private ImageView bookImg;
 
-    @FXML
-    private Label totalProfitLab;
+        @FXML
+        private TextField bookName;
 
-    @FXML
-    private TextField password;
+        @FXML
+        private Label bookNameLable;
 
-    @FXML
-    private TextField phineNumber;
+        @FXML
+        private VBox chosenBookCard;
 
-    @FXML
-    private TextField priceTextField;
+        @FXML
+        private ColorPicker color;
 
-    @FXML
-    private TextField translator;
+        @FXML
+        private ColorPicker color1;
 
-    @FXML
-    private Label translatorLab;
+        @FXML
+        private TextField count;
 
-    @FXML
-    private TextField userName;
+        @FXML
+        private Label countLab;
 
-    @FXML
-    private Label writerLab;
+        @FXML
+        private Label countLabel;
+
+        @FXML
+        private Button decreaseBtn;
+
+        @FXML
+        private GridPane grid1;
+
+        @FXML
+        private ImageView image1;
+
+        @FXML
+        private ImageView image11;
+
+        @FXML
+        private TextField nasher;
+
+        @FXML
+        private Label nasherLab;
+
+        @FXML
+        private TextField password;
+
+        @FXML
+        private TextField phineNumber;
+
+        @FXML
+        private TextField priceTextField;
+
+        @FXML
+        private TextField priceTextField1;
+
+        @FXML
+        private TextField publicationlab;
+
+        @FXML
+        private Label totalProfitLab;
+
+        @FXML
+        private TextField translator;
+
+        @FXML
+        private Label translatorLab;
+
+        @FXML
+        private TextField userName;
+
+        @FXML
+        private Label writerLab;
 
     private String lastDownloadDate = "";
 
@@ -572,8 +622,78 @@ import java.util.Scanner;
             ImgAdr.setText(customPath);
         }
     }
+        @FXML
+        void choseImage(MouseEvent event) {
+            // ایجاد یک FileChooser
+            FileChooser fileChooser = new FileChooser();
 
-    private static final String FILE_NAME = "user.txt";
+            // تنظیم فیلتر برای نمایش فقط فایل‌های تصویری
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // نمایش دیالوگ انتخاب فایل
+            File selectedFile = fileChooser.showOpenDialog(null);
+
+            // اگر فایلی انتخاب شد، آن را در ImageView نمایش می‌دهیم
+            if (selectedFile != null) {
+                // ساخت یک Image از فایل انتخاب شده
+                Image image = new Image(selectedFile.toURI().toString());
+                // تنظیم تصویر در ImageView
+                image11.setImage(image);
+                // دریافت اسم فایل از فایل انتخاب شده
+                String fileName = selectedFile.getName();
+
+                // ترکیب مسیر ثابت با اسم فایل
+                String customPath = "/img/" + fileName;
+
+                // قرار دادن آدرس دلخواه در تکست فیلد
+                ImgAdr1.setText(customPath);
+            }
+        }
+
+        @FXML
+        void chosepdf(MouseEvent event) {
+            // ایجاد یک FileChooser
+            FileChooser fileChooser = new FileChooser();
+
+            // تنظیم فیلتر برای نمایش فقط فایل‌های PDF
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files", "*.pdf");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // نمایش دیالوگ انتخاب فایل
+            File selectedFile = fileChooser.showOpenDialog(null);
+
+            // اگر فایلی انتخاب شد
+            if (selectedFile != null) {
+                // مسیر مطلق پوشه src\pdfs
+                Path pdfDirectory = Paths.get("src", "pdfs").toAbsolutePath();  // تغییر به پوشه src\pdfs
+                Path selectedFilePath = selectedFile.toPath().toAbsolutePath(); // تبدیل مسیر فایل انتخابی به مسیر مطلق
+
+                // بررسی اینکه آیا فایل درون پوشه pdfs است
+                if (selectedFilePath.startsWith(pdfDirectory)) {
+                    // اگر فایل داخل پوشه pdfs است، مسیر نسبی را بسازید
+                    try {
+                        Path relativePath = pdfDirectory.relativize(selectedFilePath);
+                        // قرار دادن آدرس نسبی در تکست فیلد PdfAdr
+                        PdfAdr.setText(relativePath.toString());
+                    } catch (IllegalArgumentException e) {
+                        // خطا در ایجاد مسیر نسبی
+                        showAlert("خطا", "مسیر انتخابی قابل تبدیل به مسیر نسبی نیست!");
+                    }
+                } else {
+                    // اگر فایل خارج از پوشه pdfs است، هشدار دهید
+                    showAlert("خطا", "فایل انتخابی در پوشه pdfs قرار ندارد!");
+                }
+            }
+        }
+
+
+
+
+
+
+
+        private static final String FILE_NAME = "user.txt";
 
     @FXML
     void Registration(ActionEvent event) {
@@ -792,6 +912,151 @@ import java.util.Scanner;
         style.setVerticalAlignment(VerticalAlignment.CENTER);
         return style;
     }
+
+        @FXML
+        void ProductRegistration(ActionEvent event) {
+            try {
+                // بررسی اینکه هیچ فیلدی خالی نباشد
+                if (BookNamelab.getText().isEmpty() || ImgAdr1.getText().isEmpty() ||
+                        priceTextField1.getText().isEmpty() || Writerlab.getText().isEmpty() ||
+                        Translatorlab.getText().isEmpty() || Nasherlab.getText().isEmpty() ||
+                        Countlab.getText().isEmpty() ||Categorylab.getText().isEmpty() ||
+                        Publishedlab.getText().isEmpty() ||publicationlab.getText().isEmpty() ||
+                        PageNumlab.getText().isEmpty() ||Coverlab.getText().isEmpty() ||
+                        PdfAdr.getText().isEmpty()) {
+                    showAlert("خطا", "لطفا همه فیلدها را پر کنید!");
+                    return;
+                }
+
+                int price;
+                int countValue;
+                try {
+                    price = Integer.parseInt(priceTextField1.getText());
+                    countValue = Integer.parseInt(Countlab.getText());
+                } catch (NumberFormatException e) {
+                    showAlert("خطا", "قیمت و تعداد باید عدد باشند!");
+                    return;
+                }
+
+                // دریافت رنگ انتخاب شده از ColorPicker و تبدیل آن به HEX
+                Color selectedColor = color1.getValue(); // فرض بر این است که رنگ از ColorPicker1 گرفته شده
+                String hexColor = toHex1(selectedColor);
+
+                // ایجاد و نوشتن در فایل متنی
+                FileWriter myWriter = new FileWriter("BookInfo.txt", true);  // فایل BookInfo.txt ساخته می‌شود یا به آن افزوده می‌شود
+                FileWriter printWriter = new FileWriter("BookInf.txt", true);
+
+                myWriter.write(BookNamelab.getText());  // نام کتاب
+                myWriter.write("\n");
+
+                myWriter.write(Writerlab.getText());  // نام نویسنده
+                myWriter.write("\n");
+
+                myWriter.write(Translatorlab.getText());  // نام مترجم
+                myWriter.write("\n");
+
+                myWriter.write(Nasherlab.getText());  // نام ناشر
+                myWriter.write("\n");
+
+                myWriter.write(Publishedlab.getText());  // سال چاپ
+                myWriter.write("\n");
+
+                myWriter.write(publicationlab.getText());  // نوبت چاپ
+                myWriter.write("\n");
+
+                myWriter.write(BookSizelab.getText());  // قطع کتاب
+                myWriter.write("\n");
+
+                myWriter.write(Coverlab.getText());  // جلد کتاب
+                myWriter.write("\n");
+
+                myWriter.write(PageNumlab.getText());  // تعداد صفحات
+                myWriter.write("\n");
+
+                myWriter.write(Categorylab.getText());  // دسته‌بندی محصول
+                myWriter.write("\n");
+
+                myWriter.write(ImgAdr1.getText());  // آدرس تصویر
+                myWriter.write("\n");
+
+                myWriter.write(PdfAdr.getText());  // آدرس پی‌دی‌اف
+                myWriter.write("\n");
+
+                myWriter.write(Countlab.getText());  // موجودی کتاب
+                myWriter.write("\n");
+
+                myWriter.write(priceTextField1.getText());  // قیمت محصول
+                myWriter.write("\n");
+
+                myWriter.write(hexColor);  // رنگ انتخابی
+                myWriter.write("\n");
+
+                myWriter.close();  // بستن فایل
+
+                printWriter.write(BookNamelab.getText());
+                printWriter.write("\n");
+
+                printWriter.write(priceTextField1.getText());
+                printWriter.write("\n");
+
+                printWriter.write(ImgAdr1.getText());
+                printWriter.write("\n");
+
+                printWriter.write(hexColor);
+                printWriter.write("\n");
+
+                printWriter.write(Writerlab.getText());
+                printWriter.write("\n");
+
+                printWriter.write(Translatorlab.getText());
+                printWriter.write("\n");
+
+                printWriter.write(Nasherlab.getText());
+                printWriter.write("\n");
+
+                printWriter.write(Countlab.getText());
+                printWriter.write("\n");
+
+                printWriter.write(Categorylab.getText());
+                printWriter.write("\n");
+
+                printWriter.close();
+
+
+                // نمایش پیغام موفقیت‌آمیز بودن ثبت
+                showAlert1("عملیات موفقیت‌آمیز", "محصول با موفقیت ثبت شد!");
+                clearFields2();  // پاک کردن فیلدها بعد از ثبت
+
+            } catch (IOException e) {
+                showAlert("خطا", "خطا در ذخیره اطلاعات!");
+                e.printStackTrace();
+            }
+        }
+
+        private void clearFields2() {
+            BookNamelab.clear();
+            Writerlab.clear();
+            Translatorlab.clear();
+            Nasherlab.clear();
+            ImgAdr1.clear();
+            priceTextField1.clear();
+            Countlab.clear();
+            Categorylab.clear();
+            Publishedlab.clear();
+            publicationlab.clear();
+            BookSizelab.clear();
+            Coverlab.clear();
+            PageNumlab.clear();
+            PdfAdr.clear();
+            color1.setValue(null);  // رنگ را نیز پاک می‌کنیم
+        }
+
+        private String toHex1(Color color) {
+            return String.format("%02X%02X%02X",
+                    (int) (color.getRed() * 255),
+                    (int) (color.getGreen() * 255),
+                    (int) (color.getBlue() * 255));
+        }
 
 
 

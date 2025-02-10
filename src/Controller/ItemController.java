@@ -36,24 +36,24 @@ public class ItemController {
         this.book = book;
         this.myListener = myListener;
         nameLabel.setText(book.getName());
-        priceLable.setText(Main.CURRENCY + book.getPrice());
+        priceLable.setText( book.getPrice() + Main.CURRENCY );
         Image image = new Image(getClass().getResourceAsStream(book.getImgSrc()));
         img.setImage(image);
     }
     @FXML
     void openInfo(MouseEvent event) {
-        try {
-            // مقدار نام کتاب را به InfoController ارسال کنید
-            infoController.bookName = nameLabel.getText();
-
-            // بارگذاری FXML جدید
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/info.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(fxmlLoader.load()));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            // مقدار نام کتاب را به InfoController ارسال کنید
+//            infoController.bookName = nameLabel.getText();
+//
+//            // بارگذاری FXML جدید
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/info.fxml"));
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(fxmlLoader.load()));
+//            stage.show();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
