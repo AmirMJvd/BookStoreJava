@@ -96,18 +96,7 @@ public class infoController{
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.equals(bookName)) { // پیدا کردن نام کتاب
-//                    Pricelab.setText( reader.readLine()+CURRENCY); // قیمت کتاب
-//                    String imagePath = reader.readLine(); // آدرس تصویر
-//                    reader.readLine(); // رد کردن خط چهارم
-//                    Writerlab.setText(reader.readLine()); // نویسنده
-//                    Translatorlab.setText(reader.readLine()); // مترجم
-//                    Nasherlab.setText(reader.readLine()); // ناشر
-//                    countLab.setText(reader.readLine()); // تعداد موجودی
-//                    CategoryLab.setText(reader.readLine()); // دسته‌بندی
-//
-//                    // تنظیم تصویر کتاب
-//                    Image image = new Image(getClass().getResourceAsStream(imagePath));
-//                    bookImg.setImage(image);
+
                     Writerlab.setText(reader.readLine());
                     Translatorlab.setText(reader.readLine());
                     Nasherlab.setText(reader.readLine());
