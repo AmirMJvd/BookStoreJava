@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import main.Main;
 import main.MyListener;
 import model.Book;
+import model.Report;
+import model.favorit;
 
 import java.io.IOException;
 
@@ -23,6 +25,8 @@ public class ItemController {
 
     @FXML
     private ImageView img;
+
+    private favorit favorit;
 
     @FXML
     private void click(MouseEvent mouseEvent) {
@@ -56,4 +60,13 @@ public class ItemController {
 //            e.printStackTrace();
 //        }
     }
+    public void setData1(favorit favorit) {
+        this.favorit =favorit;
+        nameLabel.setText(favorit.getName());
+        priceLable.setText(favorit.getPrice()+ Main.CURRENCY );
+        Image image = new Image(getClass().getResourceAsStream(favorit.getImgSrc()));
+        img.setImage(image);
+    }
+
+
 }

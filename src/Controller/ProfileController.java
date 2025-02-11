@@ -5,19 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import main.Main;
-import main.MyListener;
-import model.Book;
-import model.BookLists;
-import model.Report;
-import model.SharedData;
+import model.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -45,6 +37,9 @@ public class ProfileController {
     @FXML
     private GridPane grid1;
 
+    @FXML
+    private GridPane grid;
+
 
     @FXML
     private TextField phoneNumber;
@@ -55,6 +50,8 @@ public class ProfileController {
 
     @FXML
     private AnchorPane AdminPane;
+
+
 
 
     @FXML
@@ -74,6 +71,7 @@ public class ProfileController {
         AdminPane.getChildren().setAll(pane);
     }
     private List<model.Report> reports = new ArrayList<>();
+    private List<model.favorit> favorits = new ArrayList<>();
 
     private List<Report> getReportData() {
         String currentUsername = SharedData.getInstance().getUsername();
@@ -96,6 +94,27 @@ public class ProfileController {
         }
         return reports;
     }
+    private List<favorit> getfavoritData() {
+        String currentUsername = SharedData.getInstance().getUsername();
+        List<favorit> favorits = new ArrayList<>();
+        try {
+            File favoridFile = new File(currentUsername + "-favorit.txt");
+            Scanner reader = new Scanner(favoridFile);
+            while (reader.hasNextLine()) {
+                favorit favorit = new favorit();
+                favorit.setName(reader.nextLine());
+                favorit.setPrice(reader.nextLine());
+                favorit.setImgSrc(reader.nextLine());
+                favorits.add(favorit);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return favorits;
+    }
+
+
 
     @FXML
     public void initialize() {
@@ -131,6 +150,35 @@ public class ProfileController {
 
                 GridPane.setMargin(HBox, new Insets(10));
             }
+
+            row = 1;
+            column = 0;
+            favorits.addAll(getfavoritData());
+            for (favorit favorit : favorits) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item1.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                Item1Controller itemController = fxmlLoader.getController();
+                itemController.setData1(favorit);
+
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

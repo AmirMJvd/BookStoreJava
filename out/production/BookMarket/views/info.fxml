@@ -50,7 +50,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#Save" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/save-instagram.png" />
                      </image>

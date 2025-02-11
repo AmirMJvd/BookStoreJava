@@ -190,6 +190,50 @@
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
+                        <Tab text="لیست علاقه مندی">
+                           <content>
+                              <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BorderPane layoutX="766.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <center>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </BorderPane.margin>
+                                             <children>
+                                                <HBox prefHeight="587.0" prefWidth="788.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <ScrollPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="543.0" prefWidth="1213.0" styleClass="transparent" stylesheets="@../values/style-a.css">
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                         <content>
+                                                            <GridPane fx:id="grid">
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <padding>
+                                                                  <Insets left="100.0" />
+                                                               </padding>
+                                                            </GridPane>
+                                                         </content>
+                                                      </ScrollPane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                       <padding>
+                                          <Insets top="-10.0" />
+                                       </padding>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
                             </tabs>
                         </TabPane>
                     </children>
@@ -198,7 +242,7 @@
             <top>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1295.0" styleClass="vbox-style" stylesheets="@../values/style-a.css" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </BorderPane.margin>
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#CameBack" pickOnBounds="true" preserveRatio="true">

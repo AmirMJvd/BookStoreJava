@@ -7,18 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import main.Main;
+import model.SharedData;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.nio.file.Path;
-
-
+import java.util.Scanner;
 
 
 import static main.Main.CURRENCY;
@@ -218,10 +216,61 @@ public class infoController{
 
 
     }
-
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void Save(MouseEvent event) throws IOException {
+        String currentUsername = SharedData.getInstance().getUsername();
+        if (currentUsername != null && !currentUsername.isEmpty()) {
+            File favoridFile = new File(currentUsername + "-favorit.txt");
+            if (!favoridFile.exists()) {
+                favoridFile.createNewFile();
+            }
+            String filePath = "BookInfo.txt"; // مسیر فایل اطلاعات کتاب‌ها
+            FileWriter fw = new FileWriter(favoridFile, true);
+            fw.write(BookNamelab.getText() + "\n");
+            fw.write(Pricelab.getText() + "\n");
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.equals(bookName)) { // پیدا کردن نام کتاب
+
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        String imagePath = reader.readLine(); // آدرس تصویر
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+
+                        fw.write(imagePath + "\n");
+                        showAlert1("تبریک", "محصول به لیست علاقه مندی شما اضافه شد");
+                        break; // خروج از حلقه بعد از یافتن کتاب
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            fw.close();
+        }else {
+            showAlert("خطا","اپتدا باید وارد بشوید");
+        }
+    }
+    private void showAlert1(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
