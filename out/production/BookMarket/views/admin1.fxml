@@ -204,7 +204,7 @@
                                                 <Insets bottom="10.0" top="10.0" />
                                              </BorderPane.margin>
                                              <children>
-                                                <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" styleClass="Vbox-style" stylesheets="@../values/style-a.css">
+                                                <VBox fx:id="chosenBookCard" alignment="CENTER" onMouseClicked="#openEdit" prefHeight="535.0" prefWidth="100.0" styleClass="Vbox-style" stylesheets="@../values/style-a.css">
                                                    <VBox.margin>
                                                       <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                                                    </VBox.margin>

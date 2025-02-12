@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import main.Main;
 import main.MyListener;
 import model.Book;
@@ -913,10 +915,10 @@ import java.util.Scanner;
         return style;
     }
 
-        @FXML
-        void ProductRegistration(ActionEvent event) {
-            try {
-                // بررسی اینکه هیچ فیلدی خالی نباشد
+    @FXML
+    void ProductRegistration(ActionEvent event) {
+        try {
+            // بررسی اینکه هیچ فیلدی خالی نباشد
                 if (BookNamelab.getText().isEmpty() || ImgAdr1.getText().isEmpty() ||
                         priceTextField1.getText().isEmpty() || Writerlab.getText().isEmpty() ||
                         Translatorlab.getText().isEmpty() || Nasherlab.getText().isEmpty() ||
@@ -1058,10 +1060,19 @@ import java.util.Scanner;
                     (int) (color.getBlue() * 255));
         }
 
+        @FXML
+        void openEdit(MouseEvent event) {
+        try {
+            // مقدار نام کتاب را به InfoController ارسال کنید
+            EditController.bookName = bookNameLable.getText();
 
-
-
-
-
-
+            // بارگذاری FXML جدید
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/Edit.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       }
 }
