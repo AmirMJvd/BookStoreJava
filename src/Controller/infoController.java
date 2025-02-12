@@ -14,9 +14,16 @@ import model.SharedData;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ArrayList;
+
 import java.util.Scanner;
+
 
 
 import static main.Main.CURRENCY;
@@ -71,6 +78,12 @@ public class infoController{
     @FXML
     private Label countLabel;
 
+    @FXML
+    private Button decreaseBtn;
+
+    @FXML
+    private Button increaseBtn;
+
     public static String bookName; // متغیر استاتیک برای ذخیره نام کتاب
 
     @FXML
@@ -79,15 +92,122 @@ public class infoController{
         BookNamelab.setText(bookName);
         // خواندن اطلاعات از فایل و تنظیم در لیبل‌ها
         loadBookInfo();
-        updateVisibility();
+
     }
 
     @FXML
-    void addCart(ActionEvent event) {
-        // نامرئی کردن دکمه و مرئی کردن combobox
-        addCart.setVisible(false);
-        combobox.setVisible(true);
+    void addCart(ActionEvent event) throws IOException {
+        String currentUsername = SharedData.getInstance().getUsername();
+
+        if (countLab.getText().compareTo("0") == 0) {
+            showAlert("خطا", "متاسفانه کتاب موجود نیست!");
+            return;
+        }
+
+        // بررسی مقدار lblid قبل از استفاده از آن
+        if (currentUsername == null || currentUsername.isEmpty()) {
+            showAlert("خطا", "ابتدا باید ورود بفرمایید!");
+            return;
+        }
+
+        String id = currentUsername;
+        File fileName = new File(id + ".txt");
+
+        List<String> fileContent = new ArrayList<>();
+        boolean bookExists = false;
+        int bookIndex = -1;
+
+        if (fileName.exists()) {
+            try (Scanner scanner = new Scanner(fileName)) {
+                while (scanner.hasNextLine()) {
+                    fileContent.add(scanner.nextLine());
+                }
+            }
+
+            for (int i = 0; i < fileContent.size(); i += 4) {
+                if (fileContent.get(i).equals(BookNamelab.getText())) {
+                    bookExists = true;
+                    bookIndex = i;
+                    break;
+                }
+            }
+        }
+
+        String priceText = Pricelab.getText().replaceAll("[^\\d.]", ""); // فقط اعداد و نقطه
+        double labelPrice = 0.0;
+
+        try {
+            labelPrice = Double.parseDouble(priceText);
+        } catch (NumberFormatException e) {
+            showAlert("خطا", "فرمت قیمت نامعتبر است!");
+            return;
+        }
+
+        int countToAdd = Integer.parseInt(countLabel.getText());
+        int maxCount = Integer.parseInt(countLab.getText());
+
+        // محاسبه قیمت نهایی (ضرب قیمت در تعداد)
+        double totalPrice = labelPrice * countToAdd;
+
+        if (bookExists) {
+            double currentPrice = Double.parseDouble(fileContent.get(bookIndex + 1).replaceAll("[^\\d.]", ""));
+            double newPrice = currentPrice + totalPrice; // بروزرسانی قیمت با ضرب قیمت در تعداد
+
+            int currentCount = Integer.parseInt(fileContent.get(bookIndex + 3));
+            if (currentCount + countToAdd <= maxCount) {
+                int newCount = currentCount + countToAdd;
+                fileContent.set(bookIndex + 1, String.valueOf(Main.CURRENCY + newPrice)); // قیمت جدید
+                fileContent.set(bookIndex + 3, String.valueOf(newCount)); // تعداد جدید
+
+                try (FileWriter writer = new FileWriter(fileName, false)) {
+                    for (String line : fileContent) {
+                        writer.write(line + "\n");
+                    }
+                }
+                showAlert1("عملیات موفقیت‌آمیز", "قیمت و تعداد محصول به‌روزرسانی شد!");
+            } else {
+                showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+            }
+        } else {
+            if (countToAdd <= maxCount) {
+                try (FileWriter myWriter = new FileWriter(fileName, true)) {
+                    myWriter.write(BookNamelab.getText());
+                    myWriter.write("\n");
+                    myWriter.write(labelPrice * countToAdd + Main.CURRENCY); // ضرب قیمت در تعداد و ذخیره در فایل
+                    myWriter.write("\n");
+
+                    String filePath = "BookInfo.txt"; // مسیر فایل اطلاعات کتاب‌ها
+                    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (line.equals(BookNamelab.getText())) { // پیدا کردن نام کتاب
+                                // خواندن اطلاعات دیگر کتاب
+                                for (int i = 0; i < 9; i++) {
+                                    reader.readLine(); // رد کردن خطوط غیر ضروری
+                                }
+                                String imagePath = reader.readLine(); // آدرس تصویر
+                                myWriter.write(imagePath); // نوشتن آدرس تصویر در فایل
+                                myWriter.write("\n");
+                                break; // خروج از حلقه بعد از یافتن کتاب
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    myWriter.write(String.valueOf(countToAdd)); // نوشتن تعداد کتاب در فایل
+                    myWriter.write("\n");
+                }
+                showAlert1("عملیات موفقیت‌آمیز", "محصول به سبد خرید شما اضافه شد!");
+            } else {
+                showAlert("خطا", "تعداد مورد نظر بیشتر از موجودی است!");
+            }
+        }
     }
+
+
+
+
     private void loadBookInfo() {
         String filePath = "BookInfo.txt"; // مسیر فایل اطلاعات کتاب‌ها
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -109,9 +229,6 @@ public class infoController{
                     countLab.setText(reader.readLine());
                     Pricelab.setText(reader.readLine());
                     reader.readLine();
-
-
-
                     // تنظیم تصویر کتاب
                     Image image = new Image(getClass().getResourceAsStream(imagePath));
                     bookImg.setImage(image);
@@ -124,19 +241,6 @@ public class infoController{
         }
     }
 
-    // متد بررسی مقدار countLabel و تنظیم نمایش دکمه و کمبو‌باکس
-    private void updateVisibility() {
-        int currentCount = Integer.parseInt(countLabel.getText());
-
-        if (currentCount == 0) {
-            addCart.setVisible(true);
-            combobox.setVisible(false);
-        } else {
-            addCart.setVisible(false);
-            combobox.setVisible(true);
-        }
-    }
-
     @FXML
     void decreaseBtn(ActionEvent event) {
         int currentNumber = Integer.parseInt(countLabel.getText());
@@ -144,7 +248,6 @@ public class infoController{
         if (currentNumber > 0) { // جلوگیری از مقدار منفی
             currentNumber--;
             countLabel.setText(String.valueOf(currentNumber));
-            updateVisibility(); // بررسی وضعیت نمایش دکمه‌ها
         }
     }
 
@@ -153,7 +256,6 @@ public class infoController{
         int currentNumber = Integer.parseInt(countLabel.getText());
         currentNumber++;
         countLabel.setText(String.valueOf(currentNumber));
-        updateVisibility(); // بررسی وضعیت نمایش دکمه‌ها
     }
     @FXML
     void downlodpdf(ActionEvent event) {

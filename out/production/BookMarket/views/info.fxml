@@ -16,20 +16,22 @@
    <right>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>
+            <Pane prefHeight="79.0" prefWidth="197.0" />
             <ImageView fx:id="bookImg" fitHeight="200.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
-                  <Insets top="38.0" />
+                  <Insets />
                </VBox.margin>
                <image>
                   <Image url="@../img/almani.png" />
                </image>
             </ImageView>
+            <Pane prefHeight="36.0" prefWidth="197.0" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#downlodpdf" prefWidth="105.0" style="-fx-border-color: #828282; -fx-background-color: colorless;" text="خلاصه کتاب">
                <font>
                   <Font name="B Nazanin" size="15.0" />
                </font>
                <VBox.margin>
-                  <Insets top="35.0" />
+                  <Insets />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -38,6 +40,22 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Button>
+            <Pane prefHeight="17.0" prefWidth="197.0" />
+            <Button fx:id="addCart" alignment="CENTER" mnemonicParsing="false" onAction="#addCart" prefHeight="32.0" prefWidth="150.0" style="-fx-background-color: Colorless; -fx-border-color: #828282;" text="افزودن به سبد خرید">
+               <font>
+                  <Font name="B Nazanin" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/shopping-cart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </Button>
          </children>
          <BorderPane.margin>
@@ -264,51 +282,38 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <HBox fx:id="combobox" prefHeight="31.0" prefWidth="114.0" styleClass="add-remove-layout2" stylesheets="@../values/styleCartItem.css">
                      <children>
-                        <HBox fx:id="combobox" layoutX="9.0" layoutY="10.0" prefHeight="32.0" prefWidth="139.0" styleClass="add-remove-layout2" stylesheets="@../values/styleCartItem.css">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Button>
-                              <Label fx:id="countLabel" alignment="CENTER" prefHeight="29.0" prefWidth="95.0" text="0">
-                                 <font>
-                                    <Font name="Cambria" size="18.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Button mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <Button fx:id="addCart" alignment="CENTER" layoutX="7.0" layoutY="9.0" mnemonicParsing="false" onAction="#addCart" prefWidth="140.0" style="-fx-background-color: Colorless; -fx-border-color: #828282;" text="افزودن به سبد خرید">
+                        <Button fx:id="decreaseBtn" mnemonicParsing="false" onAction="#decreaseBtn" style="-fx-background-color: trasparent;" text="-">
                            <font>
-                              <Font name="B Nazanin" size="15.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/shopping-cart.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Label fx:id="countLabel" alignment="CENTER" prefHeight="29.0" prefWidth="59.0" text="1">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="increaseBtn" mnemonicParsing="false" onAction="#increaseBtn" style="-fx-background-color: trasparent;" text="+">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Button>
                      </children>
-                  </Pane>
-                  <Label fx:id="Pricelab" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="110.0" text="40">
+                     <HBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <Label fx:id="Pricelab" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="221.0" text="40">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
