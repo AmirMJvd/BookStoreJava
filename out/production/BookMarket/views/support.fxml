@@ -34,7 +34,7 @@
                                             <Image url="@../img/books.png" />
                                         </image>
                                         <HBox.margin>
-                                            <Insets left="25.0" />
+                                            <Insets bottom="7.0" left="25.0" />
                                         </HBox.margin>
                                     </ImageView>
                                     <Label prefHeight="50.0" prefWidth="117.0" text="BOOK" textFill="#737373">
@@ -45,7 +45,7 @@
                                             <Insets left="5.0" />
                                         </HBox.margin>
                                     </Label>
-                                    <Label text="store" textFill="#7b7b7b">
+                                    <Label text="store" textFill="#767676">
                                         <font>
                                             <Font name="Cambria" size="40.0" />
                                         </font>
@@ -66,7 +66,7 @@
                                     </ImageView>
                                 </children>
                             </HBox>
-                            <HBox onMouseClicked="#mail" prefHeight="52.0" prefWidth="285.0">
+                            <HBox onMouseClicked="#mail" prefHeight="52.0" prefWidth="285.0" styleClass="HBox" stylesheets="@../values/style-a.css">
                                 <children>
                                     <Label alignment="CENTER" prefHeight="42.0" prefWidth="281.0" text="bookstore.java.1403@gmail.com">
                                         <font>
@@ -80,7 +80,7 @@
                                     </ImageView>
                                 </children>
                             </HBox>
-                            <HBox prefHeight="54.0" prefWidth="285.0">
+                            <HBox onMouseClicked="#openGoogleMap" prefHeight="54.0" prefWidth="285.0" styleClass="HBox" stylesheets="@../values/style-a.css">
                                 <children>
                                     <Label alignment="CENTER" prefHeight="54.0" prefWidth="281.0" text="ایران - تبریز - دانشگاه تبریز - دانشکده کامپیوتر" />
                                     <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
@@ -90,10 +90,7 @@
                                     </ImageView>
                                 </children>
                             </HBox>
-                            <WebView fx:id="webView" prefHeight="200.0" prefWidth="322.0">
-                        <VBox.margin>
-                           <Insets left="23.0" />
-                        </VBox.margin></WebView>
+                            <WebView fx:id="webView" prefHeight="200.0" prefWidth="322.0" />
                         </children>
                     </VBox>
                 </children>

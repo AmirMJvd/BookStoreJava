@@ -4,11 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class support {
+    private final double latitude = 38.057797143629436;
+    private final double longitude = 46.33841156959533;
 
     @FXML
     private WebView webView;
@@ -66,4 +69,14 @@ public class support {
 
         webEngine.loadContent(leafletMapHtml, "text/html");
     }
+    @FXML
+    private void openGoogleMap() {
+        try {
+            String googleMapsUrl = String.format("https://www.google.com/maps?q=%f,%f", latitude, longitude);
+            Desktop.getDesktop().browse(new URI(googleMapsUrl));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
