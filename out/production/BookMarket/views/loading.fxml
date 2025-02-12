@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoadingController">
+    <children>
+        <!-- تصویر پس‌زمینه -->
+        <ImageView fitHeight="881.0" fitWidth="1416.0" layoutX="-5.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/minimal-botanical-wallpaper.jpg" />
+            </image>
+        </ImageView>
+
+        <!-- باکس لوگو و متن -->
+        <HBox fx:id="logoBox" alignment="CENTER" layoutX="428.0" layoutY="130.0" prefHeight="271.0" prefWidth="833.0">
+            <children>
+                <ImageView fitHeight="104.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/books.png" />
+                    </image>
+                    <HBox.margin>
+                        <Insets left="25.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Label prefHeight="135.0" prefWidth="286.0" text="BOOK" textFill="#737373">
+                    <font>
+                        <Font name="Cambria Bold" size="100.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="5.0" />
+                    </HBox.margin>
+                    <padding>
+                        <Insets top="30.0" />
+                    </padding>
+                </Label>
+                <Label prefHeight="98.0" prefWidth="190.0" text="store" textFill="#767676">
+                    <font>
+                        <Font name="Cambria" size="80.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets top="40.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+
+        <!-- Label برای نمایش وضعیت اینترنت -->
+        <Label fx:id="statusLabel" alignment="CENTER" layoutX="534.0" layoutY="467.0" prefHeight="58.0" prefWidth="624.0" text="در حال بررسی اتصال به اینترنت..." textFill="#515151">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <!-- ProgressIndicator برای نمایش بارگذاری -->
+        <ProgressIndicator fx:id="progressIndicator" layoutX="821.0" layoutY="526.0" prefHeight="50" prefWidth="50" />
+    </children>
+</AnchorPane>
