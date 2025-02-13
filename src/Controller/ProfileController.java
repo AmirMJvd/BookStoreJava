@@ -4,11 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.*;
 
 import java.io.*;
@@ -258,6 +263,40 @@ public class ProfileController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    void getOut(MouseEvent event) throws IOException {
+        // بستن تمام پنجره‌های باز
+        for (Window window : Window.getWindows()) {
+            if (window instanceof Stage) {  // بررسی اینکه پنجره از نوع Stage است یا خیر
+                Stage stage = (Stage) window; // تبدیل به Stage
+                if (stage.isShowing()) {
+                    stage.close();  // بستن پنجره
+                }
+            }
+        }
+        // بستن پنجره فعلی
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (currentStage != null) {
+            currentStage.close();  // بستن پنجره فعلی
+        }
+
+        // دسترسی به نمونه‌ی SharedData و پاک کردن مقدار username
+        SharedData.getInstance().setUsername(""); // پاک کردن username
+
+        // باز کردن صفحه مارکت (برای مثال با استفاده از FXMLLoader)
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/market.fxml"));
+        Parent root = loader.load();
+
+        // نمایش صفحه مارکت در یک پنجره جدید
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+
+
+
+
 
 
 }

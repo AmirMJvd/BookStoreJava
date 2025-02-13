@@ -116,6 +116,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -155,7 +156,7 @@ public class forgetfulnessController {
     }
 
     @FXML
-    void BackLogin(ActionEvent event) throws IOException {
+    void BackLogin(MouseEvent event) throws IOException{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
         rootPane.getChildren().setAll(pane);
     }

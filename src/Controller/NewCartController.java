@@ -195,16 +195,27 @@ public class NewCartController  implements Initializable {
         FileWriter reportWriter = new FileWriter("Report.txt", true);
         FileWriter historyWriter = new FileWriter(historyFile, true);
         Scanner cartScanner = new Scanner(cartReader);
+
+        sendEmail1("سفارش جدید", "خرید موفقیت‌آمیز بود. سفارش جدید ثبت شد.");
+
         // خواندن اطلاعات BookInf.txt
         File bookFile = new File("BookInf.txt");
+        File BookInfo = new File("BookInfo.txt");
         List<String> updatedBookLines = new ArrayList<>();
         Scanner bookScanner = new Scanner(bookFile);
+        Scanner BookInfoScanner = new Scanner(BookInfo);
         List<String> bookLines = new ArrayList<>();
+        List<String>  BookInfoLines = new ArrayList<>();
 
         while (bookScanner.hasNextLine()) {
             bookLines.add(bookScanner.nextLine());
         }
         bookScanner.close();
+
+        while (BookInfoScanner.hasNextLine()) {
+            BookInfoLines.add(BookInfoScanner.nextLine());
+        }
+        BookInfoScanner.close();
 
 
 
@@ -243,7 +254,25 @@ public class NewCartController  implements Initializable {
                     int availableCount = Integer.parseInt(bookLines.get(i + 7));
                     availableCount -= count;
                     bookLines.set(i + 7, String.valueOf(availableCount));
+                    // اگر موجودی صفر شد، ایمیل بفرستید
+                    if (availableCount == 0) {
+                        sendEmail1("موجودی صفر شد", "موجودی محصول '" + name + "' به صفر رسیده است.");
+                    }
                 }
+            }
+
+            // کاهش موجودی در BookInfo.txt
+            for (int i = 0; i < BookInfoLines.size(); i += 15) {
+                if (BookInfoLines.get(i).equals(name)) {
+                    int availableCount = Integer.parseInt(BookInfoLines.get(i + 12));
+                    availableCount -= count;
+                    BookInfoLines.set(i + 12, String.valueOf(availableCount));
+                    // اگر موجودی صفر شد، ایمیل بفرستید
+                    if (availableCount == 0) {
+                        sendEmail1("موجودی صفر شد", "موجودی محصول '" + name + "' به صفر رسیده است.");
+                    }
+                }
+
             }
         }
 
@@ -255,7 +284,15 @@ public class NewCartController  implements Initializable {
 
         // به‌روزرسانی فایل BookInf.txt با مقادیر جدید
         FileWriter bookWriter = new FileWriter("BookInf.txt", false);
-        for (String line : bookLines) {
+        FileWriter BookInfoWriter = new FileWriter("BookInfo.txt", false);
+
+        for (String line :  BookInfoLines) {
+            BookInfoWriter.write(line + "\n");
+        }
+
+        BookInfoWriter.close();
+
+        for (String line :  bookLines) {
             bookWriter.write(line + "\n");
         }
         bookWriter.close();
@@ -281,9 +318,49 @@ public class NewCartController  implements Initializable {
     rootPanecart.setPrefSize(600, 400);
     rootPanecart.getChildren().setAll(pane);
 }
+    private void sendEmail1(String subject, String body) {
+        String fromEmail = "bookstore.java.1403@gmail.com"; // ایمیل فرستنده
+        String toEmail = "amir.m.jvd.1.1@gmail.com"; // ایمیل دریافت کننده
+        String password = "grgf ycdk suio bxbl"; // رمز عبور ایمیل فرستنده
+
+        // تنظیمات برای اتصال به سرور SMTP
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        // ایجاد یک Session برای اتصال به سرور
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
+
+        try {
+            // ساخت پیام ایمیل
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject(subject); // موضوع ایمیل
+            message.setText(body); // محتوای ایمیل
+
+            // ارسال ایمیل
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    private void showAlert1(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
@@ -384,7 +461,7 @@ public class NewCartController  implements Initializable {
             // ارسال ایمیل به آدرس ایمیل
             boolean emailSent = sendEmail(email, generatedCode);
             if (emailSent) {
-                showAlert("موفقیت", "کد بازنشانی به ایمیل ارسال شد.");
+                showAlert1("موفقیت", "کد بازنشانی به ایمیل ارسال شد.");
             } else {
                 showAlert("خطا", "مشکلی در ارسال ایمیل به وجود آمد.");
             }

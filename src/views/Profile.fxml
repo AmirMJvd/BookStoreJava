@@ -180,6 +180,15 @@
                                                                 <Insets bottom="10.0" />
                                                             </VBox.margin>
                                                         </HBox>
+                                          <HBox alignment="CENTER" prefHeight="64.0" prefWidth="445.0">
+                                             <children>
+                                                <Label alignment="CENTER" onMouseClicked="#getOut" prefHeight="53.0" prefWidth="391.0" text="خروج از حساب کاربری" textFill="#b31212">
+                                                   <font>
+                                                      <Font name="B Mehr Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                                     </children>
                                                 </VBox>
                                                 <Label alignment="CENTER" layoutX="464.0" layoutY="18.0" prefHeight="30.0" prefWidth="391.0" text="توجه فرمایید اطلاعات زیر کاملا محرمانه و در اختیار مدیر قرار گیرد!" textFill="#868181" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
