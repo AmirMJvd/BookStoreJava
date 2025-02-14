@@ -371,6 +371,45 @@ public class infoController{
             showAlert("خطا","اپتدا باید وارد بشوید");
         }
     }
+
+    public void setBookName(String bookName) {
+        BookNamelab.setText(bookName); // تنظیم مقدار نام کتاب در لیبل
+        loadBookInfo1();
+    }
+
+    private void loadBookInfo1() {
+        String filePath = "BookInfo.txt"; // مسیر فایل اطلاعات کتاب‌ها
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.equals( BookNamelab.getText())) { // پیدا کردن نام کتاب
+
+                    Writerlab.setText(reader.readLine());
+                    Translatorlab.setText(reader.readLine());
+                    Nasherlab.setText(reader.readLine());
+                    Publishedlab.setText(reader.readLine());
+                    publicationlab.setText(reader.readLine());
+                    BookSizelab.setText(reader.readLine());
+                    Coverlab.setText(reader.readLine());
+                    PageNumlab.setText(reader.readLine());
+                    CategoryLab.setText(reader.readLine());
+                    String imagePath = reader.readLine(); // آدرس تصویر
+                    reader.readLine();
+                    countLab.setText(reader.readLine());
+                    Pricelab.setText(reader.readLine());
+                    reader.readLine();
+                    // تنظیم تصویر کتاب
+                    Image image = new Image(getClass().getResourceAsStream(imagePath));
+                    bookImg.setImage(image);
+
+                    break; // خروج از حلقه بعد از یافتن کتاب
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showAlert1(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

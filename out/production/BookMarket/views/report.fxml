@@ -52,7 +52,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="110.0" text="تعداد فروش:">
+                  <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="110.0" text="تعداد خرید:">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -20,6 +20,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,6 +45,10 @@ public class ProfileController {
 
     @FXML
     private GridPane grid;
+
+    @FXML
+    private GridPane grid2;
+
 
 
     @FXML
@@ -77,28 +82,9 @@ public class ProfileController {
     }
     private List<model.Report> reports = new ArrayList<>();
     private List<model.favorit> favorits = new ArrayList<>();
+    private List<model.History> histores = new ArrayList<>();
+    private List<Report> allReports = new ArrayList<>();
 
-    private List<Report> getReportData() {
-        String currentUsername = SharedData.getInstance().getUsername();
-        List<Report> reports = new ArrayList<>();
-        try {
-            File cartFile = new File(currentUsername + "-history.txt");
-            Scanner reader = new Scanner(cartFile);
-            while (reader.hasNextLine()) {
-                Report report = new Report();
-                report.setName(reader.nextLine());
-                report.setCount(reader.nextLine());
-                report.setPrice(reader.nextLine());
-                report.setDate(reader.nextLine());
-                report.setImgSrc(reader.nextLine());
-                reports.add(report);
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return reports;
-    }
     private List<favorit> getfavoritData() {
         String currentUsername = SharedData.getInstance().getUsername();
         List<favorit> favorits = new ArrayList<>();
@@ -118,8 +104,107 @@ public class ProfileController {
         }
         return favorits;
     }
+    private void loadAllReports() {
+        String currentUsername = SharedData.getInstance().getUsername();
+        allReports.clear();
 
 
+        try {
+
+            File reportFile = new File(currentUsername + "-history.txt");
+            Scanner reader = new Scanner(reportFile);
+
+            while (reader.hasNextLine()) {
+                Report report = new Report();
+                report.setName(reader.nextLine());
+                report.setCount(reader.nextLine());
+                report.setPrice(reader.nextLine());
+                report.setDate(reader.nextLine());
+                report.setImgSrc(reader.nextLine());
+                allReports.add(report);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void filterReportsByDate(String selectedDate) {
+        grid2.getChildren().clear(); // پاک کردن گزارش‌های قبلی
+
+        if (selectedDate == null || selectedDate.isEmpty()) {
+            return; // اگر تاریخی انتخاب نشده باشد، چیزی نمایش داده نشود
+        }
+
+        List<Report> filteredReports = new ArrayList<>();
+
+        for (Report report : allReports) {
+            if (report.getDate().equals(selectedDate)) {
+                filteredReports.add(report);
+            }
+        }
+
+        updateGrid(filteredReports);
+    }
+
+    private void updateGrid(List<Report> reports) {
+        int row = 1;
+        int column = 0;
+
+        for (Report report : reports) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/report.fxml"));
+                HBox anchorPane = fxmlLoader.load();
+                ReportItemController itemController = fxmlLoader.getController();
+                itemController.setData(report);
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+
+                grid2.add(anchorPane, column++, row);
+                grid2.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid2.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid2.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid2.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid2.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid2.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private List<History> getHistoryData() {
+        String currentUsername = SharedData.getInstance().getUsername();
+        List<History> histores = new ArrayList<>();
+        try {
+            File favoridFile = new File(currentUsername +"-history.txt");
+            Scanner reader = new Scanner(favoridFile);
+            while (reader.hasNextLine()) {
+                reader.nextLine(); // اسم کتاب
+                reader.nextLine(); // تعداد سفارش
+                String price = reader.nextLine(); // قیمت
+                price = price.replaceAll("[^\\d.]", ""); // حذف پیشوندها و پسوندها
+                double priceValue = Double.parseDouble(price); // تبدیل قیمت به عدد
+                String date = reader.nextLine();  // تاریخ
+                reader.nextLine(); // آدرس عکس
+
+                // استفاده از کانستراکتور با پارامتر
+                History history = new History(date, String.valueOf(priceValue));
+                histores.add(history);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return histores;
+    }
 
     @FXML
     public void initialize() {
@@ -128,33 +213,9 @@ public class ProfileController {
         userName.setText(AdminName.getText());
         loadUserDetails(AdminName.getText());
 
-        reports.addAll(getReportData());
         int row = 1;
         int column = 0;
         try {
-            for (Report report : reports) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/report.fxml"));
-                HBox HBox = fxmlLoader.load();
-
-                ReportItemController cartItemController = fxmlLoader.getController();
-                cartItemController.setData(report);
-
-                if (column == 2) {
-                    column = 0;
-                    row++;
-                }
-                grid1.add(HBox, column++, row);
-                grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid1.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid1.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(HBox, new Insets(10));
-            }
 
             row = 1;
             column = 0;
@@ -180,6 +241,73 @@ public class ProfileController {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+            loadAllReports(); // خواندن تمام گزارش‌ها هنگام لود صفحه
+
+            // بارگذاری داده‌های "histores"
+            row = 1;
+            column = 0;
+            histores.addAll(getHistoryData());
+
+            // گروه‌بندی تاریخ‌ها و محاسبه مجموع قیمت‌ها
+            List<History> groupedHistories = new ArrayList<>();
+            double totalPriceForCurrentDate = 0.0;
+            String currentDate = "";
+
+            // مرتب‌سازی داده‌ها بر اساس تاریخ
+            histores.sort(Comparator.comparing(History::getDate));
+
+            // گروه‌بندی تاریخ‌ها و جمع قیمت‌ها
+            for (int i = 0; i < histores.size(); i++) {
+                History history = histores.get(i);
+                String date = history.getDate();
+                double price = Double.parseDouble(history.getPrice()); // فرض بر این است که قیمت‌ها عددی هستند
+
+                // اگر تاریخ جدید باشد، مجموع قیمت تاریخ قبلی رو اضافه می‌کنیم
+                if (!date.equals(currentDate)) {
+                    if (!currentDate.isEmpty()) {
+                        // اضافه کردن تاریخ و مجموع قیمت تاریخ قبلی
+                        groupedHistories.add(new History(currentDate, String.valueOf(totalPriceForCurrentDate)));
+                    }
+
+                    // بازنشانی برای تاریخ جدید
+                    currentDate = date;
+                    totalPriceForCurrentDate = 0.0;
+                }
+
+                // جمع‌آوری مجموع قیمت‌ها برای تاریخ مشابه
+                totalPriceForCurrentDate += price;
+
+                // اگر به انتهای لیست رسیدیم، تاریخ و مجموع قیمت اون رو هم اضافه می‌کنیم
+                if (i == histores.size() - 1) {
+                    groupedHistories.add(new History(currentDate, String.valueOf(totalPriceForCurrentDate)));
+                }
+            }
+
+            // نمایش داده‌های گروه‌بندی شده
+            for (History history : groupedHistories) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/History.fxml"));
+                VBox anchorPane = fxmlLoader.load();
+                HistoryItemController itemController = fxmlLoader.getController();
+                itemController.setData(history);
+                itemController.setProfileController(this); // ارسال نمونه‌ی ProfileController
+
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+
+                grid1.add(anchorPane, column++, row);
+                grid1.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid1.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid1.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid1.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid1.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid1.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }

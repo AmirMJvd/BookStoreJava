@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox onMouseClicked="#Show" prefHeight="87.0" prefWidth="323.0" style="-fx-background-color: #828282;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HistoryItemController">
+   <children>
+      <HBox alignment="TOP_RIGHT" prefHeight="85.0" prefWidth="418.0">
+         <children>
+            <Pane prefHeight="85.0" prefWidth="162.0">
+               <children>
+                  <Label fx:id="price" alignment="CENTER_RIGHT" layoutY="43.0" prefHeight="26.0" prefWidth="86.0" text="25 ریال">
+                     <font>
+                        <Font name="B Nazanin" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="98.0" layoutY="45.0" prefHeight="23.0" prefWidth="35.0" text="مبلغ :" textFill="WHITE">
+                     <font>
+                        <Font name="B Nazanin" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <VBox prefHeight="81.0" prefWidth="191.0">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="146.0">
+                     <children>
+                        <Label text="تحویل شده" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="B Nazanin" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/checked.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" top="13.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="146.0">
+                     <children>
+                        <Label fx:id="Date" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="86.0" text="2025/13/2">
+                           <font>
+                              <Font name="B Nazanin" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="23.0" prefWidth="50.0" text="تاریخ :" textFill="WHITE">
+                           <font>
+                              <Font name="B Nazanin" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

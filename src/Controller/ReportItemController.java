@@ -72,22 +72,25 @@ public class ReportItemController {
     }
     private static String lastSearchedItem; // ذخیره‌سازی نام کالا
 
+
     @FXML
     void buyAgain(MouseEvent event) {
-        // گرفتن نام کالا از namelab
-        lastSearchedItem = namelab.getText().trim();
-
-        // رفتن به صفحه market.fxml
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/market.fxml"));
+            // گرفتن نام کتاب از Label
+            String bookName = namelab.getText().trim();
+
+            // بارگذاری info.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/info.fxml"));
             Parent root = loader.load();
 
-            // دریافت کنترلر market
-            MarketController marketController = loader.getController();
-            marketController.searchItem(lastSearchedItem); // ارسال نام کالا برای جستجو
+            // دریافت کنترلر صفحه info
+            infoController infoController = loader.getController();
+            infoController.setBookName(bookName); // ارسال نام کتاب
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // نمایش صفحه جدید
+            Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setTitle("Book Info");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
