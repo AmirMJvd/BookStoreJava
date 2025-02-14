@@ -82,7 +82,7 @@
                      </styleClass>
                   </HBox>
                   <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenBookCard" alignment="CENTER" onMouseClicked="#openInfo" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
+                  <VBox fx:id="chosenBookCard" alignment="CENTER" prefHeight="535.0" prefWidth="100.0" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -260,16 +260,18 @@
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="49.0" prefWidth="309.0">
+                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="309.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#AddCart" prefHeight="50.0" prefWidth="137.0" styleClass="add-btn" stylesheets="@../values/style.css" text="افزودن به سبد خرید" textFill="#828282">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets bottom="10.0" left="20.0" top="10.0" />
+                                    <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
                               </Button>
+                              <Pane prefHeight="49.0" prefWidth="81.0" />
+                              <Label onMouseClicked="#openInfo" prefHeight="48.0" prefWidth="83.0" text="اطلاعات بیشتر ..." textFill="WHITE" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -419,7 +421,7 @@
                                        </content></ScrollPane>
                                  </content>
                               </Tab>
-                              <Tab text="تاریخی">
+                              <Tab text="سیاسی">
                                  <content>
                                     <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
                                        <content>
@@ -441,6 +443,19 @@
                                              </rowConstraints>
                                           </GridPane>
                                        </content></ScrollPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="تاریخی">
+                                 <content>
+                                    <ScrollPane prefHeight="570.0" prefWidth="785.0" stylesheets="@../values/style.css">
+                                       <content>
+                                          <GridPane fx:id="HistoryGrid">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
                                  </content>
                               </Tab>
                            </tabs>

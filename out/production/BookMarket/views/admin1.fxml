@@ -98,7 +98,7 @@
                                                 </Label>
                                                 <Label fx:id="NumberOfSalesLab" prefWidth="100.0" text="20">
                                                    <font>
-                                                      <Font name="Cambria" size="30.0" />
+                                                      <Font name="Cambria" size="24.0" />
                                                    </font>
                                                    <HBox.margin>
                                                       <Insets left="5.0" />
@@ -131,9 +131,9 @@
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <Label fx:id="AmountReceivedLab" prefWidth="100.0" text="20">
+                                                <Label fx:id="AmountReceivedLab" prefHeight="38.0" prefWidth="113.0" text="20">
                                                    <font>
-                                                      <Font name="Cambria" size="30.0" />
+                                                      <Font name="Cambria" size="24.0" />
                                                    </font>
                                                    <HBox.margin>
                                                       <Insets left="5.0" />
@@ -164,7 +164,7 @@
                                                 </Label>
                                                 <Label fx:id="totalProfitLab" prefWidth="100.0" text="20">
                                                    <font>
-                                                      <Font name="Cambria" size="30.0" />
+                                                      <Font name="Cambria" size="24.0" />
                                                    </font>
                                                    <HBox.margin>
                                                       <Insets left="5.0" />

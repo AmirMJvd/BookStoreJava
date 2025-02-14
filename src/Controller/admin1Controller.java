@@ -40,7 +40,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-    public class admin1Controller implements Initializable{
+import static main.Main.CURRENCY;
+
+public class admin1Controller implements Initializable{
 
         @FXML
         private Label AdminName;
@@ -325,16 +327,18 @@ import java.util.Scanner;
 
     private List<Book> allBooks = new ArrayList<>();
     List<Book> scientificBooks = new ArrayList<>();
-    List<Book> politicalBooks = new ArrayList<>();
+    List<Book> historicalBooks = new ArrayList<>();
     List<Book> psychologyBooks = new ArrayList<>();
+    List<Book> politicalBooks = new ArrayList<>();  // اضافه کردن دسته‌بندی سیاسی
     private Image image;
     private MyListener myListener;
     private Book selectedBook;
     private BookLists getData() {
         List<Book> allBooks = new ArrayList<>();
         List<Book> scientificBooks = new ArrayList<>();
-        List<Book> politicalBooks = new ArrayList<>();
+        List<Book> historicalBooks = new ArrayList<>();
         List<Book> psychologyBooks = new ArrayList<>();
+        List<Book> politicalBooks = new ArrayList<>();
         Book book;
         try {
             File BookInfo = new File("BookInf.txt");
@@ -357,6 +361,9 @@ import java.util.Scanner;
                         scientificBooks.add(book);
                         break;
                     case "تاریخی":
+                        historicalBooks.add(book);
+                        break;
+                    case "سیاسی":
                         politicalBooks.add(book);
                         break;
                     case "روانشناسی":
@@ -372,7 +379,7 @@ import java.util.Scanner;
             throw new RuntimeException(e);
         }
 
-        return new BookLists(allBooks, scientificBooks, politicalBooks, psychologyBooks);
+        return new BookLists(allBooks, scientificBooks, historicalBooks, psychologyBooks,politicalBooks);
     }
 
     @FXML
@@ -381,8 +388,9 @@ import java.util.Scanner;
     BookLists bookLists = getData();
     allBooks.addAll(bookLists.getAllBooks());
     scientificBooks.addAll(bookLists.getScientificBooks());
-    politicalBooks.addAll(bookLists.getPoliticalBooks());
+    historicalBooks.addAll(bookLists.getHistoricalBooks());
     psychologyBooks.addAll(bookLists.getPsychologyBooks());
+    politicalBooks.addAll(bookLists.getPoliticalBooks());  // اضافه کردن کتاب‌های سیاسی
 
     // اطمینان از این که حداقل یک کتاب موجود است
     if (!allBooks.isEmpty()) {
@@ -491,7 +499,7 @@ import java.util.Scanner;
     private void setChosenBook (Book book) {
         selectedBook = book;
         bookNameLable.setText(book.getName());
-        PriceTxt.setText(Main.CURRENCY + book.getPrice());
+        PriceTxt.setText(CURRENCY + book.getPrice());
         writerLab.setText(book.getWriter());
         translatorLab.setText(book.getTranslator());
         nasherLab.setText(book.getNasher());
@@ -987,7 +995,7 @@ import java.util.Scanner;
                 myWriter.write(Countlab.getText());  // موجودی کتاب
                 myWriter.write("\n");
 
-                myWriter.write(priceTextField1.getText());  // قیمت محصول
+                myWriter.write(priceTextField1.getText() + CURRENCY);  // قیمت محصول
                 myWriter.write("\n");
 
                 myWriter.write(hexColor);  // رنگ انتخابی

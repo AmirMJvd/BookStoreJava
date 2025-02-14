@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#openInfo"  stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Item1Controller">
+<AnchorPane fx:id="itemPane" onMouseClicked="#openInfo" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Item1Controller">
     <children>
         <VBox alignment="CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="192.0" text="book">
-                    <font>
-                        <Font name="Cambria" size="20.0" />
-                    </font>
-                </Label>
+            <HBox prefHeight="45.0" prefWidth="225.0">
+               <children>
+                      <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="158.0" text="book">
+                          <font>
+                              <Font name="Cambria" size="20.0" />
+                          </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                      </Label>
+                  <ImageView fitHeight="38.0" fitWidth="35.0" onMouseClicked="#Delet" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
                 <ImageView fx:id="img" fitHeight="115.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img/bookLogo.png" />

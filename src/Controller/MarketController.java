@@ -10,12 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import main.Main;
 import main.MyListener;
 import model.Book;
@@ -32,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import javafx.animation.TranslateTransition;
 
 public class MarketController implements Initializable {
     private StageManager stageManager = new StageManager();
@@ -79,6 +76,10 @@ public class MarketController implements Initializable {
     private GridPane psychologyGrrid;
 
     @FXML
+    private GridPane HistoryGrid;
+
+
+    @FXML
     private TextField SearchTxt;
 
 
@@ -109,6 +110,7 @@ public class MarketController implements Initializable {
     List<Book> scientificBooks = new ArrayList<>();
     List<Book> politicalBooks = new ArrayList<>();
     List<Book> psychologyBooks = new ArrayList<>();
+    List<Book>historicalBooks  = new ArrayList<>();
     private Image image;
     private MyListener myListener;
     private Book selectedBook;
@@ -121,8 +123,9 @@ public class MarketController implements Initializable {
     private BookLists getData() {
         List<Book> allBooks = new ArrayList<>();
         List<Book> scientificBooks = new ArrayList<>();
-        List<Book> politicalBooks = new ArrayList<>();
+        List<Book> historicalBooks = new ArrayList<>();
         List<Book> psychologyBooks = new ArrayList<>();
+        List<Book> politicalBooks = new ArrayList<>();  // اضافه کردن politicalBooks
         Book book;
         try {
             File BookInfo = new File("BookInf.txt");
@@ -146,6 +149,9 @@ public class MarketController implements Initializable {
                         scientificBooks.add(book);
                         break;
                     case "تاریخی":
+                        historicalBooks.add(book);
+                        break;
+                    case "سیاسی":  // اضافه کردن بررسی برای دسته‌بندی سیاسی
                         politicalBooks.add(book);
                         break;
                     case "روانشناسی":
@@ -161,7 +167,7 @@ public class MarketController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        return new BookLists(allBooks, scientificBooks, politicalBooks, psychologyBooks);
+        return new BookLists(allBooks, scientificBooks, historicalBooks, psychologyBooks, politicalBooks);
     }
 
 
@@ -184,11 +190,14 @@ public class MarketController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+        // دریافت داده‌ها از متد getData()
         BookLists bookLists = getData();
         allBooks.addAll(bookLists.getAllBooks());
         scientificBooks.addAll(bookLists.getScientificBooks());
-        politicalBooks.addAll(bookLists.getPoliticalBooks());
+        historicalBooks.addAll(bookLists.getHistoricalBooks());
         psychologyBooks.addAll(bookLists.getPsychologyBooks());
+        politicalBooks.addAll(bookLists.getPoliticalBooks());  // اضافه کردن کتاب‌های سیاسی
+
         initialBooks.addAll(allBooks);
         // اگر مقداری ذخیره‌شده باشد، عملیات جستجو را انجام بده
         String savedSearch = ReportItemController.getLastSearchedItem();
@@ -235,6 +244,32 @@ public class MarketController implements Initializable {
              column = 0;
              row = 1;
 
+            for (int i = 0; i <  politicalBooks.size(); i++) {
+
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController2 = fxmlLoader.getController();
+                itemController2.setData( politicalBooks.get(i), myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                politicalGrid.add(anchorPane, column++, row);
+                politicalGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                politicalGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                politicalGrid.setMaxWidth(Region.USE_PREF_SIZE);
+                politicalGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                politicalGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                politicalGrid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+            column = 0;
+            row = 1;
+
             for (int i = 0; i < scientificBooks.size(); i++) {
 
 
@@ -258,28 +293,29 @@ public class MarketController implements Initializable {
                 scientificGrid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
+
              column = 0;
              row = 1;
-            for (int i = 0; i < politicalBooks.size(); i++) {
+            for (int i = 0; i < historicalBooks.size(); i++) {
 
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController2 = fxmlLoader.getController();
-                itemController2.setData(politicalBooks.get(i), myListener);
+                itemController2.setData(historicalBooks.get(i), myListener);
                 if (column == 3) {
                     column = 0;
                     row++;
                 }
 
-                politicalGrid.add(anchorPane, column++, row);
-                politicalGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                politicalGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                politicalGrid.setMaxWidth(Region.USE_PREF_SIZE);
-                politicalGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                politicalGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                politicalGrid.setMaxHeight(Region.USE_PREF_SIZE);
+                HistoryGrid.add(anchorPane, column++, row);
+                HistoryGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                HistoryGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                HistoryGrid.setMaxWidth(Region.USE_PREF_SIZE);
+                HistoryGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                HistoryGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                HistoryGrid.setMaxHeight(Region.USE_PREF_SIZE);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
              column = 0;

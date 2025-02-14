@@ -178,6 +178,43 @@ public class ProfileController {
             }
         }
     }
+    private void loadCartItems(List<favorit> favorits){
+        grid.getChildren().clear();
+        favorits.clear();
+        favorits.addAll(getfavoritData());
+        int row = 1;
+        int column = 0;
+
+        for (favorit favorit : favorits) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item1.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                // ارسال ProfileController به Item1Controller
+                Item1Controller itemController = fxmlLoader.getController();
+                itemController.setData1(favorit, this);  // اینجا ProfileController را به Item1Controller ارسال می‌کنیم
+
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
     private List<History> getHistoryData() {
@@ -217,34 +254,11 @@ public class ProfileController {
         int column = 0;
         try {
 
-            row = 1;
-            column = 0;
-            favorits.addAll(getfavoritData());
-            for (favorit favorit : favorits) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/item1.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-                Item1Controller itemController = fxmlLoader.getController();
-                itemController.setData1(favorit);
+            // بارگذاری لیست favorits
+            List<favorit> favorits = getfavoritData(); // دریافت داده‌ها
+            loadCartItems(favorits); // ارسال لیست به متد
+            loadAllReports();
 
-                if (column == 4) {
-                    column = 0;
-                    row++;
-                }
-
-                grid.add(anchorPane, column++, row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-
-                GridPane.setMargin(anchorPane, new Insets(10));
-            }
-            loadAllReports(); // خواندن تمام گزارش‌ها هنگام لود صفحه
 
             // بارگذاری داده‌های "histores"
             row = 1;
@@ -421,6 +435,21 @@ public class ProfileController {
         newStage.setScene(new Scene(root));
         newStage.show();
     }
+    public void removeItemFromGrid(Item1Controller itemController) {
+        // گرفتن نود مربوط به آیتم از کنترلر
+        Node itemNode = itemController.getItemNode(); // فرض بر این است که متدی به نام getItemNode در Item1Controller دارید که نود را باز می‌گرداند
+
+        // حذف نود از grid
+        grid.getChildren().remove(itemNode);
+    }
+
+    public void removeItem(Item1Controller itemController) {
+        // فرض می‌کنیم که در Item1Controller یک متغیر به نام 'itemNode' داریم که نود AnchorPane را ذخیره می‌کند
+        Node itemNode = itemController.getItemNode();  // گرفتن نود از کنترلر
+        grid.getChildren().remove(itemNode);  // حذف آیتم از grid
+    }
+
+
 
 
 

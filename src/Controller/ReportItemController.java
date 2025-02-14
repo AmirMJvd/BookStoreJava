@@ -34,7 +34,7 @@ public class ReportItemController {
 
     private Cart cart;
 
-    private AdminController AdminController;
+
 
     @FXML
     private Label profitlab;
