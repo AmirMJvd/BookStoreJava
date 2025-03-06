@@ -554,12 +554,17 @@ public class admin1Controller implements Initializable{
 
         try {
             File inputFile = new File("BookInf.txt");
+            File inputFile1 = new File("BookInfo.txt");
             File tempFile = new File("TempBookInf.txt");
+            File tempFile1 = new File("TempBookInfo.txt");
 
             Scanner scanner = new Scanner(inputFile);
+            Scanner scanner1 = new Scanner(inputFile1);
             FileWriter writer = new FileWriter(tempFile);
+            FileWriter writer1 = new FileWriter(tempFile1);
 
             boolean found = false;
+            boolean found1 = false;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
@@ -581,6 +586,7 @@ public class admin1Controller implements Initializable{
                 }
             }
 
+
             scanner.close();
             writer.close();
 
@@ -595,10 +601,55 @@ public class admin1Controller implements Initializable{
             } else {
                 showAlert("خطا", "خطا در ذخیره تغییرات!");
             }
+
+
+            while (scanner1.hasNextLine()) {
+                String line1 = scanner1.nextLine();
+
+                if (line1.equals(bookNameToUpdate)) {
+                    found1 = true;
+                    writer1.write(line1 + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(scanner1.nextLine() + "\n");
+                    writer1.write(newCount + "\n");
+                    writer1.write(newPrice + CURRENCY + "\n");
+                    scanner1.nextLine();
+                    scanner1.nextLine();
+                    writer1.write(scanner1.nextLine() + "\n");
+                } else {
+                    writer1.write(line1 + "\n");
+                }
+            }
+
+            scanner1.close();
+            writer1.close();
+
+            if (!found1) {
+                showAlert("خطا", "کتاب موردنظر پیدا نشد!");
+                return;
+            }
+
+            if (inputFile1.delete()) {
+                tempFile1.renameTo(inputFile1);
+            } else {
+                showAlert("خطا", "خطا در ذخیره تغییرات!");
+            }
+
         } catch (IOException e) {
-            showAlert("خطا", "خطا در دسترسی به فایل!");
+            showAlert("خطا", "خطا در دسترسی به فایل BookInfo!");
             e.printStackTrace();
         }
+
+
     }
 
     public void setId(String username1){

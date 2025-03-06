@@ -98,29 +98,40 @@ public class EditController {
         loadBookInfo();
     }
     private void loadBookInfo() {
-        String filePath = "BookInf.txt"; // مسیر فایل اطلاعات کتاب‌ها
+        String filePath = "BookInfo.txt"; // مسیر فایل اطلاعات کتاب‌ها
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try {
+            FileReader fr = new FileReader(filePath);
+            Scanner sc = new Scanner(fr);
             String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.trim().equals(bookName)) { // اگر نام کتاب یافت شد
-                    Pricelab.setText(reader.readLine()+ CURRENCY ); // سطر دوم: قیمت
-                    String imagePath = reader.readLine(); // سطر سوم: مسیر عکس
+            while (sc.hasNextLine()){
+                line = sc.nextLine();
+                if (line.trim().equals(bookName)) {
+                    Writerlab.setText(sc.nextLine());
+                    Translatorlab.setText(sc.nextLine());
+                    Nasherlab.setText(sc.nextLine());
+                    Publishedlab.setText(sc.nextLine());
+                    publicationlab.setText(sc.nextLine());
+                    BookSizelab.setText(sc.nextLine());
+                    Coverlab.setText(sc.nextLine());
+                    PageNumlab.setText(sc.nextLine());
+                    CategoryLab.setText(sc.nextLine());
+                    String imagePath =sc.nextLine();
+                    ImageAd.setText(imagePath);
                     if (imagePath != null && !imagePath.isEmpty()) {
                         bookImg.setImage(new Image(imagePath)); // تنظیم عکس کتاب
                     }
-                    reader.readLine(); // سطر چهارم را رد کن
-                    Writerlab.setText(reader.readLine()); // سطر پنجم: نویسنده
-                    Translatorlab.setText(reader.readLine()); // سطر ششم: مترجم
-                    Nasherlab.setText(reader.readLine()); // سطر هفتم: ناشر
-                    String count = reader.readLine(); // سطر هشتم: تعداد موجودی
+                    pdfAd.setText(sc.nextLine());
+                    String count = sc.nextLine();
                     countLab.setText(count);
                     countLabel.setText(count);
-                    CategoryLab.setText(reader.readLine()); // سطر نهم: دسته‌بندی
-                    break; // از حلقه خارج شو
+                    Pricelab.setText(sc.nextLine());
+                    sc.nextLine();
+                    break;
                 }
             }
-        } catch (IOException e) {
+        }
+         catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -163,6 +174,13 @@ public class EditController {
                             lines.set(i + 14,sc.nextLine());
                         }
                     }
+
+                    FileWriter mywriter2 = new FileWriter(filePath);
+                    for (String line2 : lines) {
+                        mywriter2.write(line2 + "\n");
+                    }
+                    mywriter2.close();
+
                     // ذخیره خطوط فایل در یک لیست
                     List<String> lines1 = new ArrayList<>();
                     // خواندن تمامی خطوط فایل و ذخیره در لیست
@@ -178,7 +196,7 @@ public class EditController {
                             foundBook = true;
 
                             // اعمال تغییرات در لیست
-                            lines1.set(i + 1,Pricelab.getText());
+                            lines1.set(i + 1,Pricelab.getText().replaceAll("[^\\d]", ""));
                             lines1.set(i + 2, ImageAd.getText());
                             lines1.set(i + 4, Writerlab.getText());
                             lines1.set(i + 5, Translatorlab.getText());
