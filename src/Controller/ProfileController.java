@@ -107,8 +107,6 @@ public class ProfileController {
     private void loadAllReports() {
         String currentUsername = SharedData.getInstance().getUsername();
         allReports.clear();
-
-
         try {
 
             File reportFile = new File(currentUsername + "-history.txt");

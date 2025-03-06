@@ -333,6 +333,7 @@ public class admin1Controller implements Initializable{
     private Image image;
     private MyListener myListener;
     private Book selectedBook;
+
     private BookLists getData() {
         List<Book> allBooks = new ArrayList<>();
         List<Book> scientificBooks = new ArrayList<>();

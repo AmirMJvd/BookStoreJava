@@ -284,7 +284,7 @@ public class CartItemController {
         totalAmount = Math.abs(totalAmount);
 
         // نمایش قیمت جدید در priceLable
-        priceLable.setText(CURRENCY + totalAmount );
+        priceLable.setText( totalAmount + CURRENCY );
     }
     // متد برای استخراج عدد از قیمت
     private double extractPrice(String priceText) {

@@ -179,7 +179,7 @@
                                              <children>
                                                 <Button mnemonicParsing="false" onAction="#downlod" prefHeight="35.0" prefWidth="100.0" text="دانلود" textFill="WHITE">
                                                    <font>
-                                                      <Font size="20.0" />
+                                                      <Font name="B Mitra" size="24.0" />
                                                    </font>
                                                    <HBox.margin>
                                                       <Insets bottom="15.0" />
@@ -1386,7 +1386,7 @@
                      <children>
                         <Label text="Book Store">
                            <font>
-                              <Font name="Evalter" size="30.0" />
+                              <Font name="Eras Bold ITC" size="30.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
@@ -1394,7 +1394,7 @@
                         </Label>
                         <Label fx:id="AdminName" prefWidth="200.0" text="Admin Name" textFill="#898282">
                            <font>
-                              <Font name="IRAban" size="25.0" />
+                              <Font name="Comic Sans MS" size="25.0" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="5.0" left="10.0" />
