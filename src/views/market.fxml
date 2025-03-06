@@ -309,7 +309,7 @@
                                     <Font name="System Bold Italic" size="20.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#pressbtnvorud1" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="profile" fitHeight="46.0" fitWidth="46.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#pressbtnvorud1" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/arrow.png" />
                                  </image>

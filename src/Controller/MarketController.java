@@ -40,6 +40,9 @@ public class MarketController implements Initializable {
     private Label bookNameLable;
 
     @FXML
+    private ImageView profile;
+
+    @FXML
     private Label bookPriceLabel;
 
     @FXML
@@ -78,11 +81,8 @@ public class MarketController implements Initializable {
     @FXML
     private GridPane HistoryGrid;
 
-
     @FXML
     private TextField SearchTxt;
-
-
 
     @FXML
     private Label countLabel;
@@ -188,6 +188,16 @@ public class MarketController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+       String username = SharedData.getInstance().getUsername();
+        if(username == null) {
+           image = new Image(getClass().getResourceAsStream("../img/user-login.png"));
+           profile.setImage(image);
+       }else {
+           image = new Image(getClass().getResourceAsStream("../img/arrow.png"));
+           profile.setImage(image);
+       }
 
 
         // دریافت داده‌ها از متد getData()
