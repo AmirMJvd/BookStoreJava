@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import main.Main;
 import model.*;
 
 import java.io.*;
@@ -403,14 +404,14 @@ public class ProfileController {
     @FXML
     void getOut(MouseEvent event) throws IOException {
         // بستن تمام پنجره‌های باز
-        for (Window window : Window.getWindows()) {
-            if (window instanceof Stage) {  // بررسی اینکه پنجره از نوع Stage است یا خیر
-                Stage stage = (Stage) window; // تبدیل به Stage
-                if (stage.isShowing()) {
-                    stage.close();  // بستن پنجره
-                }
-            }
-        }
+//        for (Window window : Window.getWindows()) {
+//            if (window instanceof Stage) {  // بررسی اینکه پنجره از نوع Stage است یا خیر
+//                Stage stage = (Stage) window; // تبدیل به Stage
+//                if (stage.isShowing()) {
+//                    stage.close();  // بستن پنجره
+//                }
+//            }
+//        }
         // بستن پنجره فعلی
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (currentStage != null) {
@@ -418,7 +419,8 @@ public class ProfileController {
         }
 
         // دسترسی به نمونه‌ی SharedData و پاک کردن مقدار username
-        SharedData.getInstance().setUsername(""); // پاک کردن username
+        SharedData.getInstance().setUsername(null); // پاک کردن username
+
 
         // باز کردن صفحه مارکت (برای مثال با استفاده از FXMLLoader)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/market.fxml"));
@@ -428,6 +430,7 @@ public class ProfileController {
         Stage newStage = new Stage();
         newStage.setScene(new Scene(root));
         newStage.show();
+
     }
     public void removeItemFromGrid(Item1Controller itemController) {
         // گرفتن نود مربوط به آیتم از کنترلر

@@ -96,8 +96,6 @@ public class MarketController implements Initializable {
     @FXML
     private Label QuantityInCart;
 
-
-
     @FXML
     private Label lblsabadkharid;
 
