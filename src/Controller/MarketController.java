@@ -733,13 +733,9 @@ public class MarketController implements Initializable {
         stage.show();
     }
     private void openWindow1(String fxmlPath, String title) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
-        Scene scene = new Scene(fxmlLoader.load(), 1315, 810);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle(title);
-        stage.setScene(scene);
-        stage.show();
+
+        AnchorPane pane = FXMLLoader.load(getClass().getResource(fxmlPath));
+        rootPane.getChildren().setAll(pane);
     }
 
     @FXML

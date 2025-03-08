@@ -35,10 +35,8 @@ public class ProfileController {
     @FXML
     private TextField PasswordRepet;
 
-
     @FXML
     private TextField Email;
-
 
     @FXML
     private GridPane grid1;
@@ -48,8 +46,6 @@ public class ProfileController {
 
     @FXML
     private GridPane grid2;
-
-
 
     @FXML
     private TextField phoneNumber;
