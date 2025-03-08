@@ -314,7 +314,6 @@
                                     <Image url="@../img/arrow.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="338.0" layoutY="21.0" mnemonicParsing="false" onAction="#LodAdmin" text="پنل مدیریت" />
                            </children></Pane>
                         <Pane prefHeight="49.0" prefWidth="51.0">
                            <children>

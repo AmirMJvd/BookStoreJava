@@ -461,7 +461,7 @@ public class NewCartController  implements Initializable {
             // ارسال ایمیل به آدرس ایمیل
             boolean emailSent = sendEmail(email, generatedCode);
             if (emailSent) {
-                showAlert1("موفقیت", "کد بازنشانی به ایمیل ارسال شد.");
+                showAlert1("موفقیت", "رمز پویا به ایمیل شما ارسال شد.");
             } else {
                 showAlert("خطا", "مشکلی در ارسال ایمیل به وجود آمد.");
             }

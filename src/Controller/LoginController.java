@@ -64,7 +64,6 @@ public class LoginController {
         if (role != null) {
             SharedData.getInstance().setUsername(username); // ذخیره نام کاربری در SharedData
             createUserFile(username); // ایجاد فایل متنی برای نام کاربری
-            showAlert(Alert.AlertType.INFORMATION, "موفقیت", "ورود با موفقیت انجام شد!");
             closeLoginWindow(); // بستن پنجره ورود
 
 
